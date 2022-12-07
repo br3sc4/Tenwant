@@ -13,9 +13,12 @@ struct GalleryView: View {
         ScrollView(showsIndicators: false){
             LazyVGrid(columns: gridItems, content: {
                 ForEach(0..<10){_ in
-                    AccomodationCardView()
-                        .scaleEffect(0.9)
-                        .padding(10)
+                   
+                        NavigationLink(destination: ContentView(), label:
+                            {AccomodationCardView()
+                            .scaleEffect(0.85)
+                            .padding(EdgeInsets(top: 0, leading: 10, bottom: -15, trailing: 10))
+                    })
                 }
             })
         }

@@ -19,7 +19,7 @@ struct AccomodationCardView: View {
                 .foregroundColor(.white)
                 .frame(minWidth: 200*size, minHeight: 240*size)
                 .cornerRadius(10)
-                .shadow(radius: 5)
+                .shadow(radius: 4)
         VStack(alignment: .leading) {
             
             Image("ph1")
@@ -46,7 +46,7 @@ struct AccomodationCardView: View {
             .frame(minWidth: 200*size)
             
         }
-        .padding(.bottom, 10)
+        .padding(.bottom, 5)
     }
     }
 }
