@@ -15,6 +15,10 @@
 		BCE95ED82941F4200034D879 /* AccommodationData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BCE95ED62941F4200034D879 /* AccommodationData.xcdatamodeld */; };
 		BCE95EDA2941F8C50034D879 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCE95ED92941F8C50034D879 /* Persistence.swift */; };
 		BCE95EDD2941FB390034D879 /* CoreDataTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCE95EDC2941FB390034D879 /* CoreDataTestView.swift */; };
+		A90B3D4A2940BDE800A8E180 /* MyAccomodations.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90B3D492940BDE800A8E180 /* MyAccomodations.swift */; };
+		A90B3D4C2940C03500A8E180 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90B3D4B2940C03500A8E180 /* MainView.swift */; };
+		A90B3D502940D0D300A8E180 /* AccomodationCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90B3D4F2940D0D300A8E180 /* AccomodationCardView.swift */; };
+		A90B3D522940D3E200A8E180 /* GalleryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90B3D512940D3E200A8E180 /* GalleryView.swift */; };e
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +32,10 @@
 		BCE95ED72941F4200034D879 /* Accommodation.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Accommodation.xcdatamodel; sourceTree = "<group>"; };
 		BCE95ED92941F8C50034D879 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		BCE95EDC2941FB390034D879 /* CoreDataTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataTestView.swift; sourceTree = "<group>"; };
+		A90B3D492940BDE800A8E180 /* MyAccomodations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAccomodations.swift; sourceTree = "<group>"; };
+		A90B3D4B2940C03500A8E180 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		A90B3D4F2940D0D300A8E180 /* AccomodationCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccomodationCardView.swift; sourceTree = "<group>"; };
+		A90B3D512940D3E200A8E180 /* GalleryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +69,9 @@
 			isa = PBXGroup;
 			children = (
 				2D6AAC4A2940B5BA00A7AC00 /* AccommodationAppApp.swift */,
+				A90B3D4E2940D0A900A8E180 /* Components */,
+				A90B3D532940DCF400A8E180 /* Models */,
+				A90B3D4D2940D07F00A8E180 /* Views */,
 				2D6AAC4C2940B5BA00A7AC00 /* ContentView.swift */,
 				2D6AAC4E2940B5BB00A7AC00 /* Assets.xcassets */,
 				2D6AAC502940B5BB00A7AC00 /* AccommodationApp.entitlements */,
@@ -87,6 +98,31 @@
 				BCDE64DC29428879008056AF /* Extensions.swift */,
 			);
 			path = CoreData;
+            sourceTree = "<group>";
+        };
+		A90B3D4D2940D07F00A8E180 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				A90B3D4B2940C03500A8E180 /* MainView.swift */,
+				A90B3D492940BDE800A8E180 /* MyAccomodations.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		A90B3D4E2940D0A900A8E180 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				A90B3D4F2940D0D300A8E180 /* AccomodationCardView.swift */,
+				A90B3D512940D3E200A8E180 /* GalleryView.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		A90B3D532940DCF400A8E180 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -163,8 +199,12 @@
 				BCDE64DD29428879008056AF /* Extensions.swift in Sources */,
 				BCE95EDD2941FB390034D879 /* CoreDataTestView.swift in Sources */,
 				BCE95EDA2941F8C50034D879 /* Persistence.swift in Sources */,
+				A90B3D4A2940BDE800A8E180 /* MyAccomodations.swift in Sources */,
+				A90B3D522940D3E200A8E180 /* GalleryView.swift in Sources */,
+				A90B3D4C2940C03500A8E180 /* MainView.swift in Sources */,
 				2D6AAC4D2940B5BA00A7AC00 /* ContentView.swift in Sources */,
 				2D6AAC4B2940B5BA00A7AC00 /* AccommodationAppApp.swift in Sources */,
+				A90B3D502940D0D300A8E180 /* AccomodationCardView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
