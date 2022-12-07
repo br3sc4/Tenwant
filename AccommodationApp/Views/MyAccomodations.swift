@@ -28,9 +28,6 @@ struct MyAccomodations: View {
             }
                 .navigationTitle("My Accomodations")
                 .navigationBarTitleDisplayMode(.large)
-                
-            
-            
                 .toolbar(content: {
                     ToolbarItem(placement: .primaryAction){
                         Button(action: {
@@ -41,13 +38,9 @@ struct MyAccomodations: View {
                     }
                 }).sheet(isPresented: $showingAddAccomodation) {
                     AddAccomodationView()
-                }
-            
-                
+                }       
         }
-        .searchable(text: $searchText, placement: .automatic)
-        
-        
+        .searchable(text: $searchText)
     }
 }
 
