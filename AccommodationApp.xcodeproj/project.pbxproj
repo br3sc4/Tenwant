@@ -17,6 +17,10 @@
 		2DB6CB832941F7CC0048CF00 /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB6CB822941F7CC0048CF00 /* MapViewModel.swift */; };
 		2DB6CB852941F9000048CF00 /* AlertContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB6CB842941F9000048CF00 /* AlertContent.swift */; };
 		2DB6CB882942479D0048CF00 /* Accommodation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB6CB872942479D0048CF00 /* Accommodation.swift */; };
+		A90B3D4A2940BDE800A8E180 /* MyAccomodations.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90B3D492940BDE800A8E180 /* MyAccomodations.swift */; };
+		A90B3D4C2940C03500A8E180 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90B3D4B2940C03500A8E180 /* MainView.swift */; };
+		A90B3D502940D0D300A8E180 /* AccomodationCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90B3D4F2940D0D300A8E180 /* AccomodationCardView.swift */; };
+		A90B3D522940D3E200A8E180 /* GalleryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90B3D512940D3E200A8E180 /* GalleryView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +36,10 @@
 		2DB6CB822941F7CC0048CF00 /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
 		2DB6CB842941F9000048CF00 /* AlertContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertContent.swift; sourceTree = "<group>"; };
 		2DB6CB872942479D0048CF00 /* Accommodation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Accommodation.swift; sourceTree = "<group>"; };
+		A90B3D492940BDE800A8E180 /* MyAccomodations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAccomodations.swift; sourceTree = "<group>"; };
+		A90B3D4B2940C03500A8E180 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		A90B3D4F2940D0D300A8E180 /* AccomodationCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccomodationCardView.swift; sourceTree = "<group>"; };
+		A90B3D512940D3E200A8E180 /* GalleryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +75,9 @@
 				2DB6CB862942478D0048CF00 /* Models */,
 				2DB6CB7B29415E390048CF00 /* Map */,
 				2D6AAC4A2940B5BA00A7AC00 /* AccommodationAppApp.swift */,
+				A90B3D4E2940D0A900A8E180 /* Components */,
+				A90B3D532940DCF400A8E180 /* Models */,
+				A90B3D4D2940D07F00A8E180 /* Views */,
 				2D6AAC4C2940B5BA00A7AC00 /* ContentView.swift */,
 				2D6AAC4E2940B5BB00A7AC00 /* Assets.xcassets */,
 				2D6AAC502940B5BB00A7AC00 /* AccommodationApp.entitlements */,
@@ -99,6 +110,31 @@
 			isa = PBXGroup;
 			children = (
 				2DB6CB872942479D0048CF00 /* Accommodation.swift */,
+                );
+            path = Models;
+            sourceTree = "<group>";
+        };
+		A90B3D4D2940D07F00A8E180 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				A90B3D4B2940C03500A8E180 /* MainView.swift */,
+				A90B3D492940BDE800A8E180 /* MyAccomodations.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		A90B3D4E2940D0A900A8E180 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				A90B3D4F2940D0D300A8E180 /* AccomodationCardView.swift */,
+				A90B3D512940D3E200A8E180 /* GalleryView.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		A90B3D532940DCF400A8E180 /* Models */ = {
+			isa = PBXGroup;
+			children = (
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -174,6 +210,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				2DB6CB7F29415EF30048CF00 /* MapViewRepresentable.swift in Sources */,
+				A90B3D4A2940BDE800A8E180 /* MyAccomodations.swift in Sources */,
+				A90B3D522940D3E200A8E180 /* GalleryView.swift in Sources */,
+				A90B3D4C2940C03500A8E180 /* MainView.swift in Sources */,
 				2D6AAC4D2940B5BA00A7AC00 /* ContentView.swift in Sources */,
 				2DB6CB852941F9000048CF00 /* AlertContent.swift in Sources */,
 				2DB6CB7D29415EDD0048CF00 /* MapView.swift in Sources */,
@@ -181,6 +220,7 @@
 				2DB6CB8129415F5F0048CF00 /* AccommodationAnnotation.swift in Sources */,
 				2D6AAC4B2940B5BA00A7AC00 /* AccommodationAppApp.swift in Sources */,
 				2DB6CB832941F7CC0048CF00 /* MapViewModel.swift in Sources */,
+				A90B3D502940D0D300A8E180 /* AccomodationCardView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -305,7 +345,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"AccommodationApp/Preview Content\"";
-				DEVELOPMENT_TEAM = A8DRB9NKCV;
+				DEVELOPMENT_TEAM = 2983DH4K56;
 				ENABLE_HARDENED_RUNTIME = YES;
 				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = YES;
 				ENABLE_PREVIEWS = YES;
@@ -326,7 +366,7 @@
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.brescanzin.lorenzo.AccommodationApp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.giugliano.antonella.AccommodationApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
