@@ -13,7 +13,7 @@
 		2D6AAC532940B5BB00A7AC00 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2D6AAC522940B5BB00A7AC00 /* Preview Assets.xcassets */; };
 		2DB6CB7D29415EDD0048CF00 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB6CB7C29415EDD0048CF00 /* MapView.swift */; };
 		2DB6CB7F29415EF30048CF00 /* MapViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB6CB7E29415EF30048CF00 /* MapViewRepresentable.swift */; };
-		2DB6CB8129415F5F0048CF00 /* PointOfInterestAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB6CB8029415F5F0048CF00 /* PointOfInterestAnnotation.swift */; };
+		2DB6CB8129415F5F0048CF00 /* AccommodationAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB6CB8029415F5F0048CF00 /* AccommodationAnnotation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,7 +25,7 @@
 		2D6AAC522940B5BB00A7AC00 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		2DB6CB7C29415EDD0048CF00 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		2DB6CB7E29415EF30048CF00 /* MapViewRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewRepresentable.swift; sourceTree = "<group>"; };
-		2DB6CB8029415F5F0048CF00 /* PointOfInterestAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointOfInterestAnnotation.swift; sourceTree = "<group>"; };
+		2DB6CB8029415F5F0048CF00 /* AccommodationAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccommodationAnnotation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,7 +81,7 @@
 			children = (
 				2DB6CB7C29415EDD0048CF00 /* MapView.swift */,
 				2DB6CB7E29415EF30048CF00 /* MapViewRepresentable.swift */,
-				2DB6CB8029415F5F0048CF00 /* PointOfInterestAnnotation.swift */,
+				2DB6CB8029415F5F0048CF00 /* AccommodationAnnotation.swift */,
 			);
 			path = Map;
 			sourceTree = "<group>";
@@ -159,7 +159,7 @@
 				2DB6CB7F29415EF30048CF00 /* MapViewRepresentable.swift in Sources */,
 				2D6AAC4D2940B5BA00A7AC00 /* ContentView.swift in Sources */,
 				2DB6CB7D29415EDD0048CF00 /* MapView.swift in Sources */,
-				2DB6CB8129415F5F0048CF00 /* PointOfInterestAnnotation.swift in Sources */,
+				2DB6CB8129415F5F0048CF00 /* AccommodationAnnotation.swift in Sources */,
 				2D6AAC4B2940B5BA00A7AC00 /* AccommodationAppApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
