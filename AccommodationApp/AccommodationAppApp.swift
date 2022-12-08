@@ -9,9 +9,13 @@ import SwiftUI
 
 @main
 struct AccommodationAppApp: App {
+    
+    let persistenceController = PersistenceController.shared
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            CoreDataTestView()
+                .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
     }
 }
