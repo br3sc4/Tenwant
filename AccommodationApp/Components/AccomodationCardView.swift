@@ -32,6 +32,7 @@ struct AccomodationCardView: View {
             Text("ADDRESS")
                 .font(.system(size: 14))
                 .foregroundColor(.black)
+                .padding(.leading, 10)
             
             HStack {
                 Text("$$$")
@@ -44,9 +45,10 @@ struct AccomodationCardView: View {
                 })
             }
             .frame(minWidth: 200*size)
+            .padding([.leading, .trailing], 10)
             
         }
-        .padding(.bottom, 5)
+        .padding(.bottom, 10)
     }
     }
 }
