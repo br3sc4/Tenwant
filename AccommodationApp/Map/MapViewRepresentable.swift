@@ -15,13 +15,12 @@ struct MapViewRepresentable: UIViewRepresentable {
     
     let trackingMode: MKUserTrackingMode = .follow
     
-    private let accommodations = [
-        Accommodation(address: "Via Pietro Metastasio 47",
-                      price: 350,
-                      status: .free,
-                      latitude: 40.832340,
-                      longitude: 14.199398)
-    ]
+    private let accommodations: [Accommodation]
+    
+    init(region: MKCoordinateRegion, accommodations: [Accommodation]) {
+        self.region = region
+        self.accommodations = accommodations
+    }
 
     func makeUIView(context: Context) -> MKMapView {
         let map = MKMapView()
@@ -106,7 +105,7 @@ struct MapViewRepresntable_Previews: PreviewProvider {
     @State static private var region = MKCoordinateRegion(center: MapLocations.naples, span: MapLocations.span)
     
     static var previews: some View {
-        MapViewRepresentable(region: region)
+        MapViewRepresentable(region: region, accommodations: Accommodation.accommodations)
             .ignoresSafeArea()
     }
 }

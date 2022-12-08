@@ -9,10 +9,11 @@ import SwiftUI
 
 struct MapView: View {
     @StateObject private var vm: MapViewModel = MapViewModel()
+    private let accommodations: [Accommodation] = Accommodation.accommodations
     
     var body: some View {
         ZStack(alignment: .topTrailing) {
-            MapViewRepresentable(region: vm.region)
+            MapViewRepresentable(region: vm.region, accommodations: accommodations)
                 .ignoresSafeArea()
         }
         .alert(vm.alertContent.title, isPresented: $vm.showAlert) {

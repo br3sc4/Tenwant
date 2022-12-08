@@ -32,3 +32,13 @@ struct Accommodation {
         case full, contacted, free
     }
 }
+
+extension Accommodation {
+    static let accommodations: [Accommodation] = [
+        Accommodation(address: "Via Pietro Metastasio 47",
+                      price: 350,
+                      status: .free,
+                      latitude: 40.832340,
+                      longitude: 14.199398)
+    ]
+}
