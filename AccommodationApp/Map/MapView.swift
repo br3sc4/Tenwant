@@ -8,9 +8,20 @@
 import SwiftUI
 
 struct MapView: View {
+    @StateObject private var vm: MapViewModel = MapViewModel()
+    
     var body: some View {
-        MapViewRepresentable()
-            .ignoresSafeArea()
+        ZStack(alignment: .topTrailing) {
+            MapViewRepresentable(region: vm.region)
+                .ignoresSafeArea()
+        }
+        .alert(vm.alertContent.title, isPresented: $vm.showAlert) {
+            Button("Cancel", role: .cancel) {
+                vm.showAlert.toggle()
+            }
+        } message: {
+            Text(vm.alertContent.message)
+        }
     }
 }
 

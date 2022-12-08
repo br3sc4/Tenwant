@@ -7,34 +7,29 @@
 
 import MapKit
 
-enum AccommodationStatus {
-case full, contacted, free
-}
-
 class AccommodationAnnotation: NSObject, MKAnnotation {
     var title: String?
     var subtitle: String?
     let coordinate: CLLocationCoordinate2D
-    var status: AccommodationStatus
-    
+    var color: UIColor?
     var location: String? {
         title
     }
     
-    var markerColor: UIColor {
+    init(accommodation: Accommodation) {
+        self.title = accommodation.address
+        self.subtitle = accommodation.price.formatted(.currency(code: "EUR").precision(.fractionLength(.zero)))
+        self.coordinate = accommodation.coordinates
+        super.init()
+        
+        self.color = markerColor(for: accommodation.status)
+    }
+    
+    private func markerColor(for status: Accommodation.Status) -> UIColor {
         switch status {
         case .free: return .green
         case .contacted: return .orange
         default: return .red
         }
-    }
-    
-    init(title: String? = nil, subtitle: String? = nil, latitude: CLLocationDegrees, longitude: CLLocationDegrees, status: AccommodationStatus) {
-        self.title = title
-        self.subtitle = subtitle
-        self.coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
-        self.status = status
-        
-        super.init()
     }
 }

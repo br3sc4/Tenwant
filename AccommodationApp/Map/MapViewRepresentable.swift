@@ -11,29 +11,38 @@ import MapKit
 struct MapViewRepresentable: UIViewRepresentable {
     typealias UIViewType = MKMapView
     
-    static let span = MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)
+    var region: MKCoordinateRegion
+    
+    let trackingMode: MKUserTrackingMode = .follow
     
     private let accommodations = [
-        AccommodationAnnotation(title: "Via Pietro Metastasio 47",
-                                subtitle: "\(350.formatted(.currency(code: "EUR"))) • Distance from me",
-                                latitude: 40.832340,
-                                longitude: 14.199398,
-                                status: .free)
+        Accommodation(address: "Via Pietro Metastasio 47",
+                      price: 350,
+                      status: .free,
+                      latitude: 40.832340,
+                      longitude: 14.199398)
     ]
 
     func makeUIView(context: Context) -> MKMapView {
         let map = MKMapView()
         map.delegate = context.coordinator
-        
-        let naples = CLLocationCoordinate2D(latitude: 40.839893, longitude: 14.251971)
-        let region = MKCoordinateRegion(center: naples,
-                                        span: MapViewRepresentable.span)
+         
         map.setRegion(region, animated: true)
+        map.centerCoordinate = region.center
         
+        map.showsScale = true
+        map.showsCompass = false
         map.showsUserLocation = true
-        map.setUserTrackingMode(.follow, animated: true)
+        Task { @MainActor in
+            map.setUserTrackingMode(trackingMode, animated: true)
+        }
         
-        map.addAnnotations(accommodations)
+        setupUserTrackingButton(mapView: map)
+        setupCompassButton(mapView: map)
+        
+        map.preferredConfiguration = MKStandardMapConfiguration(elevationStyle: .realistic)
+
+        map.addAnnotations(accommodations.map(AccommodationAnnotation.init))
         
         return map
     }
@@ -59,7 +68,7 @@ struct MapViewRepresentable: UIViewRepresentable {
             } else {
                 view = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: identifier)
                 view.canShowCallout = true
-                view.markerTintColor = annotation.markerColor
+                view.markerTintColor = annotation.color
                 view.calloutOffset = CGPoint(x: 0, y: 5)
                 view.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
             }
@@ -70,11 +79,34 @@ struct MapViewRepresentable: UIViewRepresentable {
             static let accommodation = "accommodation"
         }
     }
+    
+    private func setupUserTrackingButton(mapView: MKMapView) {
+        let trackingButton = MKUserTrackingButton(mapView: mapView)
+        trackingButton.backgroundColor = .tertiarySystemGroupedBackground
+        trackingButton.tintColor = .systemGray
+        trackingButton.layer.cornerRadius = 4
+        mapView.addSubview(trackingButton)
+        
+        trackingButton.translatesAutoresizingMaskIntoConstraints = false
+        trackingButton.trailingAnchor.constraint(equalTo: mapView.layoutMarginsGuide.trailingAnchor, constant: -16).isActive = true
+        trackingButton.topAnchor.constraint(equalTo: mapView.layoutMarginsGuide.topAnchor, constant: 42).isActive = true
+    }
+    
+    private func setupCompassButton(mapView: MKMapView) {
+        let compassButton = MKCompassButton(mapView: mapView)
+        mapView.addSubview(compassButton)
+        
+        compassButton.translatesAutoresizingMaskIntoConstraints = false
+        compassButton.trailingAnchor.constraint(equalTo: mapView.layoutMarginsGuide.trailingAnchor, constant: -14).isActive = true
+        compassButton.topAnchor.constraint(equalTo: mapView.layoutMarginsGuide.topAnchor, constant: 42*2+8).isActive = true
+    }
 }
 
 struct MapViewRepresntable_Previews: PreviewProvider {
+    @State static private var region = MKCoordinateRegion(center: MapLocations.naples, span: MapLocations.span)
+    
     static var previews: some View {
-        MapViewRepresentable()
+        MapViewRepresentable(region: region)
             .ignoresSafeArea()
     }
 }
