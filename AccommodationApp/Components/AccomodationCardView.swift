@@ -48,7 +48,7 @@ struct AccomodationCardView: View {
             .padding([.leading, .trailing], 10)
             
         }
-        .padding(.bottom, 5)
+        .padding(.bottom, 10)
     }
     }
 }

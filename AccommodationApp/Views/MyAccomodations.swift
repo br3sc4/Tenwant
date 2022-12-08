@@ -38,9 +38,9 @@ struct MyAccomodations: View {
                     }
                 }).sheet(isPresented: $showingAddAccomodation) {
                     AddAccomodationView()
-                }       
+                }
         }
-        .searchable(text: $searchText)
+        .searchable(text: $searchText, placement: .automatic)
     }
 }
 
