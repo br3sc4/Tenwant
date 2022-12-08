@@ -21,20 +21,17 @@ struct CoreDataTestView: View {
     var body: some View {
         VStack {
             Button("Add Example"){
-                let accomodation = Accomodation(context: viewContext)
-                accomodation.id = UUID()
-                accomodation.title = "Via Postica Maddalena 36"
-                accomodation.contact = "+39 081 1929 7263"
-                accomodation.description_text = "2 room Appartement 125m2 in Centro Storico"
-                accomodation.extra_cost = 70
-                accomodation.rent_cost = 1200
-                accomodation.url = URL(string: "https://www.idealista.it/de/immobile/25939751/")
-                accomodation.isFavourite = false
-                try? viewContext.save()
+                Accomodation.createNewAccommodation(viewContext: viewContext,
+                                                    title: "Via Postica Maddalena 36",
+                                                    contact: "+39 081 1929 7263",
+                                                    description_text: "2 room Appartement 125m2 in Centro Storico",
+                                                    rent_cost: 1200,
+                                                    extra_cost: 70,
+                                                    url: "https://www.idealista.it/de/immobile/25939751/", isFavourite: false)
             }
             List {
                 ForEach(accomodations) { accomodation in
-                    Text(accomodation.title!)
+                    Text(accomodation.wrappedTitle)
                 }
             }
         }
