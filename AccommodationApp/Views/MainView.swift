@@ -12,10 +12,10 @@ struct MainView: View {
         TabView {
             MyAccomodations()
                 .tabItem {
-                    Label("Gallery", systemImage: "square.grid.2x2")
+                    Label("MyAccomodations", systemImage: "square.grid.2x2")
                 }
             
-            ContentView()
+            MyCalendarView()
                 .tabItem {
                     Label("Calendar", systemImage: "calendar")
                 }
