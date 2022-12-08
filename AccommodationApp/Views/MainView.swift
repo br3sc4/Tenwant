@@ -14,6 +14,7 @@ struct MainView: View {
                 .tabItem {
                     Label("Gallery", systemImage: "square.grid.2x2")
                 }
+            
             ContentView()
                 .tabItem {
                     Label("Calendar", systemImage: "calendar")

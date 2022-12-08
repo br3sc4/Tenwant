@@ -16,8 +16,8 @@ struct GalleryView: View {
                    
                         NavigationLink(destination: ContentView(), label:
                             {AccomodationCardView()
-                            .scaleEffect(0.85)
-                            .padding(EdgeInsets(top: 0, leading: 10, bottom: -15, trailing: 10))
+                            .scaleEffect(0.80)
+                            .padding(EdgeInsets(top: 0, leading: 10, bottom: -30, trailing: 10))
                     })
                 }
             })
