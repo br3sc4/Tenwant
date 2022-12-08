@@ -20,6 +20,7 @@ struct AccomodationCardView: View {
                 .frame(minWidth: 200*size, minHeight: 240*size)
                 .cornerRadius(10)
                 .shadow(radius: 4)
+            
         VStack(alignment: .leading) {
             
             Image("ph1")

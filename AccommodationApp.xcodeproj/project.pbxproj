@@ -35,6 +35,10 @@
 		A90B3D502940D0D300A8E180 /* AccomodationCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90B3D4F2940D0D300A8E180 /* AccomodationCardView.swift */; };
 		A90B3D522940D3E200A8E180 /* GalleryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90B3D512940D3E200A8E180 /* GalleryView.swift */; };
 		A90B3D552942342B00A8E180 /* AddAccomodationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90B3D542942342B00A8E180 /* AddAccomodationView.swift */; };
+		A90B3D5929423AA800A8E180 /* MyCalendarRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90B3D5829423AA800A8E180 /* MyCalendarRowView.swift */; };
+		A90B3D5B2942415900A8E180 /* MyCalendarListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90B3D5A2942415900A8E180 /* MyCalendarListView.swift */; };
+		A90B3D5D2942417500A8E180 /* MyCalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90B3D5C2942417500A8E180 /* MyCalendarView.swift */; };
+		A90B3D5F2942484E00A8E180 /* MyCalendarWeeklyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90B3D5E2942484E00A8E180 /* MyCalendarWeeklyView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -68,6 +72,10 @@
 		A90B3D4F2940D0D300A8E180 /* AccomodationCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccomodationCardView.swift; sourceTree = "<group>"; };
 		A90B3D512940D3E200A8E180 /* GalleryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryView.swift; sourceTree = "<group>"; };
 		A90B3D542942342B00A8E180 /* AddAccomodationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAccomodationView.swift; sourceTree = "<group>"; };
+		A90B3D5829423AA800A8E180 /* MyCalendarRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCalendarRowView.swift; sourceTree = "<group>"; };
+		A90B3D5A2942415900A8E180 /* MyCalendarListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCalendarListView.swift; sourceTree = "<group>"; };
+		A90B3D5C2942417500A8E180 /* MyCalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCalendarView.swift; sourceTree = "<group>"; };
+		A90B3D5E2942484E00A8E180 /* MyCalendarWeeklyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCalendarWeeklyView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -190,6 +198,7 @@
 				A90B3D4B2940C03500A8E180 /* MainView.swift */,
 				A90B3D492940BDE800A8E180 /* MyAccomodations.swift */,
 				A90B3D542942342B00A8E180 /* AddAccomodationView.swift */,
+				A90B3D5C2942417500A8E180 /* MyCalendarView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -199,6 +208,9 @@
 			children = (
 				A90B3D4F2940D0D300A8E180 /* AccomodationCardView.swift */,
 				A90B3D512940D3E200A8E180 /* GalleryView.swift */,
+				A90B3D5829423AA800A8E180 /* MyCalendarRowView.swift */,
+				A90B3D5A2942415900A8E180 /* MyCalendarListView.swift */,
+				A90B3D5E2942484E00A8E180 /* MyCalendarWeeklyView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -290,6 +302,7 @@
 				BCE95EDD2941FB390034D879 /* CoreDataTestView.swift in Sources */,
 				BCE95EDA2941F8C50034D879 /* Persistence.swift in Sources */,
 				A90B3D4A2940BDE800A8E180 /* MyAccomodations.swift in Sources */,
+				A90B3D5929423AA800A8E180 /* MyCalendarRowView.swift in Sources */,
 				A90B3D522940D3E200A8E180 /* GalleryView.swift in Sources */,
 				A90B3D4C2940C03500A8E180 /* MainView.swift in Sources */,
 				2D6AAC4D2940B5BA00A7AC00 /* ContentView.swift in Sources */,
@@ -304,7 +317,10 @@
 				A90B3D5B2942415900A8E180 /* MyCalendarListView.swift in Sources */,
 				A90B3D502940D0D300A8E180 /* AccomodationCardView.swift in Sources */,
 				A90B3D5F2942484E00A8E180 /* MyCalendarWeeklyView.swift in Sources */,
+				A90B3D5D2942417500A8E180 /* MyCalendarView.swift in Sources */,
+				A90B3D5B2942415900A8E180 /* MyCalendarListView.swift in Sources */,
 				A90B3D502940D0D300A8E180 /* AccomodationCardView.swift in Sources */,
+				A90B3D5F2942484E00A8E180 /* MyCalendarWeeklyView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

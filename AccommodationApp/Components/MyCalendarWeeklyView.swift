@@ -81,7 +81,6 @@ struct MyCalendarWeeklyView: View {
         print("inizio \(String(describing: startFromNow)) e fine \(endFromNow)")
         return
     }
-    
 }
 
 struct MyCalendarWeeklyView_Previews: PreviewProvider {
