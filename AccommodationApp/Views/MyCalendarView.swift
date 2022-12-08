@@ -16,28 +16,23 @@ struct MyCalendarView: View {
                     MyCalendarListView()
                 }
                 else{
-                    MyCalendarListView()
+                    Text("false")
                 }
-                Button(action: {
-                    showList.toggle()
-                }, label: {
-                    ZStack{
-                        Circle()
-                            .foregroundColor(.teal)
-                            .frame(width: 60)
-                            .shadow(radius: 4)
-                        Image(systemName: (showList ? "list.bullet" : "calendar"))
-                            .resizable()
-                            .scaledToFit()
-                            .foregroundColor(.white)
-                            .frame(width: 30, height: 30)
-                            
-                    }
-                }).padding(.bottom, 15)
 
             }
             .navigationTitle("Calendar")
             .toolbar{
+                ToolbarItem(placement: .cancellationAction){
+                    Button(action: {
+                        showList.toggle()
+                    }, label:
+                            {
+                        Image(systemName: (showList ? "calendar" : "list.bullet"))
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 30, height: 30)
+                    })
+                }
                 ToolbarItem(placement: .primaryAction){
                     Button(action: {
                     }, label:
