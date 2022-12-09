@@ -81,6 +81,29 @@ struct MyCalendarWeeklyView: View {
         print("inizio \(String(describing: startFromNow)) e fine \(endFromNow)")
         return
     }
+    mutating func getCurrentWeek(){
+        let calendar: Calendar = .current
+        let now = Date()
+        let nowWeekDay = Calendar.current.dateComponents([.weekday], from: now)
+        print("now \(Int(nowWeekDay.weekday!)) ")
+        let endRange = (7-Int(nowWeekDay.weekday!) + 1)
+        let startRange = (Int(nowWeekDay.weekday!) - 2) * -1
+        
+        var startFromNow = Calendar.current.date(byAdding: .day, value: startRange, to: Date())
+        print("startFromNow \(startFromNow)")
+        let endFromNow = calendar.date(byAdding: .day, value: endRange, to: now)!
+        if currentWeek.isEmpty {
+            currentWeek.append(startFromNow)
+        }
+        
+        print(currentWeek)
+        var interval: TimeInterval = 0
+//        guard calendar.dateInterval(of: .weekOfMonth, start: &(startFromNow)!, interval: &interval, for: weekFromNow) else { return }
+        
+        print("inizio \(String(describing: startFromNow)) e fine \(endFromNow)")
+        return
+    }
+    
 }
 
 struct MyCalendarWeeklyView_Previews: PreviewProvider {
