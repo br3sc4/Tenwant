@@ -14,7 +14,7 @@ struct AccommodationAppApp: App {
     
     var body: some Scene {
         WindowGroup {
-            CoreDataTestView()
+            ContentView()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
     }
