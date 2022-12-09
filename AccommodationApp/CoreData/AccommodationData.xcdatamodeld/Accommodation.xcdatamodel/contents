@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21512" systemVersion="22A400" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Accomodation" representedClassName="Accomodation" syncable="YES" codeGenerationType="class">
+        <attribute name="card_cover" optional="YES" attributeType="Binary"/>
         <attribute name="contact" optional="YES" attributeType="String"/>
         <attribute name="description_text" optional="YES" attributeType="String"/>
         <attribute name="extra_cost" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
@@ -8,7 +9,6 @@
         <attribute name="isFavourite" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="latitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
-        <attribute name="photos" optional="YES" attributeType="Binary"/>
         <attribute name="rating" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="rent_cost" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="status" optional="YES" attributeType="String"/>

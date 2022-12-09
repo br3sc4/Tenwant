@@ -39,6 +39,10 @@
 		A90B3D5B2942415900A8E180 /* MyCalendarListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90B3D5A2942415900A8E180 /* MyCalendarListView.swift */; };
 		A90B3D5D2942417500A8E180 /* MyCalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90B3D5C2942417500A8E180 /* MyCalendarView.swift */; };
 		A90B3D5F2942484E00A8E180 /* MyCalendarWeeklyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90B3D5E2942484E00A8E180 /* MyCalendarWeeklyView.swift */; };
+		BCDE64DD29428879008056AF /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCDE64DC29428879008056AF /* Extensions.swift */; };
+		BCE95ED82941F4200034D879 /* AccommodationData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BCE95ED62941F4200034D879 /* AccommodationData.xcdatamodeld */; };
+		BCE95EDA2941F8C50034D879 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCE95ED92941F8C50034D879 /* Persistence.swift */; };
+		BCE95EDD2941FB390034D879 /* CoreDataTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCE95EDC2941FB390034D879 /* CoreDataTestView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -76,6 +80,10 @@
 		A90B3D5A2942415900A8E180 /* MyCalendarListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCalendarListView.swift; sourceTree = "<group>"; };
 		A90B3D5C2942417500A8E180 /* MyCalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCalendarView.swift; sourceTree = "<group>"; };
 		A90B3D5E2942484E00A8E180 /* MyCalendarWeeklyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCalendarWeeklyView.swift; sourceTree = "<group>"; };
+		BCDE64DC29428879008056AF /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		BCE95ED72941F4200034D879 /* Accommodation.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Accommodation.xcdatamodel; sourceTree = "<group>"; };
+		BCE95ED92941F8C50034D879 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
+		BCE95EDC2941FB390034D879 /* CoreDataTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataTestView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -220,6 +228,17 @@
 			children = (
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		BCE95EDB2941F8E30034D879 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				BCE95EDC2941FB390034D879 /* CoreDataTestView.swift */,
+				BCE95ED92941F8C50034D879 /* Persistence.swift */,
+				BCE95ED62941F4200034D879 /* AccommodationData.xcdatamodeld */,
+				BCDE64DC29428879008056AF /* Extensions.swift */,
+			);
+			path = CoreData;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
