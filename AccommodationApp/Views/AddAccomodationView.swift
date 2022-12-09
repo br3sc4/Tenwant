@@ -24,19 +24,19 @@ struct AddAccomodationView: View {
     @State private var ownerFlatName = ""
     @State private var ownerFlatPhone = ""
     @State private var flatExtraDetails = ""
-    @State private var selectedTypeOfAccomodation: TypeOfAccomodation = .room
+    @State private var selectedTypeOfAccomodation: TypeOfAccomodation = .singleRoom
     @State private var selectedTypeOfContact: TypeOfContact = .individual
     
     enum TypeOfAccomodation: String, CaseIterable, Identifiable {
-        case room, studio, entireFlat
+        case singleRoom = "single room", sharedRoom = "shared room", studio, flat
         var id: Self { self }
     }
     enum TypeOfContact: String, CaseIterable, Identifiable {
-        case individual, professional, bookingPlatform
+        case individual, professional, platform
         var id: Self { self }
     }
     enum Status: String, CaseIterable, Identifiable {
-        case toContact, toVisit, filePreparation, fileSubmitted, bookingSubmitted, awaitingReply, accepted, rejected
+        case toContact = "to contact", toVisit = "to visit", filePreparation = "file preparation", fileSubmitted = "file submitted", bookingSubmitted = "booking submitted", awaitingReply = "awaiting reply", accepted, rejected
         var id: Self { self }
     }
     @State private var selectedStatus: Status = .toContact
@@ -44,150 +44,82 @@ struct AddAccomodationView: View {
     
     
     var body: some View {
-        
-        NavigationView{
+        NavigationStack {
             Form {
+                Section("Accommodation") {
+                    TextField("Address", text: $address)
+                    TextField("Description", text: $description)
+                    TextField("Article link", text: $urlAdvert)
+                    Picker("Type", selection: $selectedTypeOfAccomodation) {
+                        ForEach(TypeOfAccomodation.allCases) { type in
+                            Text(type.rawValue.capitalized).tag(type)
+                        }
+                    }
+                    Picker("Status", selection: $selectedStatus) {
+                        ForEach(Status.allCases) { status in
+                            Text(status.rawValue.capitalized).tag(status)
+                        }
+                    }
+                    Toggle("Possibility to visit the room", isOn: $possibilityToVisit)
+                }
+                // - UPLOAD : Photo
                 
-                Group {
-                    Section(header: Text("Address")) {
-                        TextField("", text: $address)
-                    }
-                    Section(header: Text("Description")){
-                        TextField("", text: $description )
-                    }
-                    Section(header: Text("Type of accomodation")) {
-                        
-                         List {
-                             Picker("", selection: $selectedTypeOfAccomodation) {
-                                 Text("Room in house to share").tag(TypeOfAccomodation.room)
-                                 Text("Studio").tag(TypeOfAccomodation.studio)
-                                 Text("Entire flat").tag(TypeOfAccomodation.entireFlat)
-                             }
-                         }
-                    }
-                    
-                   
-                    Section(header: Text("Rent")) {
-                        TextField("",  text: $rent )
-                    }
-                    // - UPLOAD : Photo
+                Section("Costs") {
+                    TextField("Rent cost",  text: $rent)
+                    TextField("Extra cost bills", text: $extraCost)
+                    TextField("Deposit", text: $deposit)
+                    TextField("Platform / Agency fees", text: $platformAgencyFees)
                 }
                 
-                Group {
-                    Section(header: Text("Extra cost bills")) {
-                        TextField("", text: $extraCost )
+                Section("Contact") {
+                    TextField("Name", text: $ownerFlatName)
+                    TextField("Phone", text: $ownerFlatPhone)
+                    Picker("Contact type", selection: $selectedTypeOfContact) {
+                        ForEach(TypeOfContact.allCases) { contactType in
+                            Text(contactType.rawValue.capitalized).tag(contactType)
+                        }
                     }
-                    Section(header: Text("Deposit")) {
-                        TextField("", text: $deposit )
-                    }
-                    Section(header: Text("Platform / Agency fees")) {
-                        TextField("", text: $platformAgencyFees )
-                    }
-                    
                 }
                 
-                Section(header: Text("Possibility to visit the room")) {
-                    // - TOGGLE : possibility to visit the room
-                    Toggle(""    , isOn: $possibilityToVisit)
+                Section("Visit") {
+                    DatePicker("Date of visit", selection: $dateOfVisit, displayedComponents: .date)
+                    DatePicker("Hour of visit", selection: $hourOfVisit, displayedComponents: .hourAndMinute)
                 }
                 
-                
-                Group {
-                    Section(header: Text("Date of visit")) {
-                        DatePicker("", selection: $dateOfVisit, displayedComponents: .date)
-                    }
-                    Section(header: Text("Hour of visit")) {
-                        DatePicker("", selection: $hourOfVisit, displayedComponents: .hourAndMinute)
-                    }
-                    
-                    
-                    
-                } // (Image(systemName: "calendar"))
-                
-                
-                Group {
-                    Section(header: Text("Link to the advert")) {
-                        TextField("", text: $urlAdvert )
-                    }
-                    
-                    Section(header: Text("Type of contact")) {
-                        
-                         List {
-                             Picker("", selection: $selectedTypeOfContact) {
-                                 Text("Individual").tag(TypeOfContact.individual)
-                                 Text("Professional (real estate agency").tag(TypeOfContact.professional)
-                                 Text("Booking platform").tag(TypeOfContact.bookingPlatform)
-                             }
-                         }
-                    }
-                    
-                    Section(header: Text("Name of contact")) {
-                        TextField("", text: $ownerFlatName)
-                    }
-                    Section(header: Text("Phone")) {
-                        TextField("", text: $ownerFlatPhone)
-                    }
-                    
-                    
-                    Section(header: Text("Status")) {
-                        
-                         List {
-                             Picker("", selection: $selectedStatus) {
-                                 Text("To contact").tag(Status.toContact)
-                                 Text("To Visit").tag(Status.toVisit)
-                                 Text("File preparation").tag(Status.filePreparation)
-                                 Text("File submitted").tag(Status.fileSubmitted)
-                                 Text("Booking submitted").tag(Status.bookingSubmitted)
-                                 Text("Awaiting reply").tag(Status.awaitingReply)
-                                 Text("Accepted").tag(Status.accepted)
-                                 Text("Rejected").tag(Status.rejected)
-                                
-                             }
-                         }
-                    }
-                    
-                    
-                    
-                    
-                    // - LIST OF SINGLE SELECT : Status
-                    Section(header: Text("Other")) {
-                        TextField("", text: $flatExtraDetails)
-                    }
-                } // end of last Group
-                
-
-                
-                
-                
+                Section("Other") {
+                    TextField("", text: $flatExtraDetails)
+                        .multilineTextAlignment(.leading)
+                }
             }
-            
-                .navigationTitle("Add a new Accomodation")
-                .navigationBarTitleDisplayMode(.inline)
-                .toolbar{
-                    ToolbarItem(placement: .cancellationAction){
-                        Button(action: {
-                            dismiss()
-                        }, label:
-                                {
-                            Text("Cancel")
-                        })
-                    }
-                    ToolbarItem(placement: .confirmationAction){
-                        Button(action: {
-                            Accomodation.createNewAccommodation(viewContext: viewContext,
-                                                                title: "Via Postica Maddalena 36",
-                                                                contact: "+39 081 1929 7263",
-                                                                description_text: "2 room Appartement 125m2 in Centro Storico",
-                                                                rent_cost: 1200,
-                                                                extra_cost: 70,
-                                                                url: "https://www.idealista.it/de/immobile/25939751/", isFavourite: false)
-                            dismiss()
-                        }, label:
-                                {
-                            Text("Add")
-                        })
-                    }
+            .navigationTitle("Add a new Accomodation")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar{
+                ToolbarItem(placement: .cancellationAction){
+                    Button(action: {
+                        dismiss()
+                    }, label:
+                            {
+                        Text("Cancel")
+                    })
                 }
+                ToolbarItem(placement: .confirmationAction){
+                    Button(action: {
+                        Accomodation
+                            .createNewAccommodation(viewContext: viewContext,
+                                                    title: "Via Postica Maddalena 36",
+                                                    contact: "+39 081 1929 7263",
+                                                    description_text: "2 room Appartement 125m2 in Centro Storico",
+                                                    rent_cost: 1200,
+                                                    extra_cost: 70,
+                                                    url: "https://www.idealista.it/de/immobile/25939751/",
+                                                    isFavourite: false)
+                        dismiss()
+                    }, label:
+                            {
+                        Text("Add")
+                    })
+                }
+            }
         }
     }
 }
