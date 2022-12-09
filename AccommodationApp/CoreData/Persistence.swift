@@ -17,7 +17,7 @@ struct PersistenceController {
             let accomodation = Accomodation(context: viewContext)
             accomodation.id = UUID()
             accomodation.title = "Via Postica Maddalena 36"
-            accomodation.contact = "+39 081 1929 7263"
+            accomodation.contact_name = "+39 081 1929 7263"
             accomodation.description_text = "2 room Appartement 125m2 in Centro Storico"
             accomodation.extra_cost = 70
             accomodation.rent_cost = 1200

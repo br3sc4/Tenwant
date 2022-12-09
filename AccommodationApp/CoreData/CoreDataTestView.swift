@@ -20,6 +20,7 @@ struct CoreDataTestView: View {
     
     var body: some View {
         VStack {
+            /*
             Button("Add Example"){
                 Accomodation.createNewAccommodation(viewContext: viewContext,
                                                     title: "Via Postica Maddalena 36",
@@ -29,6 +30,7 @@ struct CoreDataTestView: View {
                                                     extra_cost: 70,
                                                     url: "https://www.idealista.it/de/immobile/25939751/", isFavourite: false)
             }
+             */
             List {
                 ForEach(accomodations) { accomodation in
                     Text(accomodation.wrappedTitle)
