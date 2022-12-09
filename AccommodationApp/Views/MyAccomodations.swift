@@ -38,14 +38,15 @@ struct MyAccomodations: View {
                 .toolbar(content: {
                     ToolbarItem(placement: .primaryAction){
                         Button(action: {
-//                            showingAddAccomodation.toggle()
-                            Accomodation.createNewAccommodation(viewContext: viewContext,
+                            showingAddAccomodation.toggle()
+                            /*Accomodation.createNewAccommodation(viewContext: viewContext,
                                                                 title: "Via Postica Maddalena 36",
                                                                 contact: "+39 081 1929 7263",
                                                                 description_text: "2 room Appartement 125m2 in Centro Storico",
                                                                 rent_cost: 1200,
                                                                 extra_cost: 70,
                                                                 url: "https://www.idealista.it/de/immobile/25939751/", isFavourite: false)
+                            */
                         }, label: {
                             Image(systemName: "plus")
                             })

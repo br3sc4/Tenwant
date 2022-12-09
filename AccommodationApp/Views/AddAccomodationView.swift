@@ -9,6 +9,7 @@ import SwiftUI
 
 struct AddAccomodationView: View {
     
+    @Environment(\.managedObjectContext) private var viewContext
     @Environment(\.dismiss) var dismiss
     @State private var address = ""
     @State private var description = ""
@@ -172,7 +173,16 @@ struct AddAccomodationView: View {
                         })
                     }
                     ToolbarItem(placement: .confirmationAction){
-                        Button(action: {}, label:
+                        Button(action: {
+                            Accomodation.createNewAccommodation(viewContext: viewContext,
+                                                                title: "Via Postica Maddalena 36",
+                                                                contact: "+39 081 1929 7263",
+                                                                description_text: "2 room Appartement 125m2 in Centro Storico",
+                                                                rent_cost: 1200,
+                                                                extra_cost: 70,
+                                                                url: "https://www.idealista.it/de/immobile/25939751/", isFavourite: false)
+                            dismiss()
+                        }, label:
                                 {
                             Text("Add")
                         })
