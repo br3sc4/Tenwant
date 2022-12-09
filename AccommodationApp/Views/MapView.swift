@@ -14,7 +14,7 @@ struct MapView: View {
     var body: some View {
         ZStack(alignment: .topTrailing) {
             MapViewRepresentable(region: vm.region, accommodations: accommodations)
-                .ignoresSafeArea()
+                .edgesIgnoringSafeArea(.top)
         }
         .alert(vm.alertContent.title, isPresented: $vm.showAlert) {
             Button("Cancel", role: .cancel) {

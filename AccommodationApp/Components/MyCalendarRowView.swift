@@ -29,18 +29,18 @@ struct MyCalendarRowView: View {
                     
                     HStack {
                         Text("Day 00 Month 0000")
-                            .foregroundColor(.black)
+                            .foregroundColor(.primary)
                             .font(.system(size: 12))
                         .bold()
                         
                         Spacer()
                         Text("00:00")
-                            .foregroundColor(.black)
+                            .foregroundColor(.primary)
                             .font(.system(size: 12))
                         
                     }
                     Text("Description")
-                        .foregroundColor(.black)
+                        .foregroundColor(.secondary)
                         .font(.system(size: 12))
                         
                 }.frame(width: 320, height: 50)

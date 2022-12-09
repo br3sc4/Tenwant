@@ -14,7 +14,7 @@ struct MyCalendarListView: View {
                 ForEach(0..<10){_ in
                     VStack(alignment: .leading){
                         Text("Day 00 Month 0000")
-                            .foregroundColor(.black)
+                            .foregroundColor(.primary)
                             .font(.system(size: 14))
                             .bold()
                         if true {

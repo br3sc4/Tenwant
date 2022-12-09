@@ -53,17 +53,10 @@ struct MyAccomodations: View {
                 }).sheet(isPresented: $showingAddAccomodation) {
                     AddAccomodationView()
                 }
-<<<<<<< HEAD
             
                 
         }
         .searchable(text: $searchText, placement: .automatic)
-        
-        
-=======
-        }
-        .searchable(text: $searchText, placement: .automatic)
->>>>>>> map
     }
 }
 

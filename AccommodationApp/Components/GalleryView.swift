@@ -20,7 +20,7 @@ struct GalleryView: View {
                                         {
                             AccomodationCardView(accommodation: accommodation)
                                 .scaleEffect(0.80)
-                                .padding(EdgeInsets(top: 0, leading: 10, bottom: -30, trailing: 10))
+//                                .padding(EdgeInsets(top: 0, leading: 10, bottom: -30, trailing: 10))
                     })
                 }
             })
