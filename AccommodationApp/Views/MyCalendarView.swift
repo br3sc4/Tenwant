@@ -16,7 +16,7 @@ struct MyCalendarView: View {
                     MyCalendarListView()
                 }
                 else{
-                    Text("false")
+                    MyCalendarWeeklyView()
                 }
 
             }
