@@ -20,6 +20,7 @@ struct CoreDataTestView: View {
     
     var body: some View {
         VStack {
+            /*
             Button("Add Example"){
                 Accomodation.createNewAccommodation(viewContext: viewContext,
                                                     title: "Via Postica Maddalena 36",
@@ -31,6 +32,7 @@ struct CoreDataTestView: View {
                                                     isFavourite: false,
                                                     status: .accepted)
             }
+             */
             List {
                 ForEach(accomodations) { accomodation in
                     Text(accomodation.wrappedTitle)
