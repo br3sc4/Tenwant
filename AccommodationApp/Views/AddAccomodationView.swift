@@ -40,7 +40,7 @@ struct AddAccomodationView: View {
         var id: Self { self }
     }
     @State private var selectedStatus: Status = .toContact
-
+    
     
     
     var body: some View {
@@ -81,9 +81,9 @@ struct AddAccomodationView: View {
                     }
                 }
                 
-                Section("Visit") {
-                    DatePicker("Date of visit", selection: $dateOfVisit, displayedComponents: .date)
-                    DatePicker("Hour of visit", selection: $hourOfVisit, displayedComponents: .hourAndMinute)
+                Section("Appointment") {
+                    DatePicker("Date and Time", selection: $dateOfVisit, displayedComponents: [.date, .hourAndMinute])
+                    
                 }
                 
                 Section("Other") {
@@ -104,19 +104,25 @@ struct AddAccomodationView: View {
                 }
                 ToolbarItem(placement: .confirmationAction){
                     Button(action: {
-                        Accomodation
-                            .createNewAccommodation(viewContext: viewContext,
-                                                    title: "Via Postica Maddalena 36",
-                                                    contact: "+39 081 1929 7263",
-                                                    description_text: "2 room Appartement 125m2 in Centro Storico",
-                                                    rent_cost: 1200,
-                                                    extra_cost: 70,
-                                                    url: "https://www.idealista.it/de/immobile/25939751/",
-                                                    isFavourite: false)
+                        Accomodation.createNewAccommodation(
+                            viewContext: viewContext,
+                            title: address,
+                            description_text: description,
+                            rent_cost: rent,
+                            extra_cost: extraCost,
+                            deposit: deposit,
+                            agency_fee: platformAgencyFees,
+                            isVisitPossible: possibilityToVisit,
+                            appointment_date: dateOfVisit,
+                            url: urlAdvert,
+                            ownerName: ownerFlatName,
+                            ownerPhoneNumber: ownerFlatPhone,
+                            typeOfAccommodation: selectedTypeOfAccomodation.rawValue)
+                        
                         dismiss()
                     }, label:
                             {
-                        Text("Add")
+                        Text("Save")
                     })
                 }
             }
