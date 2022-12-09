@@ -31,6 +31,9 @@
 		A90B3D5B2942415900A8E180 /* MyCalendarListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90B3D5A2942415900A8E180 /* MyCalendarListView.swift */; };
 		A90B3D5D2942417500A8E180 /* MyCalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90B3D5C2942417500A8E180 /* MyCalendarView.swift */; };
 		A90B3D5F2942484E00A8E180 /* MyCalendarWeeklyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90B3D5E2942484E00A8E180 /* MyCalendarWeeklyView.swift */; };
+		A90B3D6129437FAA00A8E180 /* AccomodationDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90B3D6029437FAA00A8E180 /* AccomodationDetailsView.swift */; };
+		A9B30F7A29438E0E009F5B9A /* PhotosScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B30F7929438E0E009F5B9A /* PhotosScrollView.swift */; };
+		A9B30F7C294396C2009F5B9A /* AccomodationDetailsRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B30F7B294396C2009F5B9A /* AccomodationDetailsRow.swift */; };
 		BCDE64DD29428879008056AF /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCDE64DC29428879008056AF /* Extensions.swift */; };
 		BCE95ED82941F4200034D879 /* AccommodationData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BCE95ED62941F4200034D879 /* AccommodationData.xcdatamodeld */; };
 		BCE95EDA2941F8C50034D879 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCE95ED92941F8C50034D879 /* Persistence.swift */; };
@@ -64,6 +67,9 @@
 		A90B3D5A2942415900A8E180 /* MyCalendarListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCalendarListView.swift; sourceTree = "<group>"; };
 		A90B3D5C2942417500A8E180 /* MyCalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCalendarView.swift; sourceTree = "<group>"; };
 		A90B3D5E2942484E00A8E180 /* MyCalendarWeeklyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCalendarWeeklyView.swift; sourceTree = "<group>"; };
+		A90B3D6029437FAA00A8E180 /* AccomodationDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccomodationDetailsView.swift; sourceTree = "<group>"; };
+		A9B30F7929438E0E009F5B9A /* PhotosScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosScrollView.swift; sourceTree = "<group>"; };
+		A9B30F7B294396C2009F5B9A /* AccomodationDetailsRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccomodationDetailsRow.swift; sourceTree = "<group>"; };
 		BCDE64DC29428879008056AF /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		BCE95ED72941F4200034D879 /* Accommodation.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Accommodation.xcdatamodel; sourceTree = "<group>"; };
 		BCE95ED92941F8C50034D879 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
@@ -160,7 +166,9 @@
 				A90B3D4F2940D0D300A8E180 /* AccomodationCardView.swift */,
 				A90B3D512940D3E200A8E180 /* GalleryView.swift */,
 				A90B3D5829423AA800A8E180 /* MyCalendarRowView.swift */,
+				A9B30F7B294396C2009F5B9A /* AccomodationDetailsRow.swift */,
 				A90B3D5A2942415900A8E180 /* MyCalendarListView.swift */,
+				A9B30F7929438E0E009F5B9A /* PhotosScrollView.swift */,
 				A90B3D5E2942484E00A8E180 /* MyCalendarWeeklyView.swift */,
 				2D09F8A52944BAB00090B594 /* PoIAnnotation.swift */,
 			);
@@ -265,6 +273,7 @@
 				A90B3D522940D3E200A8E180 /* GalleryView.swift in Sources */,
 				A90B3D4C2940C03500A8E180 /* MainView.swift in Sources */,
 				BCE95ED82941F4200034D879 /* AccommodationData.xcdatamodeld in Sources */,
+				A9B30F7C294396C2009F5B9A /* AccomodationDetailsRow.swift in Sources */,
 				BCDE64DD29428879008056AF /* Extensions.swift in Sources */,
 				2D09F89F294398E60090B594 /* Accomodation.swift in Sources */,
 				BCE95EDD2941FB390034D879 /* CoreDataTestView.swift in Sources */,
@@ -282,7 +291,9 @@
 				2D6AAC4B2940B5BA00A7AC00 /* AccommodationAppApp.swift in Sources */,
 				2DB6CB832941F7CC0048CF00 /* MapViewModel.swift in Sources */,
 				A90B3D5D2942417500A8E180 /* MyCalendarView.swift in Sources */,
+				A90B3D6129437FAA00A8E180 /* AccomodationDetailsView.swift in Sources */,
 				A90B3D5B2942415900A8E180 /* MyCalendarListView.swift in Sources */,
+				A9B30F7A29438E0E009F5B9A /* PhotosScrollView.swift in Sources */,
 				A90B3D502940D0D300A8E180 /* AccomodationCardView.swift in Sources */,
 				A90B3D5F2942484E00A8E180 /* MyCalendarWeeklyView.swift in Sources */,
 			);
