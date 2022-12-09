@@ -16,7 +16,7 @@ struct GalleryView: View {
             LazyVGrid(columns: gridItems, content: {
                 ForEach(accommodations) { accommodation in
                    
-                        NavigationLink(destination: ContentView(), label:
+                        NavigationLink(destination: AccomodationDetailsView(), label:
                                         {
                             AccomodationCardView(accommodation: accommodation)
                                 .scaleEffect(0.80)
