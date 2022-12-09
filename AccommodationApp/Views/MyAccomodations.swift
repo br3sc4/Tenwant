@@ -41,7 +41,12 @@ struct MyAccomodations: View {
                 .pickerStyle(.segmented)
                 .frame(width: 200*size)
                 
-                GalleryView(accommodations: accomodations)
+                if favorites == 0{
+                    GalleryView(accommodations: accomodations)
+                }
+//                else if favorites == 1 {
+//                    GalleryView(accommodations: accomodations)
+//                }
             }
                 .navigationTitle("My Accomodations")
                 .navigationBarTitleDisplayMode(.large)
