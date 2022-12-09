@@ -6,9 +6,11 @@
 //
 
 import SwiftUI
+import CoreData
 
 struct AccomodationCardView: View {
     
+    let accommodation: Accomodation
     @ScaledMetric var size = CGFloat(1)
     
     var body: some View {
@@ -23,20 +25,28 @@ struct AccomodationCardView: View {
             
         VStack(alignment: .leading) {
             
-            Image("ph1")
-                .resizable()
-                .scaledToFill()
-                .frame(minWidth: 200*size, minHeight: 150*size)
-                .clipShape(Rectangle())
+            if let cardCover = accommodation.card_cover, let uiImage = UIImage(data: cardCover) {
+                Image(uiImage: uiImage)
+                    .resizable()
+                    .scaledToFill()
+                    .frame(minWidth: 200*size, minHeight: 150*size)
+                    .clipShape(Rectangle())
+            } else {
+                Image("ph1")
+                    .resizable()
+                    .scaledToFill()
+                    .frame(minWidth: 200*size, minHeight: 150*size)
+                    .clipShape(Rectangle())
+            }
                 
 
-            Text("ADDRESS")
+            Text(accommodation.wrappedTitle)
                 .font(.system(size: 14))
                 .foregroundColor(.black)
                 .padding(.leading, 10)
             
             HStack {
-                Text("$$$")
+                Text(accommodation.rent_cost.formatted(.currency(code: "EUR").precision(.fractionLength(.zero))))
                     .font(.system(size: 12))
                 .foregroundColor(.black)
                 Spacer()
@@ -56,6 +66,6 @@ struct AccomodationCardView: View {
 
 struct AccomodationCardView_Previews: PreviewProvider {
     static var previews: some View {
-        AccomodationCardView()
+        AccomodationCardView(accommodation: .init())
     }
 }
