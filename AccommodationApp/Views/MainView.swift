@@ -19,7 +19,7 @@ struct MainView: View {
                 .tabItem {
                     Label("Calendar", systemImage: "calendar")
                 }
-            ContentView()
+            MapView()
                 .tabItem {
                     Label("Map", systemImage: "map")
                 }
