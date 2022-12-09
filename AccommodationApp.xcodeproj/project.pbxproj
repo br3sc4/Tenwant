@@ -11,6 +11,10 @@
 		2D6AAC4D2940B5BA00A7AC00 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D6AAC4C2940B5BA00A7AC00 /* ContentView.swift */; };
 		2D6AAC4F2940B5BB00A7AC00 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2D6AAC4E2940B5BB00A7AC00 /* Assets.xcassets */; };
 		2D6AAC532940B5BB00A7AC00 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2D6AAC522940B5BB00A7AC00 /* Preview Assets.xcassets */; };
+		BCDE64DD29428879008056AF /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCDE64DC29428879008056AF /* Extensions.swift */; };
+		BCE95ED82941F4200034D879 /* AccommodationData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BCE95ED62941F4200034D879 /* AccommodationData.xcdatamodeld */; };
+		BCE95EDA2941F8C50034D879 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCE95ED92941F8C50034D879 /* Persistence.swift */; };
+		BCE95EDD2941FB390034D879 /* CoreDataTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCE95EDC2941FB390034D879 /* CoreDataTestView.swift */; };
 		A90B3D4A2940BDE800A8E180 /* MyAccomodations.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90B3D492940BDE800A8E180 /* MyAccomodations.swift */; };
 		A90B3D4C2940C03500A8E180 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90B3D4B2940C03500A8E180 /* MainView.swift */; };
 		A90B3D502940D0D300A8E180 /* AccomodationCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90B3D4F2940D0D300A8E180 /* AccomodationCardView.swift */; };
@@ -29,6 +33,10 @@
 		2D6AAC4E2940B5BB00A7AC00 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2D6AAC502940B5BB00A7AC00 /* AccommodationApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AccommodationApp.entitlements; sourceTree = "<group>"; };
 		2D6AAC522940B5BB00A7AC00 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		BCDE64DC29428879008056AF /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		BCE95ED72941F4200034D879 /* Accommodation.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Accommodation.xcdatamodel; sourceTree = "<group>"; };
+		BCE95ED92941F8C50034D879 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
+		BCE95EDC2941FB390034D879 /* CoreDataTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataTestView.swift; sourceTree = "<group>"; };
 		A90B3D492940BDE800A8E180 /* MyAccomodations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAccomodations.swift; sourceTree = "<group>"; };
 		A90B3D4B2940C03500A8E180 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		A90B3D4F2940D0D300A8E180 /* AccomodationCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccomodationCardView.swift; sourceTree = "<group>"; };
@@ -77,6 +85,7 @@
 				2D6AAC4C2940B5BA00A7AC00 /* ContentView.swift */,
 				2D6AAC4E2940B5BB00A7AC00 /* Assets.xcassets */,
 				2D6AAC502940B5BB00A7AC00 /* AccommodationApp.entitlements */,
+				BCE95EDB2941F8E30034D879 /* CoreData */,
 				2D6AAC512940B5BB00A7AC00 /* Preview Content */,
 			);
 			path = AccommodationApp;
@@ -90,6 +99,17 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		BCE95EDB2941F8E30034D879 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				BCE95EDC2941FB390034D879 /* CoreDataTestView.swift */,
+				BCE95ED92941F8C50034D879 /* Persistence.swift */,
+				BCE95ED62941F4200034D879 /* AccommodationData.xcdatamodeld */,
+				BCDE64DC29428879008056AF /* Extensions.swift */,
+			);
+			path = CoreData;
+            sourceTree = "<group>";
+        };
 		A90B3D4D2940D07F00A8E180 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -190,6 +210,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BCE95ED82941F4200034D879 /* AccommodationData.xcdatamodeld in Sources */,
+				BCDE64DD29428879008056AF /* Extensions.swift in Sources */,
+				BCE95EDD2941FB390034D879 /* CoreDataTestView.swift in Sources */,
+				BCE95EDA2941F8C50034D879 /* Persistence.swift in Sources */,
 				A90B3D4A2940BDE800A8E180 /* MyAccomodations.swift in Sources */,
 				A90B3D5929423AA800A8E180 /* MyCalendarRowView.swift in Sources */,
 				A90B3D522940D3E200A8E180 /* GalleryView.swift in Sources */,
@@ -325,7 +349,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"AccommodationApp/Preview Content\"";
-				DEVELOPMENT_TEAM = 2983DH4K56;
+				DEVELOPMENT_TEAM = A653B885WN;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -363,7 +387,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"AccommodationApp/Preview Content\"";
-				DEVELOPMENT_TEAM = 2983DH4K56;
+				DEVELOPMENT_TEAM = A653B885WN;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -382,7 +406,7 @@
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.brescanzin.lorenzo.AccommodationApp;
+				PRODUCT_BUNDLE_IDENTIFIER = de.bestler.AccommodationApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
@@ -414,6 +438,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		BCE95ED62941F4200034D879 /* AccommodationData.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				BCE95ED72941F4200034D879 /* Accommodation.xcdatamodel */,
+			);
+			currentVersion = BCE95ED72941F4200034D879 /* Accommodation.xcdatamodel */;
+			path = AccommodationData.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 2D6AAC3F2940B5B900A7AC00 /* Project object */;
 }
