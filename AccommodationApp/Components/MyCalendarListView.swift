@@ -9,23 +9,33 @@ import SwiftUI
 
 struct MyCalendarListView: View {
     var body: some View {
-        ScrollView(showsIndicators: false){
-            VStack(alignment: .leading,spacing: 10){
-                ForEach(0..<10){_ in
-                    VStack(alignment: .leading){
-                        Text("Day 00 Month 0000")
-                            .foregroundColor(.primary)
-                            .font(.system(size: 14))
-                            .bold()
-                        if true {
-                            ForEach(0..<10){_ in
-                                NavigationLink(destination: ContentView(), label:
-                                                {
-                                    MyCalendarRowView()
-                                })
+        ScrollViewReader { reader in
+            ScrollView(.vertical, showsIndicators: false){
+                ZStack {
+                    VStack(alignment: .leading,spacing: 10){
+                    ForEach(0..<10){ x in
+                        VStack(alignment: .leading){
+                            Text("Day 00 Month 0000")
+                                .foregroundColor(.primary)
+                                .font(.system(size: 14))
+                                .bold()
+                            if true {
+                                ForEach(0..<10){ y in
+                                    NavigationLink(destination: ContentView(), label:
+                                                    {
+                                        MyCalendarRowView()
+                                    })
+                                }
                             }
-                        }
-                    }.padding(.bottom, 9)
+                        }.padding(.bottom, 9)
+                        Spacer().id(x)
+                    }
+                    }
+                }
+            }
+            Button("Go to index 2, element 3") {
+                withAnimation {
+                    reader.scrollTo(2)
                 }
             }
         }
