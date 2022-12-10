@@ -8,14 +8,19 @@
 import SwiftUI
 
 struct AccommodationDetailsRow: View {
+    
+    let key: String
+    let value: String
+    
+    
     var body: some View {
         VStack(alignment: .leading){
-            Text("Key")
+            Text(key)
                 .font(.system(size: 13))
                 .foregroundColor(.secondary)
                 .bold()
                 .padding(.all, 0)
-            Text("Value")
+            Text(value)
                 .foregroundColor(.primary)
                 .font(.system(size: 13))
                 .padding(.all, 0)
@@ -31,6 +36,6 @@ struct AccommodationDetailsRow: View {
 
 struct AccommodationDetailsRow_Previews: PreviewProvider {
     static var previews: some View {
-        AccommodationDetailsRow()
+        AccommodationDetailsRow(key: "ciao", value: "hello")
     }
 }

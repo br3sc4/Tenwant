@@ -8,6 +8,13 @@
 import SwiftUI
 
 struct AccommodationDetailsView: View {
+    
+    @Environment(\.managedObjectContext) private var viewContext
+    @Environment(\.dismiss) private var dismiss
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    
+    let accommodation: Accomodation
+    
     @State var IsOn = false
     
     var body: some View {
@@ -16,29 +23,29 @@ struct AccommodationDetailsView: View {
             Spacer()
             VStack(alignment: .leading){
                 
-                Text("Title")
+                Text(accommodation.title ?? "")
                     .bold()
                     .foregroundColor(.primary)
-                Text("Description")
+                Text(accommodation.description_text ?? "")
                     .foregroundColor(.secondary)
                 Spacer()
                 ForEach(0..<4){ _ in
-                    AccommodationDetailsRow()
+                    AccommodationDetailsRow(key: "Address", value: accommodation.title ?? "title")
                 }
                 ZStack(alignment: .trailing){
-                    AccommodationDetailsRow()
+                    AccommodationDetailsRow(key: "isFavourite", value: accommodation.isFavourite ? "true" : "else")
                     Button(action: {}, label: {
                         Image(systemName: "heart")
                     })
                 }
                 ZStack(alignment: .trailing){
-                    AccommodationDetailsRow()
+                    AccommodationDetailsRow(key: "external link", value: "provided")
                     Button(action: {}, label: {
                         Image(systemName: "link")
                     })
                 }
                 ZStack(alignment: .trailing){
-                    AccommodationDetailsRow()
+                    AccommodationDetailsRow(key: "possibilityToVisit", value: accommodation.isFavourite ? "" : "")
                         .padding(.trailing, 20)
                     Toggle("", isOn: $IsOn).toggleStyle(.switch)
                         .padding(.trailing, 20)
@@ -50,10 +57,12 @@ struct AccommodationDetailsView: View {
         .toolbar{
             ToolbarItem(placement: .primaryAction){
                 Button(action: {
+                    Accomodation.deleteAccommodation(viewContext: viewContext, accommodationObject: accommodation)
+                    self.presentationMode.wrappedValue.dismiss()
                     
                 }, label:
                         {
-                    Text("Edit/Delete?")
+                    Text("Delete?")
                 })
             }
         }
@@ -62,6 +71,6 @@ struct AccommodationDetailsView: View {
 
 struct AccommodationDetailsView_Previews: PreviewProvider {
     static var previews: some View {
-        AccommodationDetailsView()
+        AccommodationDetailsView(accommodation: .init())
     }
 }

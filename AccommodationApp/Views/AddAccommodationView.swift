@@ -175,7 +175,7 @@ struct AddAccommodationView: View {
                     ToolbarItem(placement: .confirmationAction){
                         Button(action: {
                             Accomodation.createNewAccommodation(viewContext: viewContext,
-                                                                title: "Via Postica Maddalena 36",
+                                                                title: address,
                                                                 contact: "+39 081 1929 7263",
                                                                 description_text: "2 room Appartement 125m2 in Centro Storico",
                                                                 rent_cost: 1200,
