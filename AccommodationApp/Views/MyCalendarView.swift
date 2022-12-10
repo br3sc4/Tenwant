@@ -15,9 +15,9 @@ struct MyCalendarView: View {
                 if showList{
                     MyCalendarListView()
                 }
-                else{
-                    MyCalendarWeeklyView()
-                }
+//                else{
+//                    MyCalendarWeeklyView()
+//                }
 
             }
             .navigationTitle("Calendar")
