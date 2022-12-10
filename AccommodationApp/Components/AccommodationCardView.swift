@@ -9,66 +9,68 @@ import SwiftUI
 import CoreData
 
 struct AccommodationCardView: View {
-        let accommodation: Accomodation
-        
-        @ScaledMetric var size = CGFloat(1)
-        
-        var body: some View {
+    let accommodation: Accomodation
+    
+    
+    var body: some View {
+        ZStack{
+            Rectangle()
+                .foregroundColor(.white)
+                .cornerRadius(14)
+                .shadow(radius: 2)
+                .frame(width: 178, height: 228)
             
-            ZStack {
-                
-                Rectangle()
-                        .foregroundColor(.white)
-                        .frame(minWidth: 200*size, minHeight: 240*size)
-                        .cornerRadius(14)
-                        .shadow(radius: 4)
+            
+            VStack(alignment: .leading) {
+                if let cardCover = accommodation.card_cover,
+                   let uiImage = UIImage(data: cardCover) {
+                    Image(uiImage: uiImage)
+                        .resizable()
+                        .frame(width: 178, height: 173)
+                        .scaledToFill()
+                        .cornerRadius(5)
                     
-                VStack(alignment: .leading) {
                     
-                    if let cardCover = accommodation.card_cover,
-                        let uiImage = UIImage(data: cardCover) {
-                        Image(uiImage: uiImage)
-                            .resizable()
-                            .scaledToFill()
-                            .frame(minWidth: 200*size, minHeight: 150*size)
-                            
-                    } else {
-                        Image("ph1")
-                            .resizable()
-                            .scaledToFill()
-                            .frame(minWidth: 200*size, minHeight: 150*size)
-                            
-                    }
-                        
+                } else {
+                    Image("ph1")
+                        .resizable()
+                        .frame(width: 178, height: 173)
+                        .scaledToFill()
+                        .cornerRadius(5)
+                }
+                Spacer()
 
-                    Text(accommodation.wrappedTitle)
-                        .font(.system(size: 14))
-                        .foregroundColor(.black)
-                        .padding(.leading, 10)
-                    
-                    HStack {
-                        Text(accommodation.rent_cost.formatted(.currency(code: "EUR").precision(.fractionLength(.zero))))
-                            .font(.system(size: 12))
-                        .foregroundColor(.black)
-                        Spacer()
-                        Button(action: {
-                        }, label: {
-                            Image(systemName: accommodation.isFavourite ? "heart.fill" : "heart")
-                        })
-                    }
-                    .frame(minWidth: 200*size)
+                Text(accommodation.wrappedTitle)
+                    .lineLimit(1)
+                    .foregroundColor(.accentColor)
+                    .font(.system(size: 16))
                     .padding([.leading, .trailing], 10)
                     
+                
+                HStack {
+                    Text(accommodation.rent_cost.formatted(.currency(code: "EUR").precision(.fractionLength(.zero))))
+                        .foregroundColor(.secondary)
+                        .font(.system(size: 16))
+                        .padding(.leading, 10)
+                    Spacer()
+                    Button(action: {
+                    }, label: {
+                        
+                        Image(systemName: accommodation.isFavourite ? "heart.fill" : "heart")
+                    }).padding(.trailing, 10)
                 }
-                .mask(Rectangle()
-                    .frame(minWidth: 200, minHeight: 240)
-                    .cornerRadius(14)
-                       )
-
-                .padding(.bottom, 10)
             }
+            .frame(width: 178, height: 228-18)
+            //            .frame(width: 183, height: 235 - 18)
+            .padding(.bottom, 18)
         }
+        .mask(Rectangle()
+            .frame(width: 180, height: 230)
+            .cornerRadius(14)
+              //                .shadow(radius: 2)
+        )
     }
+}
 struct AccommodationCardView_Previews: PreviewProvider {
     static var previews: some View {
         AccommodationCardView(accommodation: .init())

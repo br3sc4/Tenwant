@@ -9,21 +9,22 @@ import SwiftUI
 
 struct GalleryView: View {
     let accommodations: FetchedResults<Accomodation>
-    
-    private let gridItems = [GridItem(.flexible()), GridItem(.flexible())]
+//    let gridItems = Array(repeating: GridItem(.flexible(), spacing: 4, alignment: .leading), count: 2)
+    private let gridItems = [ GridItem(.flexible(), spacing: 2),
+                              GridItem(.flexible(), spacing: 2),
+    ]
     var body: some View {
         ScrollView(showsIndicators: false){
-            LazyVGrid(columns: gridItems, content: {
+            LazyVGrid(columns: gridItems, spacing: 15){
                 ForEach(accommodations) { accommodation in
                    
                         NavigationLink(destination: AccommodationDetailsView(), label:
                                         {
                             AccommodationCardView(accommodation: accommodation)
-                                .scaleEffect(0.80)
-//                                .padding(EdgeInsets(top: 0, leading: 10, bottom: -30, trailing: 10))
+                                .padding([.leading, .trailing], 4)
                     })
                 }
-            })
+            }
         }
     }
 }

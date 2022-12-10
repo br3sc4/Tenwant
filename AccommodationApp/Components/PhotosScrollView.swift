@@ -16,8 +16,9 @@ struct PhotosScrollView: View {
                         Image("ph1")
                             .resizable()
                             .scaledToFill()
-                            .frame(width: 320, height: 225)
-                            .clipShape(RoundedRectangle(cornerRadius: 10.0, style: .circular))
+//                            .frame(width: 364, height: 253)
+                            .frame(width: 320, height: 222)
+                            .cornerRadius(5)
                             .shadow(radius: 2)
                     }
                 
