@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		2D09F89B294393240090B594 /* Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D09F89A294393240090B594 /* Status.swift */; };
 		2D09F89F294398E60090B594 /* Accomodation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D09F89E294398E60090B594 /* Accomodation.swift */; };
+		2D09F8A22944B2C80090B594 /* AddPoIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D09F8A12944B2C80090B594 /* AddPoIView.swift */; };
+		2D09F8A42944B5350090B594 /* PointOfInterest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D09F8A32944B5350090B594 /* PointOfInterest.swift */; };
+		2D09F8A62944BAB00090B594 /* PoIAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D09F8A52944BAB00090B594 /* PoIAnnotation.swift */; };
 		2D6AAC4B2940B5BA00A7AC00 /* AccommodationAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D6AAC4A2940B5BA00A7AC00 /* AccommodationAppApp.swift */; };
 		2D6AAC4D2940B5BA00A7AC00 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D6AAC4C2940B5BA00A7AC00 /* ContentView.swift */; };
 		2D6AAC4F2940B5BB00A7AC00 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2D6AAC4E2940B5BB00A7AC00 /* Assets.xcassets */; };
@@ -36,6 +39,9 @@
 /* Begin PBXFileReference section */
 		2D09F89A294393240090B594 /* Status.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Status.swift; sourceTree = "<group>"; };
 		2D09F89E294398E60090B594 /* Accomodation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Accomodation.swift; sourceTree = "<group>"; };
+		2D09F8A12944B2C80090B594 /* AddPoIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPoIView.swift; sourceTree = "<group>"; };
+		2D09F8A32944B5350090B594 /* PointOfInterest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointOfInterest.swift; sourceTree = "<group>"; };
+		2D09F8A52944BAB00090B594 /* PoIAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoIAnnotation.swift; sourceTree = "<group>"; };
 		2D6AAC472940B5BA00A7AC00 /* AccommodationApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AccommodationApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D6AAC4A2940B5BA00A7AC00 /* AccommodationAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccommodationAppApp.swift; sourceTree = "<group>"; };
 		2D6AAC4C2940B5BA00A7AC00 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -73,6 +79,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2D09F8A02944B2AA0090B594 /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				2DB6CB7C29415EDD0048CF00 /* MapView.swift */,
+				2DB6CB7E29415EF30048CF00 /* MapViewRepresentable.swift */,
+				2D09F8A12944B2C80090B594 /* AddPoIView.swift */,
+			);
+			path = Map;
+			sourceTree = "<group>";
+		};
 		2D6AAC3E2940B5B900A7AC00 = {
 			isa = PBXGroup;
 			children = (
@@ -125,8 +141,7 @@
 		A90B3D4D2940D07F00A8E180 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				2DB6CB7C29415EDD0048CF00 /* MapView.swift */,
-				2DB6CB7E29415EF30048CF00 /* MapViewRepresentable.swift */,
+				2D09F8A02944B2AA0090B594 /* Map */,
 				A90B3D4B2940C03500A8E180 /* MainView.swift */,
 				A90B3D492940BDE800A8E180 /* MyAccomodations.swift */,
 				A90B3D542942342B00A8E180 /* AddAccomodationView.swift */,
@@ -144,6 +159,7 @@
 				A90B3D5829423AA800A8E180 /* MyCalendarRowView.swift */,
 				A90B3D5A2942415900A8E180 /* MyCalendarListView.swift */,
 				A90B3D5E2942484E00A8E180 /* MyCalendarWeeklyView.swift */,
+				2D09F8A52944BAB00090B594 /* PoIAnnotation.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -154,6 +170,7 @@
 				2DB6CB842941F9000048CF00 /* AlertContent.swift */,
 				2D09F89A294393240090B594 /* Status.swift */,
 				2D09F89E294398E60090B594 /* Accomodation.swift */,
+				2D09F8A32944B5350090B594 /* PointOfInterest.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -252,8 +269,11 @@
 				2D6AAC4D2940B5BA00A7AC00 /* ContentView.swift in Sources */,
 				2DB6CB852941F9000048CF00 /* AlertContent.swift in Sources */,
 				2DB6CB7D29415EDD0048CF00 /* MapView.swift in Sources */,
+				2D09F8A42944B5350090B594 /* PointOfInterest.swift in Sources */,
+				2D09F8A62944BAB00090B594 /* PoIAnnotation.swift in Sources */,
 				2DB6CB8129415F5F0048CF00 /* AccommodationAnnotation.swift in Sources */,
 				A90B3D552942342B00A8E180 /* AddAccomodationView.swift in Sources */,
+				2D09F8A22944B2C80090B594 /* AddPoIView.swift in Sources */,
 				2D09F89B294393240090B594 /* Status.swift in Sources */,
 				2D6AAC4B2940B5BA00A7AC00 /* AccommodationAppApp.swift in Sources */,
 				2DB6CB832941F7CC0048CF00 /* MapViewModel.swift in Sources */,

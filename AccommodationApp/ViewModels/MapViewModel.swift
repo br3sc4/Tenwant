@@ -17,6 +17,8 @@ final class MapViewModel: NSObject, ObservableObject {
     @Published var region: MKCoordinateRegion = MKCoordinateRegion(center: MapLocations.ferrara,
                                                                    span: MapLocations.span)
     
+    @Published var selectedAccommodation: Accomodation?
+    
     var userLocation: CLLocation {
         locationManager?.location ?? CLLocation()
     }

@@ -11,17 +11,32 @@ import CoreLocation
 
 struct MapView: View {
     @StateObject private var vm: MapViewModel = MapViewModel()
-    @State private var selectedAccommodation: Accomodation?
+    @State private var showAddPoISheet: Bool = false
+    
     @FetchRequest(sortDescriptors: [SortDescriptor(\Accomodation.title, order: .forward)])
     private var accommodations: FetchedResults<Accomodation>
     
+    @FetchRequest(sortDescriptors: [])
+    private var pointsOfInterest: FetchedResults<PointOfInterest>
+    
     var body: some View {
         NavigationStack {
-            ZStack(alignment: .topTrailing) {
-                MapViewRepresentable(region: $vm.region,
-                                     accommodations: Array(accommodations),
-                                     selectedAccommodation: $selectedAccommodation)
-                    .edgesIgnoringSafeArea(.top)
+            MapViewRepresentable(region: $vm.region,
+                                 accommodations: Array(accommodations),
+                                 pointsOfInterest: Array(pointsOfInterest),
+                                 selectedAccommodation: $vm.selectedAccommodation)
+            .toolbar {
+                ToolbarItem(placement: .primaryAction) {
+                    Button {
+                        showAddPoISheet.toggle()
+                    } label: {
+                        Label("Add Point of Interest", systemImage: "plus")
+                    }
+                    .sheet(isPresented: $showAddPoISheet) {
+                        AddPoIView()
+                            .presentationDetents([.medium])
+                    }
+                }
             }
             .alert(vm.alertContent.title, isPresented: $vm.showAlert) {
                 Button("Cancel", role: .cancel) {
@@ -30,8 +45,9 @@ struct MapView: View {
             } message: {
                 Text(vm.alertContent.message)
             }
-            .sheet(item: $selectedAccommodation) { accommodation in
+            .sheet(item: $vm.selectedAccommodation) { accommodation in
                 AccommodationSheetView(accommodation: accommodation, userLocation: vm.userLocation)
+                    .presentationDetents([.medium, .large])
             }
         }
     }
@@ -40,6 +56,10 @@ struct MapView: View {
 struct MapView_Previews: PreviewProvider {
     static var previews: some View {
         MapView()
+            .previewDevice("iPhone 14 Pro")
+        
+        MapView()
+            .previewDevice("iPad Air (5th generation)")
     }
 }
 
@@ -84,6 +104,5 @@ struct AccommodationSheetView: View {
             .navigationTitle(accommodation.wrappedTitle)
             .navigationBarTitleDisplayMode(.inline)
         }
-        .presentationDetents([.medium, .large])
     }
 }

@@ -7,21 +7,28 @@
 
 import SwiftUI
 import MapKit
+import CoreData
 
 struct MapViewRepresentable: UIViewRepresentable {
     typealias UIViewType = MKMapView
+    @Environment(\.managedObjectContext) private var moc: NSManagedObjectContext
     
     @Binding private var region: MKCoordinateRegion
     
     let trackingMode: MKUserTrackingMode = .follow
     
     private let accommodations: [Accomodation]
+    private let pointsOfInterest: [PointOfInterest]
     
     @Binding private var selectedAccommodation: Accomodation?
     
-    init(region: Binding<MKCoordinateRegion>, accommodations: [Accomodation], selectedAccommodation: Binding<Accomodation?>) {
+    init(region: Binding<MKCoordinateRegion>,
+         accommodations: [Accomodation],
+         pointsOfInterest: [PointOfInterest],
+         selectedAccommodation: Binding<Accomodation?>) {
         self._region = region
         self.accommodations = accommodations
+        self.pointsOfInterest = pointsOfInterest
         self._selectedAccommodation = selectedAccommodation
     }
 
@@ -47,11 +54,18 @@ struct MapViewRepresentable: UIViewRepresentable {
         map.preferredConfiguration = MKStandardMapConfiguration(elevationStyle: .realistic)
 
         map.addAnnotations(accommodations.map(AccommodationAnnotation.init))
+        map.addAnnotations(pointsOfInterest.map(PoIAnnotation.init))
         
         return map
     }
     
     func updateUIView(_ uiView: MKMapView, context: Context) {
+        print(uiView.annotations.count, accommodations.count + pointsOfInterest.count)
+        uiView.removeAnnotations(uiView.annotations)
+
+        uiView.addAnnotations(accommodations.map(AccommodationAnnotation.init))
+        uiView.addAnnotations(pointsOfInterest.map(PoIAnnotation.init))
+        
         if selectedAccommodation == nil {
             guard let annotation = uiView.selectedAnnotations.first else { return }
             uiView.deselectAnnotation(annotation, animated: true)
@@ -59,32 +73,50 @@ struct MapViewRepresentable: UIViewRepresentable {
     }
     
     func makeCoordinator() -> MapViewCoordinator {
-        MapViewCoordinator(region: $region, selectedAccommodation: $selectedAccommodation)
+        MapViewCoordinator(region: $region, selectedAccommodation: $selectedAccommodation, moc: moc)
     }
     
     class MapViewCoordinator: NSObject, MKMapViewDelegate {
         @Binding private var region: MKCoordinateRegion
         @Binding private var selectedAccommodation: Accomodation?
+        private let moc: NSManagedObjectContext
         
         fileprivate init(region: Binding<MKCoordinateRegion>,
-                         selectedAccommodation: Binding<Accomodation?>) {
+                         selectedAccommodation: Binding<Accomodation?>,
+                         moc: NSManagedObjectContext) {
             self._region = region
             self._selectedAccommodation = selectedAccommodation
+            self.moc = moc
         }
         
         func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-            guard let annotation = annotation as? AccommodationAnnotation else { return nil }
-                
-            let identifier = AnnotationIentifier.accommodation
+            var identifier: String
+            var markerTintColor: UIColor
+            var canShowCallout: Bool = false
+            var rightCalloutAccessoryView: UIView = UIView()
             var view: MKMarkerAnnotationView
+            
+            if let annotation = annotation as? AccommodationAnnotation {
+                identifier = AnnotationIentifier.accommodation
+                markerTintColor = annotation.color
+            } else if let annotation = annotation as? PoIAnnotation {
+                identifier = AnnotationIentifier.poi
+                markerTintColor = annotation.color
+                canShowCallout = true
+                rightCalloutAccessoryView = makeAccessoryDeleteButton()
+            } else {
+                return nil
+            }
             
             if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) as? MKMarkerAnnotationView {
                 dequeuedView.annotation = annotation
                 view = dequeuedView
-                view.markerTintColor = annotation.color
+                view.markerTintColor = markerTintColor
             } else {
                 view = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: identifier)
-                view.markerTintColor = annotation.color
+                view.markerTintColor = markerTintColor
+                view.canShowCallout = canShowCallout
+                view.rightCalloutAccessoryView = rightCalloutAccessoryView
             }
             return view
         }
@@ -96,7 +128,9 @@ struct MapViewRepresentable: UIViewRepresentable {
         
         func mapView(_ mapView: MKMapView, didDeselect annotation: MKAnnotation) {
             guard let _ = annotation as? AccommodationAnnotation else { return }
-            selectedAccommodation = nil
+            Task { @MainActor in
+                selectedAccommodation = nil
+            }
         }
         
         func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
@@ -105,8 +139,24 @@ struct MapViewRepresentable: UIViewRepresentable {
             }
         }
         
+        func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+            guard let annotation = view.annotation as? PoIAnnotation else { return }
+
+            moc.delete(annotation.poi)
+            try? moc.save()
+        }
+        
+        private func makeAccessoryDeleteButton() -> UIButton {
+            let button = UIButton(type: .custom)
+            button.setImage(UIImage(systemName: "trash"), for: .normal)
+            button.tintColor = .systemRed
+            button.sizeToFit()
+            return button
+        }
+        
         private enum AnnotationIentifier {
             static let accommodation = "accommodation"
+            static let poi = "point-of-interest"
         }
     }
     
@@ -139,6 +189,7 @@ struct MapViewRepresntable_Previews: PreviewProvider {
     static var previews: some View {
         MapViewRepresentable(region: $region,
                              accommodations: Accomodation.accommodations,
+                             pointsOfInterest: PointOfInterest.pois,
                              selectedAccommodation: .constant(nil))
             .ignoresSafeArea()
     }
