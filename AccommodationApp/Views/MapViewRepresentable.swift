@@ -66,7 +66,8 @@ struct MapViewRepresentable: UIViewRepresentable {
         @Binding private var region: MKCoordinateRegion
         @Binding private var selectedAccommodation: Accomodation?
         
-        fileprivate init(region: Binding<MKCoordinateRegion>, selectedAccommodation: Binding<Accomodation?>) {
+        fileprivate init(region: Binding<MKCoordinateRegion>,
+                         selectedAccommodation: Binding<Accomodation?>) {
             self._region = region
             self._selectedAccommodation = selectedAccommodation
         }
@@ -83,9 +84,7 @@ struct MapViewRepresentable: UIViewRepresentable {
                 view.markerTintColor = annotation.color
             } else {
                 view = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: identifier)
-//                view.canShowCallout = true
                 view.markerTintColor = annotation.color
-//                view.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
             }
             return view
         }

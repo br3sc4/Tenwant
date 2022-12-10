@@ -7,6 +7,7 @@
 
 import SwiftUI
 import CoreData
+import CoreLocation
 
 struct MapView: View {
     @StateObject private var vm: MapViewModel = MapViewModel()
@@ -15,52 +16,23 @@ struct MapView: View {
     private var accommodations: FetchedResults<Accomodation>
     
     var body: some View {
-        ZStack(alignment: .topTrailing) {
-            MapViewRepresentable(region: $vm.region,
-                                 accommodations: Array(accommodations),
-                                 selectedAccommodation: $selectedAccommodation)
-                .edgesIgnoringSafeArea(.top)
-        }
-        .alert(vm.alertContent.title, isPresented: $vm.showAlert) {
-            Button("Cancel", role: .cancel) {
-                vm.showAlert.toggle()
+        NavigationStack {
+            ZStack(alignment: .topTrailing) {
+                MapViewRepresentable(region: $vm.region,
+                                     accommodations: Array(accommodations),
+                                     selectedAccommodation: $selectedAccommodation)
+                    .edgesIgnoringSafeArea(.top)
             }
-        } message: {
-            Text(vm.alertContent.message)
-        }
-        .sheet(item: $selectedAccommodation) { accommodation in
-            NavigationStack {
-                HStack {
-                    VStack {
-                        Text("Rent price")
-                            .font(.headline)
-                        Text(accommodation.rent_cost.formatted(.currency(code: "EUR").precision(.fractionLength(.zero))))
-                            .font(.subheadline)
-                    }
-                    
-                    Divider()
-                    
-                    VStack {
-                        Text("Extra costs")
-                            .font(.headline)
-                        Text(accommodation.extra_cost.formatted(.currency(code: "EUR").precision(.fractionLength(.zero))))
-                            .font(.subheadline)
-                    }
-                    
-                    Divider()
-                    
-                    VStack {
-                        Text("Distance")
-                            .font(.headline)
-                        Text(accommodation.distance(from: vm.userLocation).formatted(.measurement(width: .abbreviated, usage: .road, numberFormatStyle: .number.precision(.fractionLength(.zero)))))
-                            .font(.subheadline)
-                    }
+            .alert(vm.alertContent.title, isPresented: $vm.showAlert) {
+                Button("Cancel", role: .cancel) {
+                    vm.showAlert.toggle()
                 }
-                .frame(maxWidth: .infinity)
-                .navigationTitle(accommodation.wrappedTitle)
-                .navigationBarTitleDisplayMode(.inline)
+            } message: {
+                Text(vm.alertContent.message)
             }
-            .presentationDetents([.medium, .large])
+            .sheet(item: $selectedAccommodation) { accommodation in
+                AccommodationSheetView(accommodation: accommodation, userLocation: vm.userLocation)
+            }
         }
     }
 }
@@ -68,5 +40,50 @@ struct MapView: View {
 struct MapView_Previews: PreviewProvider {
     static var previews: some View {
         MapView()
+    }
+}
+
+struct AccommodationSheetView: View {
+    private let accommodation: Accomodation
+    private let userLocation: CLLocation
+    
+    init(accommodation: Accomodation, userLocation: CLLocation) {
+        self.accommodation = accommodation
+        self.userLocation = userLocation
+    }
+    
+    var body: some View {
+        NavigationStack {
+            HStack {
+                VStack {
+                    Text("Rent price")
+                        .font(.headline)
+                    Text(accommodation.rent_cost.formatted(.currency(code: "EUR").precision(.fractionLength(.zero))))
+                        .font(.subheadline)
+                }
+                
+                Divider()
+                
+                VStack {
+                    Text("Extra costs")
+                        .font(.headline)
+                    Text(accommodation.extra_cost.formatted(.currency(code: "EUR").precision(.fractionLength(.zero))))
+                        .font(.subheadline)
+                }
+                
+                Divider()
+                
+                VStack {
+                    Text("Distance")
+                        .font(.headline)
+                    Text(accommodation.distance(from: userLocation).formatted(.measurement(width: .abbreviated, usage: .road, numberFormatStyle: .number.precision(.fractionLength(.zero)))))
+                        .font(.subheadline)
+                }
+            }
+            .frame(maxWidth: .infinity)
+            .navigationTitle(accommodation.wrappedTitle)
+            .navigationBarTitleDisplayMode(.inline)
+        }
+        .presentationDetents([.medium, .large])
     }
 }
