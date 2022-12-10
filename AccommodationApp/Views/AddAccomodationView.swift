@@ -6,9 +6,9 @@
 //
 
 import SwiftUI
+import CoreData
 
 struct AddAccomodationView: View {
-    
     @Environment(\.managedObjectContext) private var viewContext
     @Environment(\.dismiss) var dismiss
     @State private var address = ""
@@ -33,10 +33,6 @@ struct AddAccomodationView: View {
     }
     enum TypeOfContact: String, CaseIterable, Identifiable {
         case individual, professional, bookingPlatform
-        var id: Self { self }
-    }
-    enum Status: String, CaseIterable, Identifiable {
-        case toContact, toVisit, filePreparation, fileSubmitted, bookingSubmitted, awaitingReply, accepted, rejected
         var id: Self { self }
     }
     @State private var selectedStatus: Status = .toContact
@@ -180,7 +176,11 @@ struct AddAccomodationView: View {
                                                                 description_text: "2 room Appartement 125m2 in Centro Storico",
                                                                 rent_cost: 1200,
                                                                 extra_cost: 70,
-                                                                url: "https://www.idealista.it/de/immobile/25939751/", isFavourite: false)
+                                                                url: "https://www.idealista.it/de/immobile/25939751/",
+                                                                isFavourite: false,
+                                                                status: .accepted,
+                                                                latitude: 40.852605,
+                                                                longitude: 14.264905)
                             dismiss()
                         }, label:
                                 {
