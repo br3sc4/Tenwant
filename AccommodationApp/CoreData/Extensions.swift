@@ -89,6 +89,11 @@ extension Accomodation {
         return Photo.toArray(self.photos)
     }
     
+    static func deleteAccommodation(viewContext : NSManagedObjectContext, accommodationObject: Accomodation){
+        viewContext.delete(accommodationObject)
+        try? viewContext.save()
+    }
+    
 }
 
 extension Appointment {

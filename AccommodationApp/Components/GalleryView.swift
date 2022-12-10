@@ -18,7 +18,7 @@ struct GalleryView: View {
             LazyVGrid(columns: gridItems, spacing: 15){
                 ForEach(accommodations) { accommodation in
                    
-                        NavigationLink(destination: AccommodationDetailsView(), label:
+                    NavigationLink(destination: AccommodationDetailsView(accommodation: accommodation), label:
                                         {
                             AccommodationCardView(accommodation: accommodation)
                                 .padding([.leading, .trailing], 4)
