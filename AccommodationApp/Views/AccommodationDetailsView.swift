@@ -9,6 +9,7 @@ import SwiftUI
 
 struct AccommodationDetailsView: View {
     
+    @Environment(\.openURL) var openURL
     @Environment(\.managedObjectContext) private var viewContext
     @Environment(\.dismiss) private var dismiss
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
@@ -40,7 +41,11 @@ struct AccommodationDetailsView: View {
                 }
                 ZStack(alignment: .trailing){
                     AccommodationDetailsRow(key: "external link", value: "provided")
-                    Button(action: {}, label: {
+                    Button(action: {
+                        if let url = accommodation.url{
+                            openURL(url)
+                        }
+                    }, label: {
                         Image(systemName: "link")
                     })
                 }
