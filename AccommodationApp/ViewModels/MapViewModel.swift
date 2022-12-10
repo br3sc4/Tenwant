@@ -28,7 +28,7 @@ final class MapViewModel: NSObject, ObservableObject {
     @Published var showAlert: Bool = false
     private(set) var alertContent: AlertContent = AlertContent()
     
-    private var locationManager: CLLocationManager?
+    private(set) var locationManager: CLLocationManager?
     
     override init() {
         super.init()

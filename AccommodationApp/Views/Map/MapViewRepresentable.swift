@@ -22,14 +22,18 @@ struct MapViewRepresentable: UIViewRepresentable {
     
     @Binding private var selectedAccommodation: Accomodation?
     
+    private let locationManager: CLLocationManager?
+    
     init(region: Binding<MKCoordinateRegion>,
          accommodations: [Accomodation],
          pointsOfInterest: [PointOfInterest],
-         selectedAccommodation: Binding<Accomodation?>) {
+         selectedAccommodation: Binding<Accomodation?>,
+         locationManager: CLLocationManager?) {
         self._region = region
         self.accommodations = accommodations
         self.pointsOfInterest = pointsOfInterest
         self._selectedAccommodation = selectedAccommodation
+        self.locationManager = locationManager
     }
 
     func makeUIView(context: Context) -> MKMapView {
@@ -40,16 +44,20 @@ struct MapViewRepresentable: UIViewRepresentable {
         map.centerCoordinate = region.center
         
         map.showsScale = true
-        map.showsCompass = false
-        map.showsUserLocation = true
-        Task { @MainActor in
-            map.setUserTrackingMode(trackingMode, animated: true)
+        
+        if let authorizationStatus = locationManager?.authorizationStatus, authorizationStatus != .denied {
+            map.showsCompass = false
+            setupUserTrackingButton(mapView: map)
+            setupCompassButton(mapView: map)
+            
+            Task { @MainActor in
+                map.setUserTrackingMode(trackingMode, animated: true)
+            }
+        } else {
+            map.showsCompass = true
         }
         
 //        map.selectableMapFeatures = [.physicalFeatures, .pointsOfInterest, .territories]
-        
-        setupUserTrackingButton(mapView: map)
-        setupCompassButton(mapView: map)
         
         map.preferredConfiguration = MKStandardMapConfiguration(elevationStyle: .realistic)
 
@@ -60,15 +68,29 @@ struct MapViewRepresentable: UIViewRepresentable {
     }
     
     func updateUIView(_ uiView: MKMapView, context: Context) {
-        print(uiView.annotations.count, accommodations.count + pointsOfInterest.count)
-        uiView.removeAnnotations(uiView.annotations)
-
-        uiView.addAnnotations(accommodations.map(AccommodationAnnotation.init))
-        uiView.addAnnotations(pointsOfInterest.map(PoIAnnotation.init))
-        
+        print(Date.now, uiView.annotations.count, accommodations.count + pointsOfInterest.count)
         if selectedAccommodation == nil {
+            if accommodations.count + pointsOfInterest.count >= uiView.annotations.count {
+                uiView.removeAnnotations(uiView.annotations)
+
+                uiView.addAnnotations(accommodations.map(AccommodationAnnotation.init))
+                uiView.addAnnotations(pointsOfInterest.map(PoIAnnotation.init))
+            }
+            
             guard let annotation = uiView.selectedAnnotations.first else { return }
             uiView.deselectAnnotation(annotation, animated: true)
+        }
+        
+        if let authorizationStatus = locationManager?.authorizationStatus, authorizationStatus != .denied {
+            uiView.showsCompass = false
+            setupUserTrackingButton(mapView: uiView)
+            setupCompassButton(mapView: uiView)
+            
+            Task { @MainActor in
+                uiView.setUserTrackingMode(trackingMode, animated: true)
+            }
+        } else {
+            uiView.showsCompass = true
         }
     }
     
@@ -141,9 +163,11 @@ struct MapViewRepresentable: UIViewRepresentable {
         
         func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
             guard let annotation = view.annotation as? PoIAnnotation else { return }
-
+            
             moc.delete(annotation.poi)
             try? moc.save()
+            
+            mapView.removeAnnotation(annotation)
         }
         
         private func makeAccessoryDeleteButton() -> UIButton {
@@ -190,7 +214,8 @@ struct MapViewRepresntable_Previews: PreviewProvider {
         MapViewRepresentable(region: $region,
                              accommodations: Accomodation.accommodations,
                              pointsOfInterest: PointOfInterest.pois,
-                             selectedAccommodation: .constant(nil))
+                             selectedAccommodation: .constant(nil),
+                             locationManager: CLLocationManager())
             .ignoresSafeArea()
     }
 }

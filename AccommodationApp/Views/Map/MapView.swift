@@ -13,7 +13,7 @@ struct MapView: View {
     @StateObject private var vm: MapViewModel = MapViewModel()
     @State private var showAddPoISheet: Bool = false
     
-    @FetchRequest(sortDescriptors: [SortDescriptor(\Accomodation.title, order: .forward)])
+    @FetchRequest(sortDescriptors: [])
     private var accommodations: FetchedResults<Accomodation>
     
     @FetchRequest(sortDescriptors: [])
@@ -24,7 +24,8 @@ struct MapView: View {
             MapViewRepresentable(region: $vm.region,
                                  accommodations: Array(accommodations),
                                  pointsOfInterest: Array(pointsOfInterest),
-                                 selectedAccommodation: $vm.selectedAccommodation)
+                                 selectedAccommodation: $vm.selectedAccommodation,
+                                 locationManager: vm.locationManager)
             .toolbar {
                 ToolbarItem(placement: .primaryAction) {
                     Button {
