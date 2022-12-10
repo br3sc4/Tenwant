@@ -8,34 +8,55 @@
 import SwiftUI
 
 struct MyCalendarListView: View {
+    
+    let accommodations: FetchedResults<Accomodation>
+    
     var body: some View {
+        
         ScrollViewReader { reader in
             ScrollView(.vertical, showsIndicators: false){
                 ZStack {
                     VStack(alignment: .leading,spacing: 10){
-                    ForEach(0..<10){ x in
-                        VStack(alignment: .leading){
-                            Text("Day 00 Month 0000")
-                                .foregroundColor(.primary)
-                                .font(.system(size: 14))
-                                .bold()
-                            if true {
-                                ForEach(0..<10){ y in
-                                    NavigationLink(destination: ContentView(), label:
+                        
+                        ForEach(accommodations, id: \.self.id){ accommodation in
+                            VStack(alignment: .leading){
+                                Text(accommodation.scheduled_appointment?.formatted(date: .long, time:.omitted) ?? Date.now.formatted())
+                                    .foregroundColor(.primary)
+                                    .font(.system(size: 14))
+                                    .bold()
+                                
+                                
+                                if accommodation.scheduled_appointment?.formatted(date: .long, time:.omitted) == Date.now.formatted(date: .long, time:.omitted) {
+                                    NavigationLink(destination: AccommodationDetailsView(accommodation: accommodation), label:
                                                     {
                                         MyCalendarRowView()
+                                            .id(2)
                                     })
                                 }
-                            }
-                        }.padding(.bottom, 9)
-                        Spacer().id(x)
-                    }
+                                else{
+                                    NavigationLink(destination: AccommodationDetailsView(accommodation: accommodation), label:
+                                                    {
+                                        MyCalendarRowView()
+                                        
+                                    })
+                                }
+                                
+                                
+                            }.padding(.bottom, 9)
+                            Spacer().id(accommodation.id)
+                        }
                     }
                 }
-            }
-            Button("Go to index 2, element 3") {
-                withAnimation {
-                    reader.scrollTo(2)
+            }.toolbar{
+                ToolbarItem(placement: .primaryAction){
+                    Button(action: {
+                        withAnimation {
+                            reader.scrollTo(2, anchor: .top)
+                        }
+                    }, label:
+                            {
+                        Text("Today")
+                    })
                 }
             }
         }
@@ -43,7 +64,14 @@ struct MyCalendarListView: View {
 }
 
 struct MyCalendarListView_Previews: PreviewProvider {
+    @FetchRequest(
+        sortDescriptors: [NSSortDescriptor(keyPath: \Accomodation.title, ascending: true)],
+        animation: .default)
+    static private var accommodations: FetchedResults<Accomodation>
+    
     static var previews: some View {
-        MyCalendarListView()
+        MyCalendarListView(accommodations: accommodations)
+            .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
     }
 }
+

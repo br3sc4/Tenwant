@@ -8,6 +8,7 @@
 import Foundation
 import CoreData
 
+
 extension Accomodation {
     
         
@@ -18,7 +19,7 @@ extension Accomodation {
     }
     
 
-    static func createNewAccommodation(viewContext : NSManagedObjectContext, title : String, contact : String, description_text : String, rent_cost : Int, extra_cost : Int, url: String, isFavourite: Bool){
+    static func createNewAccommodation(viewContext : NSManagedObjectContext, title : String, contact : String, description_text : String, rent_cost : Int, extra_cost : Int, url: String, isFavourite: Bool, scheduled_appointment: Date){
         
         let newAccomodation = Accomodation(context: viewContext)
         newAccomodation.title = title
@@ -27,6 +28,8 @@ extension Accomodation {
         newAccomodation.rent_cost = Int64(rent_cost)
         newAccomodation.url = URL(string: url)
         newAccomodation.isFavourite = isFavourite
+        newAccomodation.scheduled_appointment = scheduled_appointment
+        
         
         try? viewContext.save()
         
@@ -40,6 +43,12 @@ extension Accomodation {
     
     static func deleteAccommodation(viewContext : NSManagedObjectContext, accommodationObject: Accomodation){
         viewContext.delete(accommodationObject)
+        
+        try? viewContext.save()
+    }
+    
+    static func toggleFavouriteAccommodation(viewContext : NSManagedObjectContext, accommodationObject: Accomodation){
+        accommodationObject.isFavourite.toggle()
         try? viewContext.save()
     }
     

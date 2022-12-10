@@ -50,6 +50,12 @@ struct AccommodationDetailsView: View {
                     Toggle("", isOn: $IsOn).toggleStyle(.switch)
                         .padding(.trailing, 20)
                 }
+                ZStack(alignment: .trailing){
+                    AccommodationDetailsRow(key: "appointment", value: accommodation.scheduled_appointment?.formatted(date: .long, time: .omitted) ?? Date.now.formatted())
+                    Button(action: {}, label: {
+                        Image(systemName: "link")
+                    })
+                }
             }.padding(EdgeInsets(top: 10, leading: 25, bottom: 10, trailing: 10))
         }
         .navigationTitle("Accommodation.title")
@@ -70,6 +76,7 @@ struct AccommodationDetailsView: View {
 }
 
 struct AccommodationDetailsView_Previews: PreviewProvider {
+    
     static var previews: some View {
         AccommodationDetailsView(accommodation: .init())
     }

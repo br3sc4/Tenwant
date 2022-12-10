@@ -11,30 +11,30 @@ import CoreData
 struct MyAccommodationsView: View {
     @State private var showingAddAccommodation = false
     @State private var searchText = ""
-    @State private var favorites = 0
+    @State private var favourites = 0
     @ScaledMetric var size = CGFloat(1)
     
     @Environment(\.managedObjectContext) private var viewContext
     @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \Accomodation.title, ascending: true)],
+        sortDescriptors: [NSSortDescriptor(keyPath: \Accomodation.id, ascending: true)],
         animation: .default)
     private var accommodations: FetchedResults<Accomodation>
 
     var body: some View {
         NavigationStack{
             VStack{
-                Picker("", selection: $favorites)
+                Picker("", selection: $favourites)
                 {
                     Text("All").tag(0)
-                    Text("Favorites").tag(1)
+                    Text("Favourites").tag(1)
                 }
                 .pickerStyle(.segmented)
                 .frame(width: 200*size)
                 
-                if favorites == 0{
+                if favourites == 0{
                     GalleryView(accommodations: accommodations)
                 }
-//                else if favorites == 1 {
+//                else if favourites == 1 {
 //                    GalleryView(accommodations: accomodations)
 //                }
             }
