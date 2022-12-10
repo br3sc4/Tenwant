@@ -9,7 +9,8 @@ import SwiftUI
 import CoreData
 
 struct AccommodationCardView: View {
-    let accommodation: Accomodation
+    @Environment(\.managedObjectContext) private var viewContext
+    @State var accommodation: Accomodation
     
     
     var body: some View {
@@ -28,7 +29,7 @@ struct AccommodationCardView: View {
                         .resizable()
                         .frame(width: 178, height: 173)
                         .scaledToFill()
-                        .cornerRadius(5)
+                        
                     
                     
                 } else {
@@ -36,7 +37,7 @@ struct AccommodationCardView: View {
                         .resizable()
                         .frame(width: 178, height: 173)
                         .scaledToFill()
-                        .cornerRadius(5)
+                        
                 }
                 Spacer()
 
@@ -54,6 +55,8 @@ struct AccommodationCardView: View {
                         .padding(.leading, 10)
                     Spacer()
                     Button(action: {
+                        Accomodation.toggleFavouriteAccommodation(viewContext: viewContext, accommodationObject: accommodation)
+                        
                     }, label: {
                         
                         Image(systemName: accommodation.isFavourite ? "heart.fill" : "heart")

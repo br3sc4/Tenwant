@@ -9,11 +9,18 @@ import SwiftUI
 
 struct MyCalendarView: View {
     @State var showList = true
+    
+    @Environment(\.managedObjectContext) private var viewContext
+    @FetchRequest(
+        sortDescriptors: [NSSortDescriptor(keyPath: \Accomodation.id, ascending: true)],
+        animation: .default)
+    private var accommodations: FetchedResults<Accomodation>
+
     var body: some View {
         NavigationView{
             ZStack(alignment: .bottomTrailing){
                 if showList{
-                    MyCalendarListView()
+                    MyCalendarListView(accommodations: accommodations)
                 }
 //                else{
 //                    MyCalendarWeeklyView()
@@ -33,13 +40,13 @@ struct MyCalendarView: View {
                             .frame(width: 30, height: 30)
                     })
                 }
-                ToolbarItem(placement: .primaryAction){
-                    Button(action: {
-                    }, label:
-                            {
-                        Text("Today")
-                    })
-                }
+//                ToolbarItem(placement: .primaryAction){
+//                    Button(action: {
+//                    }, label:
+//                            {
+//                        Text("Today")
+//                    })
+//                }
             }
         }
     }

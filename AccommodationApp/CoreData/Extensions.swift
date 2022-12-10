@@ -56,6 +56,7 @@ extension Accomodation {
         newAccomodation.appointment?.date = appointment_date
         
         newAccomodation.url = URL(string: url)
+
         newAccomodation.status = status.rawValue
         newAccomodation.latitude = latitude
         newAccomodation.longitude = longitude
@@ -75,6 +76,9 @@ extension Accomodation {
         let photo = Photo(context: viewContext)
         photo.image = img?.pngData()
         newAccomodation.addToPhotos(photo)
+
+        newAccomodation.isFavourite = isFavourite
+        newAccomodation.scheduled_appointment = scheduled_appointment
         
         try? viewContext.save()
         return newAccomodation
@@ -91,6 +95,12 @@ extension Accomodation {
     
     static func deleteAccommodation(viewContext : NSManagedObjectContext, accommodationObject: Accomodation){
         viewContext.delete(accommodationObject)
+        
+        try? viewContext.save()
+    }
+    
+    static func toggleFavouriteAccommodation(viewContext : NSManagedObjectContext, accommodationObject: Accomodation){
+        accommodationObject.isFavourite.toggle()
         try? viewContext.save()
     }
     
