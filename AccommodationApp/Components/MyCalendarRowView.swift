@@ -8,49 +8,73 @@
 import SwiftUI
 
 struct MyCalendarRowView: View {
+    
+    var accommodation: Accomodation
+    
+    
     var body: some View {
         VStack(alignment: .leading){
             
             ZStack{
                 
             
-            HStack{
+                ZStack(alignment: .topLeading){
                 Rectangle()
-                    .frame(width: 5, height: 50)
+//                    .foregroundColor(.white)
                     .foregroundColor(.gray)
-                    
-                Rectangle()
-                    .frame(width: 345, height: 50)
-                    .foregroundColor(.gray)
-                    .opacity(0.2)
+//                    .cornerRadius(14)
+//                    .shadow(radius: 1)
+                    .frame(width: 345, height: 70)
+                    .opacity(0.1)
                     .padding(.leading, -8)
-            }
-                VStack(alignment: .leading, spacing: 5){
+//
+                Rectangle()
+                    .frame(width: 5, height: 70)
+                    .foregroundColor(.gray)
                     
-                    HStack {
-                        Text("Day 00 Month 0000")
-                            .foregroundColor(.primary)
+            }
+//            .mask(Rectangle()
+//                .frame(width: 345, height: 70)
+//                .cornerRadius(14)
+//                   )
+                
+                if let appointment = accommodation.scheduled_appointment{
+                    VStack(alignment: .leading, spacing: 5){
+                        
+                        HStack {
+                            Text(accommodation.title ?? accommodation.wrappedTitle)
+                                .lineLimit(1)
+                                .foregroundColor(.primary)
+                                .font(.system(size: 12))
+                                .bold()
+                            
+                            Spacer()
+                            Text(appointment.formatted(date: .omitted, time: .shortened))
+                                .foregroundColor(.primary)
+                                .font(.system(size: 12))
+                                .bold()
+                            
+                        }
+                        Text("name of the person")
+                            .foregroundColor(.secondary)
                             .font(.system(size: 12))
-                        .bold()
                         
-                        Spacer()
-                        Text("00:00")
-                            .foregroundColor(.primary)
+                        Text(accommodation.contact ?? "")
+                            .foregroundColor(.secondary)
                             .font(.system(size: 12))
                         
-                    }
-                    Text("Description")
-                        .foregroundColor(.secondary)
-                        .font(.system(size: 12))
+                    }.frame(width: 320, height: 70)
                         
-                }.frame(width: 320, height: 50)
+                }
             }
         }
+        
     }
 }
 
 struct MyCalendarRowView_Previews: PreviewProvider {
+    
     static var previews: some View {
-        MyCalendarRowView()
+        MyCalendarRowView(accommodation: .init())
     }
 }
