@@ -10,7 +10,6 @@ import CoreData
 import UIKit
 import SwiftUI
 
-@MainActor
 extension Accomodation {
             
     //Sets ID automatically, when new Accomodation is created

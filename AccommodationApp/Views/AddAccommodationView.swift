@@ -6,87 +6,63 @@
 //
 
 import SwiftUI
+import CoreData
+import CoreLocation
 
 struct AddAccommodationView: View {
-    
+    @StateObject private var vm: AddAccommodationViewModel = AddAccommodationViewModel()
     @Environment(\.managedObjectContext) private var viewContext
     @Environment(\.dismiss) var dismiss
-    @State private var address = ""
-    @State private var description = ""
-    @State private var rent  = ""
-    @State private var extraCost = ""
-    @State private var deposit = ""
-    @State private var platformAgencyFees = ""
-    @State private var possibilityToVisit = false
-    @State private var dateOfVisit = Date()
-    @State private var hourOfVisit = Date()
-    @State private var urlAdvert = ""
-    @State private var ownerFlatName = ""
-    @State private var ownerFlatPhone = ""
-    @State private var flatExtraDetails = ""
-    @State private var selectedTypeOfAccomodation: TypeOfAccomodation = .singleRoom
-    @State private var selectedTypeOfContact: TypeOfContact = .individual
-    
-    enum TypeOfAccomodation: String, CaseIterable, Identifiable {
-        case singleRoom = "single room", sharedRoom = "shared room", studio, flat
-        var id: Self { self }
-    }
-    enum TypeOfContact: String, CaseIterable, Identifiable {
-        case individual, professional, platform
-        var id: Self { self }
-    }
-    enum Status: String, CaseIterable, Identifiable {
-        case toContact = "to contact", toVisit = "to visit", filePreparation = "file preparation", fileSubmitted = "file submitted", bookingSubmitted = "booking submitted", awaitingReply = "awaiting reply", accepted, rejected
-        var id: Self { self }
-    }
-    @State private var selectedStatus: Status = .toContact
-    
-    
     
     var body: some View {
         NavigationStack {
             Form {
                 Section("Accommodation") {
-                    TextField("Address", text: $address)
-                    TextField("Description", text: $description)
-                    TextField("Article link", text: $urlAdvert)
-                    Picker("Type", selection: $selectedTypeOfAccomodation) {
-                        ForEach(TypeOfAccomodation.allCases) { type in
+                    TextField("Address", text: $vm.address)
+                    TextField("Description", text: $vm.description)
+                    TextField("Article link", text: $vm.urlAdvert)
+                    Picker("Type", selection: $vm.selectedTypeOfAccomodation) {
+                        ForEach(AddAccommodationViewModel.TypeOfAccomodation.allCases) { type in
                             Text(type.rawValue.capitalized).tag(type)
                         }
                     }
-                    Picker("Status", selection: $selectedStatus) {
+                    Picker("Status", selection: $vm.selectedStatus) {
                         ForEach(Status.allCases) { status in
                             Text(status.rawValue.capitalized).tag(status)
                         }
                     }
-                    Toggle("Possibility to visit the room", isOn: $possibilityToVisit)
+                    Toggle("Possibility to visit the room", isOn: $vm.possibilityToVisit)
                 }
                 // - UPLOAD : Photo
                 
                 Section("Costs") {
-                    TextField("Rent cost",  text: $rent)
-                    TextField("Extra cost bills", text: $extraCost)
-                    TextField("Deposit", text: $deposit)
-                    TextField("Platform / Agency fees", text: $platformAgencyFees)
+                    TextField("Rent cost",  text: $vm.rent)
+                    TextField("Extra cost bills", text: $vm.extraCost)
+                    TextField("Deposit", text: $vm.deposit)
+                    TextField("Platform / Agency fees", text: $vm.platformAgencyFees)
                 }
                 
                 Section("Contact") {
-                    TextField("Name", text: $ownerFlatName)
-                    TextField("Phone", text: $ownerFlatPhone)
-                    Picker("Contact type", selection: $selectedTypeOfContact) {
-                        ForEach(TypeOfContact.allCases) { contactType in
+                    TextField("Name", text: $vm.ownerFlatName)
+                    TextField("Phone", text: $vm.ownerFlatPhone)
+                    Picker("Contact type", selection: $vm.selectedTypeOfContact) {
+                        ForEach(AddAccommodationViewModel.TypeOfContact.allCases) { contactType in
                             Text(contactType.rawValue.capitalized).tag(contactType)
                         }
                     }
                 }
                 
                 Section("Appointment") {
-                    DatePicker("Date and Time", selection: $dateOfVisit, displayedComponents: [.date, .hourAndMinute])
+                    DatePicker("Date and Time", selection: $vm.dateOfVisit, displayedComponents: [.date, .hourAndMinute])
+                }
+                
+                Section("Coordinates") {
+                    TextField("Latitude", text: $vm.latitude)
+                    TextField("Longitude", text: $vm.longitude)
                 }
                 
                 Section("Other") {
-                    TextField("", text: $flatExtraDetails)
+                    TextField("", text: $vm.flatExtraDetails)
                         .multilineTextAlignment(.leading)
                 }
             }
@@ -103,29 +79,50 @@ struct AddAccommodationView: View {
                 }
                 ToolbarItem(placement: .confirmationAction){
                     Button(action: {
-                        Accomodation.createNewAccommodation(
-                            viewContext: viewContext,
-                            title: address,
-                            description_text: description,
-                            rent_cost: rent,
-                            extra_cost: extraCost,
-                            deposit: deposit,
-                            agency_fee: platformAgencyFees,
-                            isVisitPossible: possibilityToVisit,
-                            appointment_date: dateOfVisit,
-                            url: urlAdvert,
-                            ownerName: ownerFlatName,
-                            ownerPhoneNumber: ownerFlatPhone,
-                            typeOfAccommodation: selectedTypeOfAccomodation.rawValue,
-                            scheduled_appointment: dateOfVisit)
-                        
-                        dismiss()
+                        saveAccommodation()
                     }, label:
                             {
                         Text("Save")
                     })
                 }
             }
+            .alert(vm.alertContent.title, isPresented: $vm.showAlert) {
+                Button("Cancel", role: .cancel) {
+                    vm.showAlert.toggle()
+                }
+            }
+        }
+    }
+    
+    private func saveAccommodation() {
+        Task {
+            if vm.latitude.isEmpty || vm.longitude.isEmpty {
+                await vm.getCoordinates()
+            }
+            
+            guard let latitude = try? CLLocationDegrees(vm.latitude, format: .number),
+                  let longitude = try? CLLocationDegrees(vm.longitude, format: .number) else { return }
+            
+            Accomodation.createNewAccommodation(
+                viewContext: viewContext,
+                title: vm.address,
+                description_text: vm.description,
+                rent_cost: vm.rent,
+                extra_cost: vm.extraCost,
+                deposit: vm.deposit,
+                agency_fee: vm.platformAgencyFees,
+                isVisitPossible: vm.possibilityToVisit,
+                appointment_date: vm.dateOfVisit,
+                url: vm.urlAdvert,
+                ownerName: vm.ownerFlatName,
+                ownerPhoneNumber: vm.ownerFlatPhone,
+                typeOfAccommodation: vm.selectedTypeOfAccomodation.rawValue,
+                scheduled_appointment: vm.dateOfVisit,
+                status: vm.selectedStatus,
+                latitude: latitude,
+                longitude: longitude)
+            
+            dismiss()
         }
     }
 }

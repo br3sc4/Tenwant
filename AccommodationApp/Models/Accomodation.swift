@@ -7,6 +7,7 @@
 
 import Foundation
 import CoreLocation
+import CoreData
 
 extension Accomodation {
     func distance(from location: CLLocation) -> Measurement<UnitLength> {
