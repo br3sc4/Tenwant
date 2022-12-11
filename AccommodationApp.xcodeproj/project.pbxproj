@@ -22,8 +22,7 @@
 		2DB6CB8129415F5F0048CF00 /* AccommodationAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB6CB8029415F5F0048CF00 /* AccommodationAnnotation.swift */; };
 		2DB6CB832941F7CC0048CF00 /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB6CB822941F7CC0048CF00 /* MapViewModel.swift */; };
 		2DB6CB852941F9000048CF00 /* AlertContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB6CB842941F9000048CF00 /* AlertContent.swift */; };
-		A90B3D4A2940BDE800A8E180 /* MyAccomodations.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90B3D492940BDE800A8E180 /* MyAccomodations.swift */; };
-		2DB6CB882942479D0048CF00 /* Accommodation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB6CB872942479D0048CF00 /* Accommodation.swift */; };
+		2DF1FCC92946219600815F32 /* AccommodationDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DF1FCC82946219600815F32 /* AccommodationDetailsView.swift */; };
 		A90B3D4C2940C03500A8E180 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90B3D4B2940C03500A8E180 /* MainView.swift */; };
 		A90B3D522940D3E200A8E180 /* GalleryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90B3D512940D3E200A8E180 /* GalleryView.swift */; };
 		A90B3D5929423AA800A8E180 /* MyCalendarRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90B3D5829423AA800A8E180 /* MyCalendarRowView.swift */; };
@@ -33,7 +32,6 @@
 		A9B30F7A29438E0E009F5B9A /* PhotosScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B30F7929438E0E009F5B9A /* PhotosScrollView.swift */; };
 		A9B30F7E2944C173009F5B9A /* AccommodationCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B30F7D2944C173009F5B9A /* AccommodationCardView.swift */; };
 		A9B30F802944C515009F5B9A /* AccommodationDetailsRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B30F7F2944C515009F5B9A /* AccommodationDetailsRow.swift */; };
-		A9B30F822944C57B009F5B9A /* AccommodationDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B30F812944C57B009F5B9A /* AccommodationDetailsView.swift */; };
 		A9B30F842944C5E8009F5B9A /* MyAccommodationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B30F832944C5E8009F5B9A /* MyAccommodationsView.swift */; };
 		A9B30F862944C6B0009F5B9A /* AddAccommodationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B30F852944C6B0009F5B9A /* AddAccommodationView.swift */; };
 		BCDE64DD29428879008056AF /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCDE64DC29428879008056AF /* Extensions.swift */; };
@@ -60,8 +58,7 @@
 		2DB6CB8029415F5F0048CF00 /* AccommodationAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccommodationAnnotation.swift; sourceTree = "<group>"; };
 		2DB6CB822941F7CC0048CF00 /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
 		2DB6CB842941F9000048CF00 /* AlertContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertContent.swift; sourceTree = "<group>"; };
-		A90B3D492940BDE800A8E180 /* MyAccomodations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAccomodations.swift; sourceTree = "<group>"; };
-		2DB6CB872942479D0048CF00 /* Accommodation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Accommodation.swift; sourceTree = "<group>"; };
+		2DF1FCC82946219600815F32 /* AccommodationDetailsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccommodationDetailsView.swift; sourceTree = "<group>"; };
 		A90B3D4B2940C03500A8E180 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		A90B3D512940D3E200A8E180 /* GalleryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryView.swift; sourceTree = "<group>"; };
 		A90B3D5829423AA800A8E180 /* MyCalendarRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCalendarRowView.swift; sourceTree = "<group>"; };
@@ -71,7 +68,6 @@
 		A9B30F7929438E0E009F5B9A /* PhotosScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosScrollView.swift; sourceTree = "<group>"; };
 		A9B30F7D2944C173009F5B9A /* AccommodationCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccommodationCardView.swift; sourceTree = "<group>"; };
 		A9B30F7F2944C515009F5B9A /* AccommodationDetailsRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccommodationDetailsRow.swift; sourceTree = "<group>"; };
-		A9B30F812944C57B009F5B9A /* AccommodationDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccommodationDetailsView.swift; sourceTree = "<group>"; };
 		A9B30F832944C5E8009F5B9A /* MyAccommodationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAccommodationsView.swift; sourceTree = "<group>"; };
 		A9B30F852944C6B0009F5B9A /* AddAccommodationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAccommodationView.swift; sourceTree = "<group>"; };
 		BCDE64DC29428879008056AF /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
@@ -158,6 +154,7 @@
 				A90B3D4B2940C03500A8E180 /* MainView.swift */,
 				A9B30F832944C5E8009F5B9A /* MyAccommodationsView.swift */,
 				A9B30F852944C6B0009F5B9A /* AddAccommodationView.swift */,
+				2DF1FCC82946219600815F32 /* AccommodationDetailsView.swift */,
 				A90B3D5C2942417500A8E180 /* MyCalendarView.swift */,
 			);
 			path = Views;
@@ -290,12 +287,10 @@
 				2D09F8A42944B5350090B594 /* PointOfInterest.swift in Sources */,
 				2D09F8A62944BAB00090B594 /* PoIAnnotation.swift in Sources */,
 				2DB6CB8129415F5F0048CF00 /* AccommodationAnnotation.swift in Sources */,
-				A90B3D552942342B00A8E180 /* AddAccomodationView.swift in Sources */,
 				2D09F8A22944B2C80090B594 /* AddPoIView.swift in Sources */,
 				2D09F89B294393240090B594 /* Status.swift in Sources */,
-				A9B30F822944C57B009F5B9A /* AccommodationDetailsView.swift in Sources */,
-				2DB6CB882942479D0048CF00 /* Accommodation.swift in Sources */,
 				2DB6CB8129415F5F0048CF00 /* AccommodationAnnotation.swift in Sources */,
+				2DF1FCC92946219600815F32 /* AccommodationDetailsView.swift in Sources */,
 				2D6AAC4B2940B5BA00A7AC00 /* AccommodationAppApp.swift in Sources */,
 				2DB6CB832941F7CC0048CF00 /* MapViewModel.swift in Sources */,
 				A90B3D5D2942417500A8E180 /* MyCalendarView.swift in Sources */,
@@ -427,7 +422,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"AccommodationApp/Preview Content\"";
-				DEVELOPMENT_TEAM = 2983DH4K56;
+				DEVELOPMENT_TEAM = A8DRB9NKCV;
 				ENABLE_HARDENED_RUNTIME = YES;
 				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = YES;
 				ENABLE_PREVIEWS = YES;
@@ -448,7 +443,7 @@
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.giugliano.antonella.AccommodationApp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.brescanzin.lorenzo.AccommodationApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
@@ -467,7 +462,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"AccommodationApp/Preview Content\"";
-				DEVELOPMENT_TEAM = 2983DH4K56;
+				DEVELOPMENT_TEAM = A8DRB9NKCV;
 				ENABLE_HARDENED_RUNTIME = YES;
 				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = YES;
 				ENABLE_PREVIEWS = YES;
@@ -488,7 +483,7 @@
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.giugliano.antonella.AccommodationApp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.brescanzin.lorenzo.AccommodationApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";

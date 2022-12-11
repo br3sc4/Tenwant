@@ -10,7 +10,6 @@ import CoreData
 import UIKit
 import SwiftUI
 
-@MainActor
 extension Accomodation {
             
     //Sets ID automatically, when new Accomodation is created
@@ -30,7 +29,7 @@ extension Accomodation {
     }
     
     @discardableResult
-    static func createNewAccommodation(viewContext : NSManagedObjectContext, title : String, description_text : String, rent_cost : String, extra_cost : String, deposit : String, agency_fee : String, isVisitPossible : Bool, appointment_date : Date, url : String, ownerName : String, ownerPhoneNumber : String, typeOfAccommodation : String, status: Status, latitude: Double = 0, longitude: Double = 0) -> Accomodation {
+    static func createNewAccommodation(viewContext : NSManagedObjectContext, title : String, description_text : String, rent_cost : String, extra_cost : String, deposit : String, agency_fee : String, isVisitPossible : Bool, appointment_date : Date, url : String, ownerName : String, ownerPhoneNumber : String, typeOfAccommodation : String, isFavourite: Bool = false, scheduled_appointment: Date, status: Status, latitude: Double = 0, longitude: Double = 0) -> Accomodation {
         
         let newAccomodation = Accomodation(context: viewContext)
         newAccomodation.title = title

@@ -53,11 +53,11 @@ struct MyCalendarListView: View {
                         }
                         
                         ForEach(accommodationByDate[date] ?? [], id: \.id){ accommodation in
-                            
-                            NavigationLink(destination: AccommodationDetailsView(accommodation: accommodation), label:{
+                            NavigationLink {
+                                AccommodationDetailsView(accommodation: accommodation)
+                            } label: {
                                 MyCalendarRowView(accommodation: accommodation)
-                            })
-                            
+                            }
                         }
                     }
                     

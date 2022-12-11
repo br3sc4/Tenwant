@@ -45,7 +45,7 @@ struct MapViewRepresentable: UIViewRepresentable {
         
         map.showsScale = true
         
-        if let authorizationStatus = locationManager?.authorizationStatus, authorizationStatus != .denied {
+//        if let authorizationStatus = locationManager?.authorizationStatus, authorizationStatus != .denied {
             map.showsCompass = false
             setupUserTrackingButton(mapView: map)
             setupCompassButton(mapView: map)
@@ -53,9 +53,9 @@ struct MapViewRepresentable: UIViewRepresentable {
             Task { @MainActor in
                 map.setUserTrackingMode(trackingMode, animated: true)
             }
-        } else {
-            map.showsCompass = true
-        }
+//        } else {
+//            map.showsCompass = true
+//        }
         
 //        map.selectableMapFeatures = [.physicalFeatures, .pointsOfInterest, .territories]
         
@@ -81,17 +81,17 @@ struct MapViewRepresentable: UIViewRepresentable {
             uiView.deselectAnnotation(annotation, animated: true)
         }
         
-        if let authorizationStatus = locationManager?.authorizationStatus, authorizationStatus != .denied {
-            uiView.showsCompass = false
-            setupUserTrackingButton(mapView: uiView)
-            setupCompassButton(mapView: uiView)
-            
-            Task { @MainActor in
-                uiView.setUserTrackingMode(trackingMode, animated: true)
-            }
-        } else {
-            uiView.showsCompass = true
-        }
+//        if let authorizationStatus = locationManager?.authorizationStatus, authorizationStatus != .denied {
+//            uiView.showsCompass = false
+//            setupUserTrackingButton(mapView: uiView)
+//            setupCompassButton(mapView: uiView)
+//            
+//            Task { @MainActor in
+//                uiView.setUserTrackingMode(trackingMode, animated: true)
+//            }
+//        } else {
+//            uiView.showsCompass = true
+//        }
     }
     
     func makeCoordinator() -> MapViewCoordinator {

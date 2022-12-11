@@ -174,13 +174,7 @@ struct AddAccommodationView: View {
                     }
                     ToolbarItem(placement: .confirmationAction){
                         Button(action: {
-                            Accomodation.createNewAccommodation(viewContext: viewContext,
-                                                                title: address,
-                                                                contact: "+39 081 1929 7263",
-                                                                description_text: "2 room Appartement 125m2 in Centro Storico",
-                                                                rent_cost: 1200,
-                                                                extra_cost: 70,
-                                                                url: "https://www.idealista.it/de/immobile/25939751/", isFavourite: false, scheduled_appointment: dateOfVisit)
+                            Accomodation.createNewAccommodation(viewContext: PersistenceController.shared.container.viewContext, title: "Pippo", description_text: "", rent_cost: "", extra_cost: "", deposit: "", agency_fee: "", isVisitPossible: false, appointment_date: .now, url: "", ownerName: "", ownerPhoneNumber: "", typeOfAccommodation: "", scheduled_appointment: .now, status: .accepted, latitude: 0, longitude: 0)
                             dismiss()
                         }, label:
                                 {
