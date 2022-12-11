@@ -19,7 +19,17 @@ struct MyAccommodationsView: View {
         sortDescriptors: [NSSortDescriptor(keyPath: \Accomodation.id, ascending: true)],
         animation: .default)
     private var accommodations: FetchedResults<Accomodation>
-
+    /* If interested in why and how this is working ;-) : https://developer.apple.com/videos/play/wwdc2021/10017/ */
+    
+    var searchQuery: Binding<String> {
+        Binding {
+            searchText
+        } set: { newValue in
+            searchText = newValue
+            accommodations.nsPredicate = newValue.isEmpty ? nil : Accomodation.searchPredicate(for: newValue)
+        }
+    }
+    
     var body: some View {
         NavigationStack{
             VStack{
@@ -54,7 +64,7 @@ struct MyAccommodationsView: View {
             
                 
         }
-        .searchable(text: $searchText, placement: .automatic)
+        .searchable(text: searchQuery, placement: .automatic)
     }
 }
 
