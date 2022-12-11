@@ -11,6 +11,7 @@ import CoreData
 struct AccommodationCardView: View {
     @Environment(\.managedObjectContext) private var viewContext
     @State var accommodation: Accomodation
+    var isFavourite: Bool
     
     
     var body: some View {
@@ -59,7 +60,7 @@ struct AccommodationCardView: View {
                         
                     }, label: {
                         
-                        Image(systemName: accommodation.isFavourite ? "heart.fill" : "heart")
+                        Image(systemName: isFavourite ? "heart.fill" : "heart")
                     }).padding(.trailing, 10)
                 }
             }
@@ -74,8 +75,8 @@ struct AccommodationCardView: View {
         )
     }
 }
-struct AccommodationCardView_Previews: PreviewProvider {
-    static var previews: some View {
-        AccommodationCardView(accommodation: .init())
-    }
-}
+//struct AccommodationCardView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        AccommodationCardView(accommodation: .init())
+//    }
+//}

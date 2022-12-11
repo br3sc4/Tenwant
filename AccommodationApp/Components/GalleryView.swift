@@ -20,7 +20,7 @@ struct GalleryView: View {
                    
                     NavigationLink(destination: AccommodationDetailsView(accommodation: accommodation), label:
                                         {
-                            AccommodationCardView(accommodation: accommodation)
+                        AccommodationCardView(accommodation: accommodation, isFavourite: accommodation.isFavourite)
                                 .padding([.leading, .trailing], 4)
                     })
                 }
