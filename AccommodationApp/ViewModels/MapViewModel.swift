@@ -17,12 +17,18 @@ final class MapViewModel: NSObject, ObservableObject {
     @Published var region: MKCoordinateRegion = MKCoordinateRegion(center: MapLocations.ferrara,
                                                                    span: MapLocations.span)
     
-    @Published var mapType: MKMapConfiguration = MKStandardMapConfiguration()
+    @Published var selectedAccommodation: Accomodation?
+    
+    var userLocation: CLLocation {
+        locationManager?.location ?? CLLocation()
+    }
+    
+    var mapType: MKMapConfiguration = MKStandardMapConfiguration()
     
     @Published var showAlert: Bool = false
     private(set) var alertContent: AlertContent = AlertContent()
     
-    private var locationManager: CLLocationManager?
+    private(set) var locationManager: CLLocationManager?
     
     override init() {
         super.init()
@@ -61,7 +67,6 @@ extension MapViewModel: CLLocationManagerDelegate {
             showAlert(title: "Location authorization denied",
                       message: "You denied the this app location permission. Go into settings to change it.")
         case .authorizedWhenInUse:
-            manager.startUpdatingLocation()
             break
         case .authorizedAlways:
             break

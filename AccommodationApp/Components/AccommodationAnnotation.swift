@@ -7,29 +7,32 @@
 
 import MapKit
 
-class AccommodationAnnotation: NSObject, MKAnnotation {
+final class AccommodationAnnotation: NSObject, MKAnnotation {
     var title: String?
-    var subtitle: String?
     let coordinate: CLLocationCoordinate2D
-    var color: UIColor?
-    var location: String? {
-        title
-    }
     
-    init(accommodation: Accommodation) {
-        self.title = accommodation.address
-        self.subtitle = accommodation.price.formatted(.currency(code: "EUR").precision(.fractionLength(.zero)))
-        self.coordinate = accommodation.coordinates
+    let accommodation: Accomodation
+    
+    init(accommodation: Accomodation) {
+        self.title = accommodation.title
+        self.coordinate = CLLocationCoordinate2D(latitude: accommodation.latitude, longitude: accommodation.longitude)
+        self.accommodation = accommodation
         super.init()
-        
-        self.color = markerColor(for: accommodation.status)
     }
     
-    private func markerColor(for status: Accommodation.Status) -> UIColor {
+    var color: UIColor {
+        guard let accommodationStatus = accommodation.status,
+                let status = Status(rawValue: accommodationStatus) else { return .systemRed }
+        
         switch status {
-        case .free: return .green
-        case .contacted: return .orange
-        default: return .red
+        case .rejected:
+            return.systemRed
+        case .toContact, .awaitingReply:
+            return .systemOrange
+        case .toVisit, .filePreparation, .fileSubmitted, .bookingSubmitted:
+            return .systemYellow
+        case .accepted:
+            return .systemGreen
         }
     }
 }
