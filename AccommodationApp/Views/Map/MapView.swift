@@ -73,32 +73,79 @@ struct AccommodationSheetView: View {
         self.userLocation = userLocation
     }
     
+    @FetchRequest(sortDescriptors: [])
+    private var pointsOfInterest: FetchedResults<PointOfInterest>
+    
+    
     var body: some View {
         NavigationStack {
-            HStack {
-                VStack {
-                    Text("Rent price")
+            VStack(){
+                
+                HStack{
+                    Image("ph1")
+                        .resizable()
+                        .frame(width: 180, height: 150)
+                        .scaledToFill()
+                        .shadow(radius: 2)
+                        .cornerRadius(14)
+                    
+                    VStack{
+                        VStack {
+                            Text("Type")
+                                .font(.headline)
+                            Text(accommodation.type?.capitalized ?? "No type provided")
+                                .font(.subheadline)
+                        }
+                        
+                        Divider()
+                        VStack {
+                            Text("Rent price")
+                                .font(.headline)
+                            Text(accommodation.rent_cost.formatted(.currency(code: "EUR").precision(.fractionLength(.zero))))
+                                .font(.subheadline)
+                        }
+                        
+                        Divider()
+                        
+                        VStack {
+                            Text("Extra costs")
+                                .font(.headline)
+                            Text(accommodation.extra_cost.formatted(.currency(code: "EUR").precision(.fractionLength(.zero))))
+                                .font(.subheadline)
+                        }
+                    }
+                    
+                }.padding([.leading, .trailing], 10)
+                
+                
+                
+                VStack(alignment: .leading){
+                    Text("Distance from:")
                         .font(.headline)
-                    Text(accommodation.rent_cost.formatted(.currency(code: "EUR").precision(.fractionLength(.zero))))
-                        .font(.subheadline)
-                }
-                
-                Divider()
-                
-                VStack {
-                    Text("Extra costs")
-                        .font(.headline)
-                    Text(accommodation.extra_cost.formatted(.currency(code: "EUR").precision(.fractionLength(.zero))))
-                        .font(.subheadline)
-                }
-                
-                Divider()
-                
-                VStack {
-                    Text("Distance")
-                        .font(.headline)
-                    Text(accommodation.distance(from: userLocation).formatted(.measurement(width: .abbreviated, usage: .road, numberFormatStyle: .number.precision(.fractionLength(.zero)))))
-                        .font(.subheadline)
+                        .padding([.leading, .top], 15)
+                    
+                    List(pointsOfInterest, id: \.id){ point in
+                        HStack{
+                            
+                            Text("Current user location -")
+                                .font(.subheadline)
+                            Text(accommodation.distance(from: userLocation).formatted(.measurement(width: .abbreviated, usage: .road, numberFormatStyle: .number.precision(.fractionLength(.zero)))))
+                                .font(.subheadline)
+                        }
+                        ForEach(pointsOfInterest, id: \.id){ point in
+                            HStack {
+                                if let name = point.name{
+                                    Text(name + " -")
+                                        .font(.subheadline)
+                                    Text(accommodation.distance(from: CLLocation(latitude: point.latitude, longitude: point.longitude)).formatted(.measurement(width: .abbreviated, usage: .road, numberFormatStyle: .number.precision(.fractionLength(.zero)))))
+                                        .font(.subheadline)
+                                }
+                                
+                            }
+                        }
+                        
+                        
+                    }.listStyle(.plain)
                 }
             }
             .frame(maxWidth: .infinity)
