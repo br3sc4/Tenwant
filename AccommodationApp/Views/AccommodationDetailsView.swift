@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+
 struct AccommodationDetailsView: View {
     
     @Environment(\.openURL) var openURL
@@ -30,24 +31,43 @@ struct AccommodationDetailsView: View {
                 Text(accommodation.description_text ?? "")
                     .foregroundColor(.secondary)
                 Spacer()
-                ForEach(0..<4){ _ in
-                    AccommodationDetailsRow(key: "Address", value: accommodation.title ?? "title")
-                }
+                
+                AccommodationDetailsRow(key: "Address", value: accommodation.title ?? "title")
+                
                 ZStack(alignment: .trailing){
                     AccommodationDetailsRow(key: "isFavourite", value: accommodation.isFavourite ? "true" : "else")
-                    Button(action: {}, label: {
-                        Image(systemName: "heart")
+                    Button(action: {
+                        Accomodation.toggleFavouriteAccommodation(viewContext: viewContext, accommodationObject: accommodation)
+                    }, label: {
+                        Image(systemName: accommodation.isFavourite ? "heart.fill" : "heart")
                     })
                 }
                 ZStack(alignment: .trailing){
-                    AccommodationDetailsRow(key: "external link", value: "provided")
+                    AccommodationDetailsRow(key: "Contact", value: accommodation.contact ?? "No contact provided")
                     Button(action: {
-                        if let url = accommodation.url{
-                            openURL(url)
+                        if let contact = accommodation.contact{
+                            let contactCleaned = contact.components(separatedBy: .whitespaces).joined()
+                            let phone = "tel://"
+                            let phoneNumberformatted = phone + contactCleaned
+                            let url = URL(string: phoneNumberformatted)
+                            UIApplication.shared.open(url!)
                         }
                     }, label: {
-                        Image(systemName: "link")
+                        Image(systemName: "phone")
                     })
+                }
+                if let url = accommodation.url{
+                    if let str = url.absoluteString {
+                        ZStack(alignment: .trailing){
+                            AccommodationDetailsRow(key: "external link",
+                                                    value: str)
+                            Button(action: {
+                                openURL(url)
+                            }, label: {
+                                Image(systemName: "link")
+                            })
+                        }
+                    }
                 }
                 ZStack(alignment: .trailing){
                     AccommodationDetailsRow(key: "possibilityToVisit", value: accommodation.isFavourite ? "" : "")
@@ -63,9 +83,18 @@ struct AccommodationDetailsView: View {
                 }
             }.padding(EdgeInsets(top: 10, leading: 25, bottom: 10, trailing: 10))
         }
-        .navigationTitle("Accommodation.title")
+        .navigationTitle(accommodation.title ?? accommodation.wrappedTitle)
         .navigationBarTitleDisplayMode(.inline)
         .toolbar{
+            ToolbarItem(placement: .primaryAction){
+                Button(action: {
+                    //                    ShareLink(item: "hello")
+                    
+                }, label:
+                        {
+                    Image(systemName: "square.and.arrow.up")
+                })
+            }
             ToolbarItem(placement: .primaryAction){
                 Button(action: {
                     Accomodation.deleteAccommodation(viewContext: viewContext, accommodationObject: accommodation)
@@ -73,7 +102,7 @@ struct AccommodationDetailsView: View {
                     
                 }, label:
                         {
-                    Text("Delete?")
+                    Image(systemName: "trash")
                 })
             }
         }
