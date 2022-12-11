@@ -12,9 +12,7 @@ import SwiftUI
 
 @MainActor
 extension Accomodation {
-    
-
-    
+            
     //Sets ID automatically, when new Accomodation is created
     public override func awakeFromInsert() {
         setPrimitiveValue(UUID(), forKey: "id")
@@ -25,7 +23,10 @@ extension Accomodation {
         self.isFavourite.toggle()
         try? self.managedObjectContext?.save()
         print(self.isFavourite)
-        
+    }
+
+    static func searchPredicate(for search : String) -> NSPredicate {
+        return NSPredicate(format: "title CONTAINS %@", search)
     }
     
     @discardableResult

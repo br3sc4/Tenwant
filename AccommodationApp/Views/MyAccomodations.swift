@@ -14,12 +14,22 @@ struct MyAccomodations: View {
     @State private var favorites = 0
     @ScaledMetric var size = CGFloat(1)
     
+    var searchQuery: Binding<String> {
+        Binding {
+            searchText
+        } set: { newValue in
+            searchText = newValue
+            accomodations.nsPredicate = newValue.isEmpty ? nil : Accomodation.searchPredicate(for: newValue)
+        }
+    }
+    
     @Environment(\.managedObjectContext) private var viewContext
     @FetchRequest(
         sortDescriptors: [NSSortDescriptor(keyPath: \Accomodation.title, ascending: true)],
         animation: .default)
     private var accomodations: FetchedResults<Accomodation>
 
+    
     var body: some View {
         NavigationStack{
             VStack{
@@ -57,7 +67,7 @@ struct MyAccomodations: View {
             
                 
         }
-        .searchable(text: $searchText, placement: .automatic)
+        .searchable(text: searchQuery, placement: .automatic)
     }
 }
 
