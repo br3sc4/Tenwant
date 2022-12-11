@@ -21,6 +21,7 @@ struct AccommodationDetailsRow: View {
                 .bold()
                 .padding(.all, 0)
             Text(value)
+                .lineLimit(1)
                 .foregroundColor(.primary)
                 .font(.system(size: 13))
                 .padding(.all, 0)
