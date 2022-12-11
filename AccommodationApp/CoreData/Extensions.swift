@@ -38,7 +38,25 @@ extension Accomodation {
     }
     
     @discardableResult
-    static func createNewAccommodation(viewContext : NSManagedObjectContext, title : String, description_text : String, rent_cost : String, extra_cost : String, deposit : String, agency_fee : String, isVisitPossible : Bool, appointment_date : Date, url : String, ownerName : String, ownerPhoneNumber : String, typeOfAccommodation : String, isFavourite: Bool = false, scheduled_appointment: Date, status: Status, latitude: Double = 0, longitude: Double = 0) -> Accomodation {
+    static func createNewAccommodation(viewContext : NSManagedObjectContext,
+                                       title : String,
+                                       description_text : String,
+                                       rent_cost : String,
+                                       extra_cost : String,
+                                       deposit : String,
+                                       agency_fee : String,
+                                       isVisitPossible : Bool,
+                                       appointment_date : Date,
+                                       url : String,
+                                       ownerName : String,
+                                       ownerPhoneNumber : String,
+                                       typeOfAccommodation : String,
+                                       isFavourite: Bool = false,
+                                       scheduled_appointment: Date,
+                                       status: Status,
+                                       latitude: Double = 0,
+                                       longitude: Double = 0,
+                                       images: [Data]) -> Accomodation {
         
         let newAccomodation = Accomodation(context: viewContext)
         newAccomodation.title = title
@@ -59,8 +77,6 @@ extension Accomodation {
         
         newAccomodation.isVisitPossible = isVisitPossible
         
-        // Create new accommodation
-        newAccomodation.appointment = Appointment(context: viewContext)
         newAccomodation.appointment?.date = appointment_date
         
         newAccomodation.url = URL(string: url)
@@ -79,11 +95,11 @@ extension Accomodation {
         
         newAccomodation.type = typeOfAccommodation
         
-        //TODO: Replace with Loop threw Array with pictures from Form
-        let img = UIImage(systemName: "photo")
-        let photo = Photo(context: viewContext)
-        photo.image = img?.pngData()
-        newAccomodation.addToPhotos(photo)
+        for image in images {
+            let photo = Photo(context: viewContext)
+            photo.image = image
+            newAccomodation.addToPhotos(photo)
+        }
 
         newAccomodation.isFavourite = isFavourite
         newAccomodation.scheduled_appointment = scheduled_appointment

@@ -35,7 +35,8 @@ extension Accomodation {
                                 scheduled_appointment: .now,
                                 status: .accepted,
                                 latitude: 40.832340,
-                                longitude: 14.199398)
+                                longitude: 14.199398,
+                                images: [])
     
     static let accommodations: [Accomodation] = [
         fuorigrotta

@@ -8,19 +8,47 @@
 import SwiftUI
 import CoreData
 import CoreLocation
+import PhotosUI
 
 struct AddAccommodationView: View {
     @StateObject private var vm: AddAccommodationViewModel = AddAccommodationViewModel()
-    @Environment(\.managedObjectContext) private var viewContext
-    @Environment(\.dismiss) var dismiss
+    @FocusState private var focusedField: FocusedField?
+    @Environment(\.managedObjectContext) private var viewContext: NSManagedObjectContext
+    @Environment(\.dismiss) var dismiss: DismissAction
     
     var body: some View {
         NavigationStack {
             Form {
+                Section {
+                    if !vm.images.isEmpty {
+                        TabView {
+                            ForEach(vm.images, id: \.self) { image in
+                                if let uiImage = UIImage(data: image) {
+                                    Image(uiImage: uiImage)
+                                        .resizable()
+                                        .aspectRatio(4/3, contentMode: .fill)
+                                        .clipShape(Rectangle())
+                                        .tag(image.hashValue)
+                                }
+                            }
+                        }
+                        .tabViewStyle(.page)
+                        .aspectRatio(4/3, contentMode: .fill)
+                        .listRowInsets(EdgeInsets())
+                    }
+                    
+                    PhotosPicker(vm.photosPickerItems.isEmpty ? "Select Images" : "Edit Images Selection",
+                                 selection: $vm.photosPickerItems,
+                                 selectionBehavior: .ordered,
+                                 matching: .images)
+                }
+                .onChange(of: vm.photosPickerItems, perform: vm.loadImages)
+                .listRowSeparator(.hidden)
+                
                 Section("Accommodation") {
-                    TextField("Address", text: $vm.address)
-                    TextField("Description", text: $vm.description)
-                    TextField("Article link", text: $vm.urlAdvert)
+                    TextField("Address (Required)", text: $vm.address)
+                        .textContentType(.fullStreetAddress)
+                        .focused($focusedField, equals: .address)
                     Picker("Type", selection: $vm.selectedTypeOfAccomodation) {
                         ForEach(AddAccommodationViewModel.TypeOfAccomodation.allCases) { type in
                             Text(type.rawValue.capitalized).tag(type)
@@ -31,20 +59,51 @@ struct AddAccommodationView: View {
                             Text(status.rawValue.capitalized).tag(status)
                         }
                     }
-                    Toggle("Possibility to visit the room", isOn: $vm.possibilityToVisit)
+                    Toggle("Visitable", isOn: $vm.possibilityToVisit)
                 }
-                // - UPLOAD : Photo
+                
+                Section {
+                    TextField("Latitude (Required)", text: $vm.latitude)
+                        .focused($focusedField, equals: .latitude)
+                    TextField("Longitude (Required)", text: $vm.longitude)
+                        .focused($focusedField, equals: .longitude)
+                } header: {
+                    HStack {
+                        Text("Coordinates")
+                        Spacer()
+                        Button {
+                            Task {
+                                await vm.getCoordinates()
+                            }
+                        } label: {
+                            Label("Get Coordinates from Address",
+                                  systemImage: "arrow.triangle.2.circlepath.circle.fill")
+                                .labelStyle(.iconOnly)
+                        }
+                    }
+                }
+                .keyboardType(.decimalPad)
                 
                 Section("Costs") {
-                    TextField("Rent cost",  text: $vm.rent)
+                    TextField("Rent cost (Required)",  text: $vm.rent)
+                        .focused($focusedField, equals: .rentCost)
                     TextField("Extra cost bills", text: $vm.extraCost)
+                        .focused($focusedField, equals: .extraCosts)
                     TextField("Deposit", text: $vm.deposit)
+                        .focused($focusedField, equals: .depositCost)
                     TextField("Platform / Agency fees", text: $vm.platformAgencyFees)
+                        .focused($focusedField, equals: .agencyFees)
                 }
+                .keyboardType(.decimalPad)
                 
                 Section("Contact") {
                     TextField("Name", text: $vm.ownerFlatName)
+                        .focused($focusedField, equals: .contactName)
+                        .textContentType(.name)
                     TextField("Phone", text: $vm.ownerFlatPhone)
+                        .focused($focusedField, equals: .contactPhone)
+                        .textContentType(.telephoneNumber)
+                        .keyboardType(.phonePad)
                     Picker("Contact type", selection: $vm.selectedTypeOfContact) {
                         ForEach(AddAccommodationViewModel.TypeOfContact.allCases) { contactType in
                             Text(contactType.rawValue.capitalized).tag(contactType)
@@ -52,17 +111,14 @@ struct AddAccommodationView: View {
                     }
                 }
                 
-                Section("Appointment") {
-                    DatePicker("Date and Time", selection: $vm.dateOfVisit, displayedComponents: [.date, .hourAndMinute])
-                }
-                
-                Section("Coordinates") {
-                    TextField("Latitude", text: $vm.latitude)
-                    TextField("Longitude", text: $vm.longitude)
-                }
-                
-                Section("Other") {
-                    TextField("", text: $vm.flatExtraDetails)
+                Section("Extra") {
+                    TextField("Advertisment url", text: $vm.urlAdvert)
+                        .focused($focusedField, equals: .advertisementUrl)
+                        .textContentType(.URL)
+                        .keyboardType(.URL)
+                    
+                    TextField("Description", text: $vm.description)
+                        .focused($focusedField, equals: .description)
                         .multilineTextAlignment(.leading)
                 }
             }
@@ -90,16 +146,21 @@ struct AddAccommodationView: View {
                 Button("Cancel", role: .cancel) {
                     vm.showAlert.toggle()
                 }
+            } message: {
+                Text(vm.alertContent.message)
             }
+//            .onTapGesture {
+//                guard focusedField != nil else { return }
+//                withAnimation {
+//                    focusedField = nil
+//                }
+//            }
         }
     }
     
     private func saveAccommodation() {
-        Task {
-            if vm.latitude.isEmpty || vm.longitude.isEmpty {
-                await vm.getCoordinates()
-            }
             
+        if vm.validateForm() {
             guard let latitude = try? CLLocationDegrees(vm.latitude, format: .number),
                   let longitude = try? CLLocationDegrees(vm.longitude, format: .number) else { return }
             
@@ -120,12 +181,21 @@ struct AddAccommodationView: View {
                 scheduled_appointment: vm.dateOfVisit,
                 status: vm.selectedStatus,
                 latitude: latitude,
-                longitude: longitude)
+                longitude: longitude,
+                images: vm.images)
             
             dismiss()
+        } else {
+            vm.presentAlert(title: "Invalid data",
+                            message: "Check that all the required fields are filled correctly")
         }
     }
+    
+    private enum FocusedField {
+        case address, latitude, longitude, rentCost, extraCosts, depositCost, agencyFees, contactName, contactPhone, advertisementUrl, description
+    }
 }
+
 struct AddAccommodationView_Previews: PreviewProvider {
     static var previews: some View {
         AddAccommodationView()

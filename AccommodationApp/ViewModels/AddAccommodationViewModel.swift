@@ -7,8 +7,11 @@
 
 import Foundation
 import CoreLocation
+import _PhotosUI_SwiftUI
 
 final class AddAccommodationViewModel: ObservableObject {
+    @Published var photosPickerItems: [PhotosPickerItem] = []
+    @Published var images: [Data] = []
     @Published var address = ""
     @Published var description = ""
     @Published var rent  = ""
@@ -34,7 +37,7 @@ final class AddAccommodationViewModel: ObservableObject {
     private func addressCoordinates() async throws -> CLLocationCoordinate2D? {
         let geocoder = CLGeocoder()
         let placemarks = try await geocoder.geocodeAddressString(address)
-        print(placemarks)
+        print("ℹ️ - \(placemarks)")
         guard let placemark = placemarks.first,
               let region = placemark.region as? CLCircularRegion else { return nil }
         
@@ -60,8 +63,7 @@ final class AddAccommodationViewModel: ObservableObject {
         } catch {
             print("❌ - \(error)")
             Task { @MainActor in
-                alertContent = AlertContent(title: error.localizedDescription)
-                showAlert.toggle()
+                presentAlert(title: error.localizedDescription)
             }
         }
     }
@@ -75,6 +77,37 @@ final class AddAccommodationViewModel: ObservableObject {
                 return "Coordinates not found for address \"\(address)\". Be sure the address is correct and well formed."
             }
         }
+    }
+    
+    func loadImages(_ photos: [PhotosPickerItem]) {
+        Task {
+            await withTaskGroup(of: Optional<Data>.self) { group in
+                for photo in photos {
+                    group.addTask {
+                        guard let data = try? await photo.loadTransferable(type: Data.self) else { return nil }
+                        return data
+                    }
+                }
+
+                let result = await group
+                    .compactMap { $0 }
+                    .reduce(into: [Data]()) { partialResult, data in
+                        partialResult.append(data)
+                    }
+                Task { @MainActor in
+                    images = result
+                }
+            }
+        }
+    }
+    
+    func validateForm() -> Bool {
+        !address.isEmpty && !latitude.isEmpty && !longitude.isEmpty && !rent.isEmpty
+    }
+    
+    func presentAlert(title: String, message: String = "") {
+        alertContent = AlertContent(title: title, message: message)
+        showAlert.toggle()
     }
     
     enum TypeOfAccomodation: String, CaseIterable, Identifiable {

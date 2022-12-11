@@ -18,7 +18,6 @@
 		2D6AAC532940B5BB00A7AC00 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2D6AAC522940B5BB00A7AC00 /* Preview Assets.xcassets */; };
 		2DB6CB7D29415EDD0048CF00 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB6CB7C29415EDD0048CF00 /* MapView.swift */; };
 		2DB6CB7F29415EF30048CF00 /* MapViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB6CB7E29415EF30048CF00 /* MapViewRepresentable.swift */; };
-		2DB6CB8129415F5F0048CF00 /* AccommodationAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB6CB8029415F5F0048CF00 /* AccommodationAnnotation.swift */; };
 		2DB6CB832941F7CC0048CF00 /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB6CB822941F7CC0048CF00 /* MapViewModel.swift */; };
 		2DB6CB852941F9000048CF00 /* AlertContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB6CB842941F9000048CF00 /* AlertContent.swift */; };
 		2DF1FCC92946219600815F32 /* AccommodationDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DF1FCC82946219600815F32 /* AccommodationDetailsView.swift */; };
@@ -290,10 +289,10 @@
 				2DB6CB7D29415EDD0048CF00 /* MapView.swift in Sources */,
 				2D09F8A42944B5350090B594 /* PointOfInterest.swift in Sources */,
 				2D09F8A62944BAB00090B594 /* PoIAnnotation.swift in Sources */,
-				2DB6CB8129415F5F0048CF00 /* AccommodationAnnotation.swift in Sources */,
 				2D09F8A22944B2C80090B594 /* AddPoIView.swift in Sources */,
 				2D09F89B294393240090B594 /* Status.swift in Sources */,
 				2DB6CB8129415F5F0048CF00 /* AccommodationAnnotation.swift in Sources */,
+				2DF1FCCB2946276000815F32 /* PointOfInterestViewModel.swift in Sources */,
 				2DF1FCC92946219600815F32 /* AccommodationDetailsView.swift in Sources */,
 				2D6AAC4B2940B5BA00A7AC00 /* AccommodationAppApp.swift in Sources */,
 				2DB6CB832941F7CC0048CF00 /* MapViewModel.swift in Sources */,
