@@ -22,7 +22,6 @@
 		2DB6CB832941F7CC0048CF00 /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB6CB822941F7CC0048CF00 /* MapViewModel.swift */; };
 		2DB6CB852941F9000048CF00 /* AlertContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB6CB842941F9000048CF00 /* AlertContent.swift */; };
 		2DF1FCC92946219600815F32 /* AccommodationDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DF1FCC82946219600815F32 /* AccommodationDetailsView.swift */; };
-		2DF1FCCB2946276000815F32 /* PointOfInterestViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DF1FCCA2946276000815F32 /* PointOfInterestViewModel.swift */; };
 		2DF1FCCD2946277000815F32 /* AddAccommodationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DF1FCCC2946277000815F32 /* AddAccommodationViewModel.swift */; };
 		A90B3D4C2940C03500A8E180 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90B3D4B2940C03500A8E180 /* MainView.swift */; };
 		A90B3D522940D3E200A8E180 /* GalleryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90B3D512940D3E200A8E180 /* GalleryView.swift */; };
@@ -35,6 +34,7 @@
 		A9B30F802944C515009F5B9A /* AccommodationDetailsRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B30F7F2944C515009F5B9A /* AccommodationDetailsRow.swift */; };
 		A9B30F842944C5E8009F5B9A /* MyAccommodationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B30F832944C5E8009F5B9A /* MyAccommodationsView.swift */; };
 		A9B30F862944C6B0009F5B9A /* AddAccommodationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B30F852944C6B0009F5B9A /* AddAccommodationView.swift */; };
+		BC1FC26D2946336D0013FFAF /* PointOfInterestViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC1FC26C2946336D0013FFAF /* PointOfInterestViewModel.swift */; };
 		BCDE64DD29428879008056AF /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCDE64DC29428879008056AF /* Extensions.swift */; };
 		BCE95ED82941F4200034D879 /* AccommodationData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BCE95ED62941F4200034D879 /* AccommodationData.xcdatamodeld */; };
 		BCE95EDA2941F8C50034D879 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCE95ED92941F8C50034D879 /* Persistence.swift */; };
@@ -59,7 +59,6 @@
 		2DB6CB822941F7CC0048CF00 /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
 		2DB6CB842941F9000048CF00 /* AlertContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertContent.swift; sourceTree = "<group>"; };
 		2DF1FCC82946219600815F32 /* AccommodationDetailsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccommodationDetailsView.swift; sourceTree = "<group>"; };
-		2DF1FCCA2946276000815F32 /* PointOfInterestViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PointOfInterestViewModel.swift; path = ../../../../.Trash/AccommodationsApp/AccommodationApp/ViewModels/PointOfInterestViewModel.swift; sourceTree = "<group>"; };
 		2DF1FCCC2946277000815F32 /* AddAccommodationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAccommodationViewModel.swift; sourceTree = "<group>"; };
 		A90B3D4B2940C03500A8E180 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		A90B3D512940D3E200A8E180 /* GalleryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryView.swift; sourceTree = "<group>"; };
@@ -72,6 +71,7 @@
 		A9B30F7F2944C515009F5B9A /* AccommodationDetailsRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccommodationDetailsRow.swift; sourceTree = "<group>"; };
 		A9B30F832944C5E8009F5B9A /* MyAccommodationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAccommodationsView.swift; sourceTree = "<group>"; };
 		A9B30F852944C6B0009F5B9A /* AddAccommodationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAccommodationView.swift; sourceTree = "<group>"; };
+		BC1FC26C2946336D0013FFAF /* PointOfInterestViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointOfInterestViewModel.swift; sourceTree = "<group>"; };
 		BCDE64DC29428879008056AF /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		BCE95ED72941F4200034D879 /* Accommodation.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Accommodation.xcdatamodel; sourceTree = "<group>"; };
 		BCE95ED92941F8C50034D879 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
@@ -143,7 +143,7 @@
 		2DB6CB7B29415E390048CF00 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				2DF1FCCA2946276000815F32 /* PointOfInterestViewModel.swift */,
+				BC1FC26C2946336D0013FFAF /* PointOfInterestViewModel.swift */,
 				2DB6CB822941F7CC0048CF00 /* MapViewModel.swift */,
 				2DF1FCCC2946277000815F32 /* AddAccommodationViewModel.swift */,
 			);
@@ -276,6 +276,7 @@
 				2DB6CB7F29415EF30048CF00 /* MapViewRepresentable.swift in Sources */,
 				A90B3D5929423AA800A8E180 /* MyCalendarRowView.swift in Sources */,
 				A90B3D522940D3E200A8E180 /* GalleryView.swift in Sources */,
+				BC1FC26D2946336D0013FFAF /* PointOfInterestViewModel.swift in Sources */,
 				A90B3D4C2940C03500A8E180 /* MainView.swift in Sources */,
 				BCE95ED82941F4200034D879 /* AccommodationData.xcdatamodeld in Sources */,
 				A9B30F7E2944C173009F5B9A /* AccommodationCardView.swift in Sources */,
@@ -292,7 +293,6 @@
 				2DB6CB8129415F5F0048CF00 /* AccommodationAnnotation.swift in Sources */,
 				2D09F8A22944B2C80090B594 /* AddPoIView.swift in Sources */,
 				2D09F89B294393240090B594 /* Status.swift in Sources */,
-				2DF1FCCB2946276000815F32 /* PointOfInterestViewModel.swift in Sources */,
 				2DB6CB8129415F5F0048CF00 /* AccommodationAnnotation.swift in Sources */,
 				2DF1FCC92946219600815F32 /* AccommodationDetailsView.swift in Sources */,
 				2D6AAC4B2940B5BA00A7AC00 /* AccommodationAppApp.swift in Sources */,
