@@ -10,13 +10,8 @@ import CoreLocation
 import CoreData
 
 struct AddPoIView: View {
-    @State private var name: String = ""
-    @State private var address: String = ""
-    @State private var latitude: String = ""
-    @State private var longitude: String = ""
+    @StateObject private var vm: PointOfInterestViewModel = PointOfInterestViewModel()
     
-    @State private var alertContent: AlertContent = AlertContent()
-    @State private var showAlert: Bool = false
     @FocusState private var focusedField: FocuseFields?
     @Environment(\.dismiss) private var dismiss: DismissAction
     @Environment(\.managedObjectContext) private var moc: NSManagedObjectContext
@@ -25,34 +20,34 @@ struct AddPoIView: View {
         NavigationStack {
             Form {
                 Section {
-                    TextField("Name", text: $name)
+                    TextField("Name", text: $vm.name)
                         .submitLabel(.next)
                         .focused($focusedField, equals: .name)
                         .onSubmit {
                             focusedField = .address
                         }
                     
-                    TextField("Address", text: $address)
+                    TextField("Address", text: $vm.address)
                         .focused($focusedField, equals: .address)
                         .textContentType(.fullStreetAddress)
                         .submitLabel(.done)
                         .onSubmit {
                             focusedField = nil
                             Task {
-                                await getCoordinates()
+                                await vm.getCoordinates()
                             }
                         }
                 }
                 
                 Section("Coordinates") {
-                    TextField("Latitude", text: $latitude)
+                    TextField("Latitude", text: $vm.latitude)
                         .submitLabel(.next)
                         .focused($focusedField, equals: .latitude)
                         .onSubmit {
                             focusedField = .longitude
                         }
                     
-                    TextField("Longitude", text: $longitude)
+                    TextField("Longitude", text: $vm.longitude)
                         .submitLabel(.next)
                         .focused($focusedField, equals: .longitude)
                         .onSubmit {
@@ -73,57 +68,26 @@ struct AddPoIView: View {
                     Button("Done", action: savePoI)
                 }
             }
-            .alert(alertContent.title, isPresented: $showAlert) {
+            .alert(vm.alertContent.title, isPresented: $vm.showAlert) {
                 Button("Cancel", role: .cancel) {
-                    showAlert.toggle()
+                    vm.showAlert.toggle()
                 }
             }
         }
     }
     
-    private func addressCoordinates() async throws -> CLLocationCoordinate2D? {
-        let geocoder = CLGeocoder()
-        let placemarks = try await geocoder.geocodeAddressString(address)
-        print(placemarks)
-        guard let placemark = placemarks.first,
-              let region = placemark.region as? CLCircularRegion else { return nil }
-        
-        return region.center
-    }
-    
-    private func getCoordinates() async {
-        let task = Task {
-            let coordinates = try await addressCoordinates()
-            guard let coordinates else { throw GeocodingError.coordinatesNotFound(address: address) }
-            
-            return coordinates
-        }
-        
-        let result = await task.result
-        
-        do {
-            let coordinates = try result.get()
-            latitude = coordinates.latitude.formatted()
-            longitude = coordinates.longitude.formatted()
-        } catch {
-            print("❌ - \(error)")
-            alertContent = AlertContent(title: error.localizedDescription)
-            showAlert.toggle()
-        }
-    }
-    
     private func savePoI() {
         Task {
-            if latitude.isEmpty || longitude.isEmpty {
-                await getCoordinates()
+            if vm.latitude.isEmpty || vm.longitude.isEmpty {
+                await vm.getCoordinates()
             }
             
-            guard let latitude = try? CLLocationDegrees(latitude, format: .number),
-                  let longitude = try? CLLocationDegrees(longitude, format: .number) else { return }
+            guard let latitude = try? CLLocationDegrees(vm.latitude, format: .number),
+                  let longitude = try? CLLocationDegrees(vm.longitude, format: .number) else { return }
             
             PointOfInterest.makePointOfInterest(viewContext: moc,
-                                                name: name,
-                                                address: address,
+                                                name: vm.name,
+                                                address: vm.address,
                                                 latitude: latitude,
                                                 longitude: longitude)
             
@@ -133,17 +97,6 @@ struct AddPoIView: View {
     
     private enum FocuseFields {
         case name, address, latitude, longitude
-    }
-    
-    private enum GeocodingError: LocalizedError {
-        case coordinatesNotFound(address: String)
-        
-        var errorDescription: String? {
-            switch self {
-            case .coordinatesNotFound(let address):
-                return "Coordinates not found for address \"\(address)\". Be sure the address is correct and well formed."
-            }
-        }
     }
 }
 
