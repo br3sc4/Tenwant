@@ -7,6 +7,8 @@
 
 import Foundation
 import CoreData
+import UIKit
+import SwiftUI
 
 @MainActor
 extension Accomodation {
@@ -64,6 +66,12 @@ extension Accomodation {
         
         newAccomodation.type = typeOfAccommodation
         
+        //TODO: Replace with Loop threw Array with pictures from Form
+        let img = UIImage(systemName: "photo")
+        let photo = Photo(context: viewContext)
+        photo.image = img?.pngData()
+        newAccomodation.addToPhotos(photo)
+        
         try? viewContext.save()
         
     }
@@ -73,14 +81,40 @@ extension Accomodation {
         title ?? ""
     }
     
+    var wrappedPhotos : [Photo] {
+        return Photo.toArray(self.photos)
+    }
+    
 }
 
 extension Appointment {
-    
-    
     //Sets ID automatically, when new Appointment is created
     public override func awakeFromInsert() {
         setPrimitiveValue(UUID(), forKey: "id")
+    }
+}
+
+
+extension Photo {
+    //Sets ID automatically, when new Appointment is created
+    public override func awakeFromInsert() {
+        setPrimitiveValue(UUID(), forKey: "id")
+    }
+    
+    var wrappedImage : Image {
+        if let image = self.image, let uiImage =  UIImage(data: image) {
+            return Image(uiImage: uiImage)
+        }
+        return Image(systemName: "photo")
+    }
+    
+    public static func toArray(_ photos: NSSet?) -> [Photo] {
+        if let photos = photos {
+            return photos.allObjects as! [Photo]
+        }
+        else {
+            return []
+        }
     }
     
 }
