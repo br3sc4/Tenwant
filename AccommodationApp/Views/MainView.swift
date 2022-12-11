@@ -8,11 +8,12 @@
 import SwiftUI
 
 struct MainView: View {
+    
     var body: some View {
         TabView {
-            MyAccomodations()
+            MyAccommodationsView()
                 .tabItem {
-                    Label("MyAccomodations", systemImage: "square.grid.2x2")
+                    Label("MyAccommodations", systemImage: "square.grid.2x2")
                 }
             
             MyCalendarView()

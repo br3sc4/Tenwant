@@ -1,13 +1,13 @@
 //
-//  AddAccomodationView.swift
+//  AddAccommodationView.swift
 //  AccommodationApp
 //
-//  Created by Antonella Giugliano on 08/12/22.
+//  Created by Antonella Giugliano on 10/12/22.
 //
 
 import SwiftUI
 
-struct AddAccomodationView: View {
+struct AddAccommodationView: View {
     
     @Environment(\.managedObjectContext) private var viewContext
     @Environment(\.dismiss) var dismiss
@@ -83,7 +83,6 @@ struct AddAccomodationView: View {
                 
                 Section("Appointment") {
                     DatePicker("Date and Time", selection: $dateOfVisit, displayedComponents: [.date, .hourAndMinute])
-                    
                 }
                 
                 Section("Other") {
@@ -117,7 +116,8 @@ struct AddAccomodationView: View {
                             url: urlAdvert,
                             ownerName: ownerFlatName,
                             ownerPhoneNumber: ownerFlatPhone,
-                            typeOfAccommodation: selectedTypeOfAccomodation.rawValue)
+                            typeOfAccommodation: selectedTypeOfAccomodation.rawValue,
+                            scheduled_appointment: dateOfVisit)
                         
                         dismiss()
                     }, label:
@@ -129,9 +129,8 @@ struct AddAccomodationView: View {
         }
     }
 }
-
-struct AddAccomodationView_Previews: PreviewProvider {
+struct AddAccommodationView_Previews: PreviewProvider {
     static var previews: some View {
-        AddAccomodationView()
+        AddAccommodationView()
     }
 }

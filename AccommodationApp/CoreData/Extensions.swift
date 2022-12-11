@@ -29,8 +29,7 @@ extension Accomodation {
         return NSPredicate(format: "title CONTAINS %@", search)
     }
     
-    static func createNewAccommodation(viewContext : NSManagedObjectContext, title : String, description_text : String, rent_cost : String, extra_cost : String, deposit : String, agency_fee : String, isVisitPossible : Bool, appointment_date : Date, url : String, ownerName : String, ownerPhoneNumber : String, typeOfAccommodation : String){
-        
+    static func createNewAccommodation(viewContext : NSManagedObjectContext, title : String, description_text : String, rent_cost : String, extra_cost : String, deposit : String, agency_fee : String, isVisitPossible : Bool, appointment_date : Date, url : String, ownerName : String, ownerPhoneNumber : String, typeOfAccommodation : String, isFavourite: Bool = false, scheduled_appointment: Date) {
         let newAccomodation = Accomodation(context: viewContext)
         newAccomodation.title = title
         newAccomodation.description_text = description_text
@@ -71,6 +70,9 @@ extension Accomodation {
         let photo = Photo(context: viewContext)
         photo.image = img?.pngData()
         newAccomodation.addToPhotos(photo)
+
+        newAccomodation.isFavourite = isFavourite
+        newAccomodation.scheduled_appointment = scheduled_appointment
         
         try? viewContext.save()
         
@@ -83,6 +85,17 @@ extension Accomodation {
     
     var wrappedPhotos : [Photo] {
         return Photo.toArray(self.photos)
+    }
+    
+    static func deleteAccommodation(viewContext : NSManagedObjectContext, accommodationObject: Accomodation){
+        viewContext.delete(accommodationObject)
+        
+        try? viewContext.save()
+    }
+    
+    static func toggleFavouriteAccommodation(viewContext : NSManagedObjectContext, accommodationObject: Accomodation){
+        accommodationObject.isFavourite.toggle()
+        try? viewContext.save()
     }
     
 }
