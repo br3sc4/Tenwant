@@ -10,44 +10,61 @@ import SwiftUI
 struct MyCalendarListView: View {
     
     let accommodations: FetchedResults<Accomodation>
+    var accommodationByDate: [Date: [Accomodation]] {
+        var dictionary: [Date: [Accomodation]] = [:]
+        for accommodation in accommodations{
+            let scheduled_appointment = Calendar.current.startOfDay(for: accommodation.scheduled_appointment ?? Date.now)
+            
+            if dictionary.contains(where: { key, value in
+                
+                key.formatted(date: .long, time:.omitted) == accommodation.scheduled_appointment?.formatted(date: .long, time:.omitted)
+                
+            }){
+                dictionary[scheduled_appointment]!.append(accommodation)
+            }else{
+                dictionary[scheduled_appointment] = [accommodation]
+            }
+        }
+        return dictionary
+    }
     
     var body: some View {
         
         ScrollViewReader { reader in
             ScrollView(.vertical, showsIndicators: false){
-                ZStack {
-                    VStack(alignment: .leading,spacing: 10){
+                ForEach(Array(accommodationByDate.keys).sorted(by: <), id: \.self){ date in
+                    
+                    VStack(alignment: .leading){
+                        //giving a fixed id to today so that scrollviewreader can access to the anchor point
+                        if date.formatted(date: .long, time:.omitted) == Date.now.formatted(date: .long, time:.omitted)
+                        {
+                            Text(date.formatted(date: .long, time:.omitted))
+                                .foregroundColor(.primary)
+                                .font(.system(size: 14))
+                                .bold()
+                                .id(2)
+                        }
                         
-                        ForEach(accommodations, id: \.self.id){ accommodation in
-                            VStack(alignment: .leading){
-                                Text(accommodation.scheduled_appointment?.formatted(date: .long, time:.omitted) ?? Date.now.formatted())
-                                    .foregroundColor(.primary)
-                                    .font(.system(size: 14))
-                                    .bold()
-                                
-                                
-                                if accommodation.scheduled_appointment?.formatted(date: .long, time:.omitted) == Date.now.formatted(date: .long, time:.omitted) {
-                                    NavigationLink(destination: AccommodationDetailsView(accommodation: accommodation), label:
-                                                    {
-                                        MyCalendarRowView()
-                                            .id(2)
-                                    })
-                                }
-                                else{
-                                    NavigationLink(destination: AccommodationDetailsView(accommodation: accommodation), label:
-                                                    {
-                                        MyCalendarRowView()
-                                        
-                                    })
-                                }
-                                
-                                
-                            }.padding(.bottom, 9)
-                            Spacer().id(accommodation.id)
+                        else {
+                            Text(date.formatted(date: .long, time:.omitted))
+                                .foregroundColor(.primary)
+                                .font(.system(size: 14))
+                                .bold()
+                        }
+                        
+                        ForEach(accommodationByDate[date] ?? [], id: \.id){ accommodation in
+                            
+                            NavigationLink(destination: AccommodationDetailsView(accommodation: accommodation), label:{
+                                MyCalendarRowView(accommodation: accommodation)
+                            })
+                            
                         }
                     }
-                }
-            }.toolbar{
+                    
+                }.padding(.bottom, 9)
+            }
+            
+            .toolbar{
                 ToolbarItem(placement: .primaryAction){
                     Button(action: {
                         withAnimation {

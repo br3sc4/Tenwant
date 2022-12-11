@@ -12,7 +12,7 @@ struct MyCalendarView: View {
     
     @Environment(\.managedObjectContext) private var viewContext
     @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \Accomodation.id, ascending: true)],
+        sortDescriptors: [NSSortDescriptor(keyPath: \Accomodation.scheduled_appointment, ascending: true)],
         animation: .default)
     private var accommodations: FetchedResults<Accomodation>
 
