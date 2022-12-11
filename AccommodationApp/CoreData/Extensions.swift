@@ -27,6 +27,16 @@ extension Accomodation {
     static func searchPredicate(for search : String) -> NSPredicate {
         return NSPredicate(format: "title CONTAINS %@", search)
     }
+    
+    static func filterFavouritesRequest() -> NSFetchRequest<Accomodation> {
+        let request = fetchRequest()
+        let predicate = NSPredicate(format: "isFavourite == 1")
+        let sortDescriptor = [NSSortDescriptor(keyPath: \Accomodation.id, ascending: true)]
+        request.predicate = predicate
+        request.sortDescriptors = sortDescriptor
+        return request
+    }
+    
     @discardableResult
     static func createNewAccommodation(viewContext : NSManagedObjectContext, title : String, description_text : String, rent_cost : String, extra_cost : String, deposit : String, agency_fee : String, isVisitPossible : Bool, appointment_date : Date, url : String, ownerName : String, ownerPhoneNumber : String, typeOfAccommodation : String, isFavourite: Bool = false, scheduled_appointment: Date, status: Status, latitude: Double = 0, longitude: Double = 0) -> Accomodation {
         

@@ -11,16 +11,22 @@ import CoreData
 struct MyAccommodationsView: View {
     @State private var showingAddAccommodation = false
     @State private var searchText = ""
-    @State private var favourites = 0
+    @State private var isOnlyFavouritesShown = false
     @ScaledMetric var size = CGFloat(1)
     
     @Environment(\.managedObjectContext) private var viewContext
+    
+    
     @FetchRequest(
         sortDescriptors: [NSSortDescriptor(keyPath: \Accomodation.id, ascending: true)],
         animation: .default)
     private var accommodations: FetchedResults<Accomodation>
-    /* If interested in why and how this is working ;-) : https://developer.apple.com/videos/play/wwdc2021/10017/ */
     
+    @FetchRequest(fetchRequest: Accomodation.filterFavouritesRequest())
+    private var filteredAccommodation : FetchedResults<Accomodation>
+    
+    
+    /* If interested in why and how this is working ;-) : https://developer.apple.com/videos/play/wwdc2021/10017/ */
     var searchQuery: Binding<String> {
         Binding {
             searchText
@@ -33,20 +39,19 @@ struct MyAccommodationsView: View {
     var body: some View {
         NavigationStack{
             VStack{
-                Picker("", selection: $favourites)
+                Picker("", selection: $isOnlyFavouritesShown)
                 {
-                    Text("All").tag(0)
-                    Text("Favourites").tag(1)
+                    Text("All").tag(false)
+                    Text("Favourites").tag(true)
                 }
                 .pickerStyle(.segmented)
                 .frame(width: 200*size)
                 
-                if favourites == 0{
+                if isOnlyFavouritesShown{
+                    GalleryView(accommodations: filteredAccommodation)
+                }else {
                     GalleryView(accommodations: accommodations)
                 }
-//                else if favourites == 1 {
-//                    GalleryView(accommodations: accomodations)
-//                }
             }
                 .navigationTitle("My Accommodations")
                 .navigationBarTitleDisplayMode(.large)
