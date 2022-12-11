@@ -43,9 +43,9 @@ struct AccommodationDetailsView: View {
                     })
                 }
                 ZStack(alignment: .trailing){
-                    AccommodationDetailsRow(key: "Contact", value: accommodation.contact ?? "No contact provided")
+                    AccommodationDetailsRow(key: "Contact", value: accommodation.contact_phone ?? "No contact provided")
                     Button(action: {
-                        if let contact = accommodation.contact{
+                        if let contact = accommodation.contact_phone {
                             let contactCleaned = contact.components(separatedBy: .whitespaces).joined()
                             let phone = "tel://"
                             let phoneNumberformatted = phone + contactCleaned

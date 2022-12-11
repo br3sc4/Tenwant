@@ -55,11 +55,11 @@ struct MyCalendarRowView: View {
                                 .bold()
                             
                         }
-                        Text("name of the person")
+                        Text(accommodation.contact_name ?? "")
                             .foregroundColor(.secondary)
                             .font(.system(size: 12))
                         
-                        Text(accommodation.contact ?? "")
+                        Text(accommodation.contact_phone ?? "")
                             .foregroundColor(.secondary)
                             .font(.system(size: 12))
                         
