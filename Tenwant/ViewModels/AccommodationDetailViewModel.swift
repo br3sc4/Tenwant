@@ -60,11 +60,13 @@ final class AccommodationDetailViewModel: ObservableObject {
         accommodation.contact_type?.capitalized
     }
     
+//    var appointment: Date? {
+//        accommodation.scheduled_appointment
+//    }
+    
     @Published var isFavourite: Bool
-<<<<<<< HEAD:Tenwant/ViewModels/AccommodationDetailViewModel.swift
+    
     @Published var appointment: Date?
-=======
->>>>>>> 94b9b29 (Refactored detail view & bug fix):AccommodationApp/ViewModels/AccommodationDetailViewModel.swift
     
     let accommodation: Accomodation
     
@@ -72,9 +74,8 @@ final class AccommodationDetailViewModel: ObservableObject {
         self.isFavourite = accommodation.isFavourite
         self.currentStatus = Status(rawValue: accommodation.status ?? "") ?? .toContact
         self.accommodation = accommodation
-<<<<<<< HEAD:Tenwant/ViewModels/AccommodationDetailViewModel.swift
         self.appointment =  accommodation.scheduled_appointment
-=======
->>>>>>> 94b9b29 (Refactored detail view & bug fix):AccommodationApp/ViewModels/AccommodationDetailViewModel.swift
     }
+    
+    
 }
