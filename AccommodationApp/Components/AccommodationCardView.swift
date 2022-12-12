@@ -17,7 +17,7 @@ struct AccommodationCardView: View {
     var body: some View {
         ZStack{
             Rectangle()
-                .foregroundColor(.white)
+                .foregroundColor(Color(UIColor.secondarySystemGroupedBackground))
                 .cornerRadius(14)
                 .shadow(radius: 2)
                 .frame(width: 178, height: 228)
