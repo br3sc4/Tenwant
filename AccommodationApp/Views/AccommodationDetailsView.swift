@@ -26,7 +26,8 @@ struct AccommodationDetailsView: View {
                             if let uiImage = UIImage(data: image) {
                                 Image(uiImage: uiImage)
                                     .resizable()
-                                    .aspectRatio(4/3, contentMode: .fill)
+                                    .scaledToFill()
+//                                    .aspectRatio(4/3, contentMode: .fill)
                                     .clipShape(Rectangle())
                                     .tag(image.hashValue)
                             }

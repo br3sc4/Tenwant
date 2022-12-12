@@ -81,17 +81,22 @@ struct AccommodationSheetView: View {
             VStack {
                 HStack{
                     if let image = accommodation.card_cover, let uiImage = UIImage(data: image) {
-                        Image(uiImage: uiImage)
-                            .resizable()
-                            .frame(width: 180, height: 150)
-                            .scaledToFill()
+                        VStack{
+                            Image(uiImage: uiImage)
+                                .resizable()
+                                .scaledToFill()
+                        }.frame(width: 180, height: 150)
+                            .clipShape(Rectangle())
                             .shadow(radius: 2)
                             .cornerRadius(14)
                     } else {
-                        Image("ph1")
-                            .resizable()
-                            .frame(width: 180, height: 150)
-                            .scaledToFill()
+                        
+                        VStack{
+                            Image("ph1")
+                                .resizable()
+                                .scaledToFill()
+                        }.frame(width: 180, height: 150)
+                            .clipShape(Rectangle())
                             .shadow(radius: 2)
                             .cornerRadius(14)
                     }
