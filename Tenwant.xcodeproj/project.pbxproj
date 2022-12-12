@@ -187,8 +187,8 @@
 		A90B3D532940DCF400A8E180 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				BC38D31029474DB200AD4ED6 /* Enums.swift */,
 				2DB6CB842941F9000048CF00 /* AlertContent.swift */,
-				2D09F89A294393240090B594 /* Enums.swift */,
 				2D09F89E294398E60090B594 /* Accomodation.swift */,
 				2D09F8A32944B5350090B594 /* PointOfInterest.swift */,
 			);
