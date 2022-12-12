@@ -79,22 +79,11 @@ final class AddAccommodationViewModel: ObservableObject {
     }
     
     func loadImages(_ photos: [PhotosPickerItem]) {
-        Task {
-            await withTaskGroup(of: Optional<Data>.self) { group in
-                for photo in photos {
-                    group.addTask {
-                        return try? await photo.loadTransferable(type: Data.self)
-                    }
-                }
-
-                let result = await group
-                    .compactMap { $0 }
-                    .reduce(into: [Data]()) { partialResult, data in
-                        partialResult.append(data)
-                    }
-                Task { @MainActor in
-                    images = result
-                }
+        images = []
+        Task { @MainActor in
+            for photo in photos {
+                guard let image = try? await photo.loadTransferable(type: Data.self) else { return }
+                images.append(image)
             }
         }
     }

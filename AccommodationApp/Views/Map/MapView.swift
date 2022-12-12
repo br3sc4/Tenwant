@@ -68,26 +68,33 @@ struct AccommodationSheetView: View {
     private let accommodation: Accomodation
     private let userLocation: CLLocation
     
+    @FetchRequest(sortDescriptors: [])
+    private var pointsOfInterest: FetchedResults<PointOfInterest>
+    
     init(accommodation: Accomodation, userLocation: CLLocation) {
         self.accommodation = accommodation
         self.userLocation = userLocation
     }
     
-    @FetchRequest(sortDescriptors: [])
-    private var pointsOfInterest: FetchedResults<PointOfInterest>
-    
-    
     var body: some View {
         NavigationStack {
-            VStack(){
-                
+            VStack {
                 HStack{
-                    Image("ph1")
-                        .resizable()
-                        .frame(width: 180, height: 150)
-                        .scaledToFill()
-                        .shadow(radius: 2)
-                        .cornerRadius(14)
+                    if let image = accommodation.card_cover, let uiImage = UIImage(data: image) {
+                        Image(uiImage: uiImage)
+                            .resizable()
+                            .frame(width: 180, height: 150)
+                            .scaledToFill()
+                            .shadow(radius: 2)
+                            .cornerRadius(14)
+                    } else {
+                        Image("ph1")
+                            .resizable()
+                            .frame(width: 180, height: 150)
+                            .scaledToFill()
+                            .shadow(radius: 2)
+                            .cornerRadius(14)
+                    }
                     
                     VStack{
                         VStack {
@@ -119,35 +126,32 @@ struct AccommodationSheetView: View {
                 
                 
                 
-                VStack(alignment: .leading){
+                VStack(alignment: .leading) {
                     Text("Distance from:")
                         .font(.headline)
                         .padding([.leading, .top], 15)
                     
-                    List(pointsOfInterest, id: \.id){ point in
-                        HStack{
-                            
+                    List {
+                        HStack {
                             Text("Current user location -")
                                 .font(.subheadline)
                             Text(accommodation.distance(from: userLocation).formatted(.measurement(width: .abbreviated, usage: .road, numberFormatStyle: .number.precision(.fractionLength(.zero)))))
                                 .font(.subheadline)
-                                
                         }
-                        ForEach(pointsOfInterest, id: \.id){ point in
+                        
+                        ForEach(pointsOfInterest, id: \.id) { point in
                             HStack {
-                                if let name = point.name{
+                                if let name = point.name {
                                     Text(name + " -")
                                         .font(.subheadline)
                                     Text(accommodation.distance(from: CLLocation(latitude: point.latitude, longitude: point.longitude)).formatted(.measurement(width: .abbreviated, usage: .road, numberFormatStyle: .number.precision(.fractionLength(.zero)))))
                                         .font(.subheadline)
                                 }
-                                
                             }
                         }
-                        
-                        
-                    }.listStyle(.plain)
-                        .padding([.trailing,], 15)
+                    }
+                    .listStyle(.plain)
+                    .padding([.trailing,], 15)
                 }
             }
             .frame(maxWidth: .infinity)
