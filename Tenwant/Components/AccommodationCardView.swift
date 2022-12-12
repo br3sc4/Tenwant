@@ -67,6 +67,8 @@ struct AccommodationCardView: View {
             }
             .frame(width: 178, height: 228-18)
             .padding(.bottom, 18)
+            
+            
         }
         .mask(
             Rectangle()
