@@ -95,6 +95,8 @@ extension Accomodation {
         
         newAccomodation.type = typeOfAccommodation
         
+        newAccomodation.card_cover = images.first
+        
         for image in images {
             let photo = Photo(context: viewContext)
             photo.image = image

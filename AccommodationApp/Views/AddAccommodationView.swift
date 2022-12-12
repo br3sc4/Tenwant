@@ -58,7 +58,7 @@ struct AddAccommodationView: View {
                         .focused($keyboardIsFocused)
                     
                     Picker("Type", selection: $vm.selectedTypeOfAccomodation) {
-                        ForEach(AddAccommodationViewModel.TypeOfAccomodation.allCases) { type in
+                        ForEach(TypeOfAccomodation.allCases) { type in
                             Text(type.rawValue.capitalized).tag(type)
                         }
                     }
@@ -121,7 +121,7 @@ struct AddAccommodationView: View {
                         .focused($keyboardIsFocused)
 
                     Picker("Contact type", selection: $vm.selectedTypeOfContact) {
-                        ForEach(AddAccommodationViewModel.TypeOfContact.allCases) { contactType in
+                        ForEach(TypeOfContact.allCases) { contactType in
                             Text(contactType.rawValue.capitalized).tag(contactType)
                         }
                     }
@@ -230,10 +230,10 @@ struct AddAccommodationView: View {
                     images: vm.images)
                 
                 dismiss()
-            } else {
-                vm.presentAlert(title: "Invalid data",
-                                message: "Check that all the required fields are filled correctly")
-            }
+                } else {
+                    vm.presentAlert(title: "Invalid data",
+                                    message: "Check that all the required fields are filled correctly")
+                }
         }
     }
     
