@@ -10,11 +10,8 @@ import SwiftUI
 
 struct AccommodationDetailsView: View {
     @StateObject private var vm: AccommodationDetailViewModel
-    @Environment(\.openURL) var openURL
     @Environment(\.managedObjectContext) private var viewContext
     @Environment(\.dismiss) private var dismiss
-    
-    @State var IsOn = false
     
     init(accommodation: Accomodation) {
         self._vm = StateObject(wrappedValue: AccommodationDetailViewModel(accommodation: accommodation))
@@ -45,10 +42,15 @@ struct AccommodationDetailsView: View {
             Section("General") {
                 LabeledContent("Type", value: vm.accommodationType.rawValue.capitalized)
                 Toggle("Visitable", isOn: .constant(vm.isVisitable))
+                    .disabled(true)
                 Picker("Process Status", selection: $vm.currentStatus) {
                     ForEach(Status.allCases) { status in
                         Text(status.rawValue.capitalized).tag(status)
                     }
+                }
+                .onChange(of: vm.currentStatus) { status in
+                    vm.accommodation.status = status.rawValue
+                    try? viewContext.save()
                 }
             }
             
@@ -97,17 +99,6 @@ struct AccommodationDetailsView: View {
                     } else {
                         Label("Add to Favourites", systemImage: "heart")
                     }
-                }
-            }
-            
-            Section {
-                Button(role: .destructive) {
-                    Accomodation
-                        .deleteAccommodation(viewContext: viewContext, accommodationObject: vm.accommodation)
-                    dismiss()
-                } label: {
-                    Label("Delete", systemImage: "trash")
-                        .foregroundColor(.red)
                 }
             }
         }
