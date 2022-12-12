@@ -161,6 +161,8 @@
 				2D8368602949ECC400088115 /* MyAccommodationsView.swift */,
 				A9B30F852944C6B0009F5B9A /* AddAccommodationView.swift */,
 				2DF1FCC82946219600815F32 /* AccommodationDetailsView.swift */,
+				D14E573E2947E37900BABCCF /* AppointmentRepresentable.swift */,
+				D14E57402947E39500BABCCF /* ApppointmentView.swift */,
 				A90B3D5C2942417500A8E180 /* MyCalendarView.swift */,
 			);
 			path = Views;
@@ -286,6 +288,7 @@
 				BCE95ED82941F4200034D879 /* AccommodationData.xcdatamodeld in Sources */,
 				A9B30F7E2944C173009F5B9A /* AccommodationCardView.swift in Sources */,
 				BCDE64DD29428879008056AF /* Extensions.swift in Sources */,
+				D14E57412947E39500BABCCF /* ApppointmentView.swift in Sources */,
 				2D09F89F294398E60090B594 /* Accomodation.swift in Sources */,
 				BCE95EDA2941F8C50034D879 /* Persistence.swift in Sources */,
 				2DB6CB852941F9000048CF00 /* AlertContent.swift in Sources */,
