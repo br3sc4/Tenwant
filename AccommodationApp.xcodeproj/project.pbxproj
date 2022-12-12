@@ -39,6 +39,8 @@
 		BCE95ED82941F4200034D879 /* AccommodationData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BCE95ED62941F4200034D879 /* AccommodationData.xcdatamodeld */; };
 		BCE95EDA2941F8C50034D879 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCE95ED92941F8C50034D879 /* Persistence.swift */; };
 		BCE95EDD2941FB390034D879 /* CoreDataTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCE95EDC2941FB390034D879 /* CoreDataTestView.swift */; };
+		D14E573F2947E37900BABCCF /* AppointmentRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D14E573E2947E37900BABCCF /* AppointmentRepresentable.swift */; };
+		D14E57412947E39500BABCCF /* ApppointmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D14E57402947E39500BABCCF /* ApppointmentView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -76,6 +78,8 @@
 		BCE95ED72941F4200034D879 /* Accommodation.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Accommodation.xcdatamodel; sourceTree = "<group>"; };
 		BCE95ED92941F8C50034D879 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		BCE95EDC2941FB390034D879 /* CoreDataTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataTestView.swift; sourceTree = "<group>"; };
+		D14E573E2947E37900BABCCF /* AppointmentRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentRepresentable.swift; sourceTree = "<group>"; };
+		D14E57402947E39500BABCCF /* ApppointmentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApppointmentView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -158,6 +162,8 @@
 				A9B30F832944C5E8009F5B9A /* MyAccommodationsView.swift */,
 				A9B30F852944C6B0009F5B9A /* AddAccommodationView.swift */,
 				2DF1FCC82946219600815F32 /* AccommodationDetailsView.swift */,
+				D14E573E2947E37900BABCCF /* AppointmentRepresentable.swift */,
+				D14E57402947E39500BABCCF /* ApppointmentView.swift */,
 				A90B3D5C2942417500A8E180 /* MyCalendarView.swift */,
 			);
 			path = Views;
@@ -282,10 +288,12 @@
 				BCE95ED82941F4200034D879 /* AccommodationData.xcdatamodeld in Sources */,
 				A9B30F7E2944C173009F5B9A /* AccommodationCardView.swift in Sources */,
 				BCDE64DD29428879008056AF /* Extensions.swift in Sources */,
+				D14E57412947E39500BABCCF /* ApppointmentView.swift in Sources */,
 				2D09F89F294398E60090B594 /* Accomodation.swift in Sources */,
 				BCE95EDD2941FB390034D879 /* CoreDataTestView.swift in Sources */,
 				BCE95EDA2941F8C50034D879 /* Persistence.swift in Sources */,
 				2D6AAC4D2940B5BA00A7AC00 /* ContentView.swift in Sources */,
+				D14E573F2947E37900BABCCF /* AppointmentRepresentable.swift in Sources */,
 				2DB6CB852941F9000048CF00 /* AlertContent.swift in Sources */,
 				2DF1FCCD2946277000815F32 /* AddAccommodationViewModel.swift in Sources */,
 				2DB6CB7D29415EDD0048CF00 /* MapView.swift in Sources */,
@@ -293,8 +301,6 @@
 				2D09F8A62944BAB00090B594 /* PoIAnnotation.swift in Sources */,
 				2D09F8A22944B2C80090B594 /* AddPoIView.swift in Sources */,
 				2D09F89B294393240090B594 /* Status.swift in Sources */,
-				2DB6CB8129415F5F0048CF00 /* AccommodationAnnotation.swift in Sources */,
-				2DF1FCCB2946276000815F32 /* PointOfInterestViewModel.swift in Sources */,
 				2DF1FCC92946219600815F32 /* AccommodationDetailsView.swift in Sources */,
 				2D6AAC4B2940B5BA00A7AC00 /* AccommodationAppApp.swift in Sources */,
 				2DB6CB832941F7CC0048CF00 /* MapViewModel.swift in Sources */,
