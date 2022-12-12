@@ -131,6 +131,7 @@ struct AccommodationSheetView: View {
                                 .font(.subheadline)
                             Text(accommodation.distance(from: userLocation).formatted(.measurement(width: .abbreviated, usage: .road, numberFormatStyle: .number.precision(.fractionLength(.zero)))))
                                 .font(.subheadline)
+                                
                         }
                         ForEach(pointsOfInterest, id: \.id){ point in
                             HStack {
@@ -146,6 +147,7 @@ struct AccommodationSheetView: View {
                         
                         
                     }.listStyle(.plain)
+                        .padding([.trailing,], 15)
                 }
             }
             .frame(maxWidth: .infinity)
