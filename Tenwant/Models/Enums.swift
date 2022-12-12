@@ -8,9 +8,13 @@
 import Foundation
 
 enum Status: String, CaseIterable, Identifiable {
+<<<<<<< HEAD:Tenwant/Models/Enums.swift
     case toContact = "to contact", toVisit = "to visit", filePreparation = "file preparation",
          fileSubmitted = "file submitted", bookingSubmitted = "booking submitted",
          awaitingReply = "awaiting reply", accepted, rejected
+=======
+    case toContact = "to contact", toVisit = "to visit", filePreparation = "file preparation", fileSubmitted = "file submitted", bookingSubmitted = "booking submitted", awaitingReply = "awaiting reply", accepted, rejected
+>>>>>>> 94b9b29 (Refactored detail view & bug fix):AccommodationApp/Models/Enums.swift
     var id: Self { self }
 }
 

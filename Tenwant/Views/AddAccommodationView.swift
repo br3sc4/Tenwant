@@ -227,10 +227,10 @@ struct AddAccommodationView: View {
                     images: vm.images)
                 
                 dismiss()
-            } else {
-                vm.presentAlert(title: "Invalid data",
-                                message: "Check that all the required fields are filled correctly")
-            }
+                } else {
+                    vm.presentAlert(title: "Invalid data",
+                                    message: "Check that all the required fields are filled correctly")
+                }
         }
     }
     
