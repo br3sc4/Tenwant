@@ -129,6 +129,11 @@ extension Accomodation {
         try? viewContext.save()
     }
     
+    static func bookAppointment(viewContext : NSManagedObjectContext, accommodationObject: Accomodation, newAppointment: Date){
+        accommodationObject.scheduled_appointment = newAppointment
+        try? viewContext.save()
+    }
+    
 }
 
 extension Appointment {
