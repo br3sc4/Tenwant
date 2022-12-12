@@ -28,6 +28,7 @@ final class AddAccommodationViewModel: ObservableObject {
     @Published var selectedTypeOfAccomodation: TypeOfAccomodation = .singleRoom
     @Published var selectedTypeOfContact: TypeOfContact = .individual
     @Published var selectedStatus: Status = .toContact
+    @Published var useCustomCoordinates: Bool = false
     @Published var latitude: String = ""
     @Published var longitude: String = ""
     
@@ -84,8 +85,7 @@ final class AddAccommodationViewModel: ObservableObject {
             await withTaskGroup(of: Optional<Data>.self) { group in
                 for photo in photos {
                     group.addTask {
-                        guard let data = try? await photo.loadTransferable(type: Data.self) else { return nil }
-                        return data
+                        return try? await photo.loadTransferable(type: Data.self)
                     }
                 }
 
@@ -107,7 +107,7 @@ final class AddAccommodationViewModel: ObservableObject {
     
     func presentAlert(title: String, message: String = "") {
         alertContent = AlertContent(title: title, message: message)
-        showAlert.toggle()
+        showAlert = true
     }
     
     enum TypeOfAccomodation: String, CaseIterable, Identifiable {

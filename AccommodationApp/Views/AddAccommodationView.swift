@@ -62,27 +62,17 @@ struct AddAccommodationView: View {
                     Toggle("Visitable", isOn: $vm.possibilityToVisit)
                 }
                 
-                Section {
-                    TextField("Latitude (Required)", text: $vm.latitude)
-                        .focused($focusedField, equals: .latitude)
-                    TextField("Longitude (Required)", text: $vm.longitude)
-                        .focused($focusedField, equals: .longitude)
-                } header: {
-                    HStack {
-                        Text("Coordinates")
-                        Spacer()
-                        Button {
-                            Task {
-                                await vm.getCoordinates()
-                            }
-                        } label: {
-                            Label("Get Coordinates from Address",
-                                  systemImage: "arrow.triangle.2.circlepath.circle.fill")
-                                .labelStyle(.iconOnly)
-                        }
+                Section("Coordinates") {
+                    Toggle("Custom Coordinates", isOn: $vm.useCustomCoordinates)
+                    if vm.useCustomCoordinates {
+                        TextField("Latitude (Required)", text: $vm.latitude)
+                            .focused($focusedField, equals: .latitude)
+                            .keyboardType(.decimalPad)
+                        TextField("Longitude (Required)", text: $vm.longitude)
+                            .focused($focusedField, equals: .longitude)
+                            .keyboardType(.decimalPad)
                     }
                 }
-                .keyboardType(.decimalPad)
                 
                 Section("Costs") {
                     TextField("Rent cost (Required)",  text: $vm.rent)
@@ -125,7 +115,7 @@ struct AddAccommodationView: View {
             .navigationTitle("Add a new Accomodation")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar{
-                ToolbarItem(placement: .cancellationAction){
+                ToolbarItem(placement: .cancellationAction) {
                     Button(action: {
                         dismiss()
                     }, label:
@@ -133,7 +123,7 @@ struct AddAccommodationView: View {
                         Text("Cancel")
                     })
                 }
-                ToolbarItem(placement: .confirmationAction){
+                ToolbarItem(placement: .confirmationAction) {
                     Button(action: {
                         saveAccommodation()
                     }, label:
@@ -159,35 +149,40 @@ struct AddAccommodationView: View {
     }
     
     private func saveAccommodation() {
+        Task {
+            if !vm.useCustomCoordinates {
+                await vm.getCoordinates()
+            }
             
-        if vm.validateForm() {
-            guard let latitude = try? CLLocationDegrees(vm.latitude, format: .number),
-                  let longitude = try? CLLocationDegrees(vm.longitude, format: .number) else { return }
-            
-            Accomodation.createNewAccommodation(
-                viewContext: viewContext,
-                title: vm.address,
-                description_text: vm.description,
-                rent_cost: vm.rent,
-                extra_cost: vm.extraCost,
-                deposit: vm.deposit,
-                agency_fee: vm.platformAgencyFees,
-                isVisitPossible: vm.possibilityToVisit,
-                appointment_date: vm.dateOfVisit,
-                url: vm.urlAdvert,
-                ownerName: vm.ownerFlatName,
-                ownerPhoneNumber: vm.ownerFlatPhone,
-                typeOfAccommodation: vm.selectedTypeOfAccomodation.rawValue,
-                scheduled_appointment: vm.dateOfVisit,
-                status: vm.selectedStatus,
-                latitude: latitude,
-                longitude: longitude,
-                images: vm.images)
-            
-            dismiss()
-        } else {
-            vm.presentAlert(title: "Invalid data",
-                            message: "Check that all the required fields are filled correctly")
+            if !vm.showAlert && vm.validateForm() {
+                guard let latitude = try? CLLocationDegrees(vm.latitude, format: .number),
+                      let longitude = try? CLLocationDegrees(vm.longitude, format: .number) else { return }
+                
+                Accomodation.createNewAccommodation(
+                    viewContext: viewContext,
+                    title: vm.address,
+                    description_text: vm.description,
+                    rent_cost: vm.rent,
+                    extra_cost: vm.extraCost,
+                    deposit: vm.deposit,
+                    agency_fee: vm.platformAgencyFees,
+                    isVisitPossible: vm.possibilityToVisit,
+                    appointment_date: vm.dateOfVisit,
+                    url: vm.urlAdvert,
+                    ownerName: vm.ownerFlatName,
+                    ownerPhoneNumber: vm.ownerFlatPhone,
+                    typeOfAccommodation: vm.selectedTypeOfAccomodation.rawValue,
+                    scheduled_appointment: vm.dateOfVisit,
+                    status: vm.selectedStatus,
+                    latitude: latitude,
+                    longitude: longitude,
+                    images: vm.images)
+                
+                dismiss()
+            } else {
+                vm.presentAlert(title: "Invalid data",
+                                message: "Check that all the required fields are filled correctly")
+            }
         }
     }
     
