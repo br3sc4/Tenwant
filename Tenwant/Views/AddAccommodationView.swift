@@ -50,6 +50,9 @@ struct AddAccommodationView: View {
                     TextField("Address (Required)", text: $vm.address)
                         .textContentType(.fullStreetAddress)
                         .focused($focusedField, equals: .address)
+                    // test
+                        .focused($keyboardIsFocused)
+                    
                     Picker("Type", selection: $vm.selectedTypeOfAccomodation) {
                         ForEach(TypeOfAccomodation.allCases) { type in
                             Text(type.rawValue.capitalized).tag(type)
@@ -78,12 +81,24 @@ struct AddAccommodationView: View {
                 Section("Costs") {
                     TextField("Rent cost (Required)",  text: $vm.rent)
                         .focused($focusedField, equals: .rentCost)
+                    // test
+                        .focused($keyboardIsFocused)
+
                     TextField("Extra cost bills", text: $vm.extraCost)
                         .focused($focusedField, equals: .extraCosts)
+                    // test
+                        .focused($keyboardIsFocused)
+
                     TextField("Deposit", text: $vm.deposit)
                         .focused($focusedField, equals: .depositCost)
+                    // test
+                        .focused($keyboardIsFocused)
+
                     TextField("Platform / Agency fees", text: $vm.platformAgencyFees)
                         .focused($focusedField, equals: .agencyFees)
+                    // test
+                        .focused($keyboardIsFocused)
+
                 }
                 .keyboardType(.decimalPad)
                 
@@ -91,10 +106,16 @@ struct AddAccommodationView: View {
                     TextField("Name", text: $vm.ownerFlatName)
                         .focused($focusedField, equals: .contactName)
                         .textContentType(.name)
+                    // test
+                        .focused($keyboardIsFocused)
+
                     TextField("Phone", text: $vm.ownerFlatPhone)
                         .focused($focusedField, equals: .contactPhone)
                         .textContentType(.telephoneNumber)
                         .keyboardType(.phonePad)
+                    // test
+                        .focused($keyboardIsFocused)
+
                     Picker("Contact type", selection: $vm.selectedTypeOfContact) {
                         ForEach(TypeOfContact.allCases) { contactType in
                             Text(contactType.rawValue.capitalized).tag(contactType)
@@ -107,10 +128,16 @@ struct AddAccommodationView: View {
                         .focused($focusedField, equals: .advertisementUrl)
                         .textContentType(.URL)
                         .keyboardType(.URL)
+                    // test
+                        .focused($keyboardIsFocused)
+
                     
                     TextField("Description", text: $vm.description)
                         .focused($focusedField, equals: .description)
                         .multilineTextAlignment(.leading)
+                    // test
+                        .focused($keyboardIsFocused)
+
                 }
             }
             .scrollDismissesKeyboard(.interactively)
@@ -118,6 +145,7 @@ struct AddAccommodationView: View {
             .navigationTitle("Add a new Accomodation")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar{
+                
                 ToolbarItem(placement: .cancellationAction) {
                     Button("Cancel", role: .destructive){
                         showConfirmationDialog = true
@@ -135,7 +163,18 @@ struct AddAccommodationView: View {
                 ToolbarItem(placement: .confirmationAction) {
                     Button("Save", action: saveAccommodation)
                 }
+              // test
+                ToolbarItemGroup(placement: .keyboard) {
+                    Spacer()
+                    
+                    Button("Done") {
+                        keyboardIsFocused = false
+                    }
+                }
+                
             }
+            
+            
             .alert(vm.alertContent.title, isPresented: $vm.showAlert) {
                 Button("Cancel", role: .cancel) {
                     vm.showAlert.toggle()
