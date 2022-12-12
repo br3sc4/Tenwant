@@ -13,7 +13,6 @@ struct AccommodationDetailsView: View {
     @Environment(\.openURL) var openURL
     @Environment(\.managedObjectContext) private var viewContext
     @Environment(\.dismiss) private var dismiss
-    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
     let accommodation: Accomodation
     
@@ -87,23 +86,21 @@ struct AccommodationDetailsView: View {
         .navigationBarTitleDisplayMode(.inline)
         .toolbar{
             ToolbarItem(placement: .primaryAction){
-                Button(action: {
-                    //                    ShareLink(item: "hello")
+                Button {
+            //                    ShareLink(item: "hello")
                     
-                }, label:
-                        {
+                } label: {
                     Image(systemName: "square.and.arrow.up")
-                })
+                }
             }
+            
             ToolbarItem(placement: .primaryAction){
-                Button(action: {
+                Button {
                     Accomodation.deleteAccommodation(viewContext: viewContext, accommodationObject: accommodation)
-                    self.presentationMode.wrappedValue.dismiss()
-                    
-                }, label:
-                        {
+                    dismiss()
+                } label: {
                     Image(systemName: "trash")
-                })
+                }
             }
         }
     }

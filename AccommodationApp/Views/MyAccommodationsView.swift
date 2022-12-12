@@ -39,35 +39,33 @@ struct MyAccommodationsView: View {
     var body: some View {
         NavigationStack{
             VStack{
-                Picker("", selection: $isOnlyFavouritesShown)
-                {
+                Picker("", selection: $isOnlyFavouritesShown) {
                     Text("All").tag(false)
                     Text("Favourites").tag(true)
                 }
                 .pickerStyle(.segmented)
                 .frame(width: 200*size)
                 
-                if isOnlyFavouritesShown{
+                if isOnlyFavouritesShown {
                     GalleryView(accommodations: filteredAccommodation)
-                }else {
+                } else {
                     GalleryView(accommodations: accommodations)
                 }
             }
-                .navigationTitle("My Accommodations")
-                .navigationBarTitleDisplayMode(.large)
-                .toolbar(content: {
-                    ToolbarItem(placement: .primaryAction){
-                        Button(action: {
-                            showingAddAccommodation.toggle()
-                        }, label: {
-                            Image(systemName: "plus")
-                            })
+            .navigationTitle("My Accommodations")
+            .navigationBarTitleDisplayMode(.large)
+            .toolbar {
+                ToolbarItem(placement: .primaryAction) {
+                    Button {
+                        showingAddAccommodation.toggle()
+                    } label: {
+                        Image(systemName: "plus")
                     }
-                }).sheet(isPresented: $showingAddAccommodation) {
-                    AddAccommodationView()
                 }
-            
-                
+            }
+            .sheet(isPresented: $showingAddAccommodation) {
+                AddAccommodationView()
+            }
         }
         .searchable(text: searchQuery, placement: .automatic)
     }

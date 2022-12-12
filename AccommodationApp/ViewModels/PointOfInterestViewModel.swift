@@ -39,12 +39,16 @@ final class PointOfInterestViewModel: ObservableObject {
         
         do {
             let coordinates = try result.get()
-            latitude = coordinates.latitude.formatted()
-            longitude = coordinates.longitude.formatted()
+            Task { @MainActor in
+                latitude = coordinates.latitude.formatted()
+                longitude = coordinates.longitude.formatted()
+            }
         } catch {
             print("❌ - \(error)")
-            alertContent = AlertContent(title: error.localizedDescription)
-            showAlert.toggle()
+            Task { @MainActor in
+                alertContent = AlertContent(title: error.localizedDescription)
+                showAlert.toggle()
+            }
         }
     }
     

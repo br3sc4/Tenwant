@@ -70,12 +70,10 @@ struct MapViewRepresentable: UIViewRepresentable {
     func updateUIView(_ uiView: MKMapView, context: Context) {
         print(Date.now, uiView.annotations.count, accommodations.count + pointsOfInterest.count)
         if selectedAccommodation == nil {
-            if accommodations.count + pointsOfInterest.count >= uiView.annotations.count {
-                uiView.removeAnnotations(uiView.annotations)
+            uiView.removeAnnotations(uiView.annotations)
 
-                uiView.addAnnotations(accommodations.map(AccommodationAnnotation.init))
-                uiView.addAnnotations(pointsOfInterest.map(PoIAnnotation.init))
-            }
+            uiView.addAnnotations(accommodations.map(AccommodationAnnotation.init))
+            uiView.addAnnotations(pointsOfInterest.map(PoIAnnotation.init))
             
             guard let annotation = uiView.selectedAnnotations.first else { return }
             uiView.deselectAnnotation(annotation, animated: true)
