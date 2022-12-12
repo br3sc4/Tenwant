@@ -16,6 +16,10 @@ struct AddAccommodationView: View {
     @Environment(\.managedObjectContext) private var viewContext: NSManagedObjectContext
     @Environment(\.dismiss) var dismiss: DismissAction
     
+    //test
+    @State private var isPresentingConfirm: Bool = false
+
+    
     var body: some View {
         NavigationStack {
             Form {
@@ -59,7 +63,7 @@ struct AddAccommodationView: View {
                             Text(status.rawValue.capitalized).tag(status)
                         }
                     }
-                    Toggle("Visitable", isOn: $vm.possibilityToVisit)
+                    Toggle("Possibility to visit", isOn: $vm.possibilityToVisit)
                 }
                 
                 Section("Coordinates") {
@@ -112,17 +116,27 @@ struct AddAccommodationView: View {
                         .multilineTextAlignment(.leading)
                 }
             }
+            .interactiveDismissDisabled()
             .navigationTitle("Add a new Accomodation")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar{
                 ToolbarItem(placement: .cancellationAction) {
-                    Button(action: {
-                        dismiss()
-                    }, label:
-                            {
-                        Text("Cancel")
-                    })
+               
+                    Button("Cancel", role: .destructive){
+                        isPresentingConfirm = true
+                      }
+                     .confirmationDialog("Are you sure you want to discard this accomodation?",
+                                         isPresented: $isPresentingConfirm, titleVisibility: .visible) {
+                         Button("Discard Changes", role: .destructive) {
+                             dismiss()
+                         }
+                         Button("Keep Editing", role: .cancel) {}
+                      }
                 }
+             
+        
+                
+                
                 ToolbarItem(placement: .confirmationAction) {
                     Button(action: {
                         saveAccommodation()
