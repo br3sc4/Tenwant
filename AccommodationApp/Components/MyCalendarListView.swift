@@ -12,17 +12,19 @@ struct MyCalendarListView: View {
     let accommodations: FetchedResults<Accomodation>
     var accommodationByDate: [Date: [Accomodation]] {
         var dictionary: [Date: [Accomodation]] = [:]
-        for accommodation in accommodations{
-            let scheduled_appointment = Calendar.current.startOfDay(for: accommodation.scheduled_appointment ?? Date.now)
-            
-            if dictionary.contains(where: { key, value in
+        for accommodation in accommodations {
+            if let appointmentDate = accommodation.scheduled_appointment {
+                let scheduled_appointment = Calendar.current.startOfDay(for: appointmentDate)
                 
-                key.formatted(date: .long, time:.omitted) == accommodation.scheduled_appointment?.formatted(date: .long, time:.omitted)
-                
-            }){
-                dictionary[scheduled_appointment]!.append(accommodation)
-            }else{
-                dictionary[scheduled_appointment] = [accommodation]
+                if dictionary.contains(where: { key, value in
+                    
+                    key.formatted(date: .long, time:.omitted) == appointmentDate.formatted(date: .long, time:.omitted)
+                    
+                }){
+                    dictionary[scheduled_appointment]!.append(accommodation)
+                }else{
+                    dictionary[scheduled_appointment] = [accommodation]
+                }
             }
         }
         return dictionary
