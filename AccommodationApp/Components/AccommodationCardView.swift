@@ -26,28 +26,39 @@ struct AccommodationCardView: View {
             VStack(alignment: .leading) {
                 if let cardCover = accommodation.card_cover,
                    let uiImage = UIImage(data: cardCover) {
-                    Image(uiImage: uiImage)
-                        .resizable()
-                        .frame(width: 178, height: 173)
-                        .scaledToFill()
-                        
+                    VStack{
+                        Image(uiImage: uiImage)
+                            .resizable()
+                            .scaledToFill()
+                    }.frame(width: 178, height: 173)
+                        .background(Color.white)
+                        .clipShape(Rectangle())
                     
+                    
+                    
+                    
+                    //                            .aspectRatio(4/3, contentMode: .fit)
+                    //                            .scaledToFit()
+                    //                            .frame(width: 178, height: 173)
                     
                 } else {
-                    Image("ph1")
-                        .resizable()
-                        .frame(width: 178, height: 173)
-                        .scaledToFill()
-                        
+                    VStack{
+                        Image("ph1")
+                            .resizable()
+                            .scaledToFill()
+                    }.frame(width: 178, height: 173)
+                        .background(Color.white)
+                        .clipShape(Rectangle())
+                    
                 }
                 Spacer()
-
+                
                 Text(accommodation.wrappedTitle)
                     .lineLimit(1)
                     .foregroundColor(.accentColor)
                     .font(.system(size: 16))
                     .padding([.leading, .trailing], 10)
-                    
+                
                 
                 HStack {
                     Text(accommodation.rent_cost.formatted(.currency(code: "EUR").precision(.fractionLength(.zero))))
@@ -67,6 +78,8 @@ struct AccommodationCardView: View {
             .frame(width: 178, height: 228-18)
             //            .frame(width: 183, height: 235 - 18)
             .padding(.bottom, 18)
+            
+            
         }
         .mask(Rectangle()
             .frame(width: 180, height: 230)
