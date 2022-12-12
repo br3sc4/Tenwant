@@ -19,8 +19,6 @@ final class AddAccommodationViewModel: ObservableObject {
     @Published var deposit = ""
     @Published var platformAgencyFees = ""
     @Published var possibilityToVisit = false
-    @Published var dateOfVisit = Date.now
-    @Published var hourOfVisit = Date.now
     @Published var urlAdvert = ""
     @Published var ownerFlatName = ""
     @Published var ownerFlatPhone = ""

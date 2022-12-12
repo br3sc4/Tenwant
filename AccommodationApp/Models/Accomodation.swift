@@ -27,7 +27,6 @@ extension Accomodation {
                                 deposit: "",
                                 agency_fee: "",
                                 isVisitPossible: false,
-                                appointment_date: .now,
                                 url: "",
                                 ownerName: "",
                                 ownerPhoneNumber: "",

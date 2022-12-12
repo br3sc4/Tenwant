@@ -46,13 +46,12 @@ extension Accomodation {
                                        deposit : String,
                                        agency_fee : String,
                                        isVisitPossible : Bool,
-                                       appointment_date : Date,
                                        url : String,
                                        ownerName : String,
                                        ownerPhoneNumber : String,
                                        typeOfAccommodation : String,
                                        isFavourite: Bool = false,
-                                       scheduled_appointment: Date,
+                                       scheduled_appointment: Date? = nil,
                                        status: Status,
                                        latitude: Double = 0,
                                        longitude: Double = 0,
@@ -77,7 +76,7 @@ extension Accomodation {
         
         newAccomodation.isVisitPossible = isVisitPossible
         
-        newAccomodation.appointment?.date = appointment_date
+        newAccomodation.appointment?.date = scheduled_appointment
         
         newAccomodation.url = URL(string: url)
 
