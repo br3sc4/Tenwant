@@ -28,17 +28,6 @@ struct MyCalendarRowView: View {
                     .opacity(0.2)
 //                    .padding(.leading, -8)
                 
-                Rectangle()
-//                                    .foregroundColor(.white)
-                    .foregroundColor(.secondary)
-//                    .cornerRadius(10)
-                    .shadow(radius: 1)
-                    .frame(width: 2)
-                    .frame(minHeight: 9)
-                    .opacity(0.3)
-                        .padding(.leading, -100)
-                        .padding([.bottom, .top], 6)
-
                 
                     HStack(alignment: .center, spacing: 25) {
                        
