@@ -109,14 +109,4 @@ final class AddAccommodationViewModel: ObservableObject {
         alertContent = AlertContent(title: title, message: message)
         showAlert = true
     }
-    
-    enum TypeOfAccomodation: String, CaseIterable, Identifiable {
-        case singleRoom = "single room", sharedRoom = "shared room", studio, flat
-        var id: Self { self }
-    }
-    
-    enum TypeOfContact: String, CaseIterable, Identifiable {
-        case individual, professional, platform
-        var id: Self { self }
-    }
 }

@@ -9,97 +9,127 @@ import SwiftUI
 
 
 struct AccommodationDetailsView: View {
-    
+    @StateObject private var vm: AccommodationDetailViewModel
     @Environment(\.openURL) var openURL
     @Environment(\.managedObjectContext) private var viewContext
     @Environment(\.dismiss) private var dismiss
     
-    let accommodation: Accomodation
-    
     @State var IsOn = false
     
+    init(accommodation: Accomodation) {
+        self._vm = StateObject(wrappedValue: AccommodationDetailViewModel(accommodation: accommodation))
+    }
+    
     var body: some View {
-        ScrollView{
-            PhotosScrollView()
-            Spacer()
-            VStack(alignment: .leading){
-                
-                Text(accommodation.title ?? "")
-                    .bold()
-                    .foregroundColor(.primary)
-                Text(accommodation.description_text ?? "")
-                    .foregroundColor(.secondary)
-                Spacer()
-                
-                AccommodationDetailsRow(key: "Address", value: accommodation.title ?? "title")
-                
-                ZStack(alignment: .trailing){
-                    AccommodationDetailsRow(key: "isFavourite", value: accommodation.isFavourite ? "true" : "else")
-                    Button(action: {
-                        Accomodation.toggleFavouriteAccommodation(viewContext: viewContext, accommodationObject: accommodation)
-                    }, label: {
-                        Image(systemName: accommodation.isFavourite ? "heart.fill" : "heart")
-                    })
-                }
-                ZStack(alignment: .trailing){
-                    AccommodationDetailsRow(key: "Contact", value: accommodation.contact_phone ?? "No contact provided")
-                    Button(action: {
-                        if let contact = accommodation.contact_phone {
-                            let contactCleaned = contact.components(separatedBy: .whitespaces).joined()
-                            let phone = "tel://"
-                            let phoneNumberformatted = phone + contactCleaned
-                            let url = URL(string: phoneNumberformatted)
-                            UIApplication.shared.open(url!)
-                        }
-                    }, label: {
-                        Image(systemName: "phone")
-                    })
-                }
-                if let url = accommodation.url{
-                    if let str = url.absoluteString {
-                        ZStack(alignment: .trailing){
-                            AccommodationDetailsRow(key: "external link",
-                                                    value: str)
-                            Button(action: {
-                                openURL(url)
-                            }, label: {
-                                Image(systemName: "link")
-                            })
+        List {
+            if !vm.images.isEmpty {
+                Section {
+                    TabView {
+                        ForEach(vm.images, id: \.self) { image in
+                            if let uiImage = UIImage(data: image) {
+                                Image(uiImage: uiImage)
+                                    .resizable()
+                                    .aspectRatio(4/3, contentMode: .fill)
+                                    .clipShape(Rectangle())
+                                    .tag(image.hashValue)
+                            }
                         }
                     }
+                    .tabViewStyle(.page)
+                    .aspectRatio(4/3, contentMode: .fill)
+                    .listRowInsets(EdgeInsets())
                 }
-                ZStack(alignment: .trailing){
-                    AccommodationDetailsRow(key: "possibilityToVisit", value: accommodation.isFavourite ? "" : "")
-                        .padding(.trailing, 20)
-                    Toggle("", isOn: $IsOn).toggleStyle(.switch)
-                        .padding(.trailing, 20)
+                .listRowInsets(EdgeInsets())
+            }
+            
+            Section("General") {
+                LabeledContent("Type", value: vm.accommodationType.rawValue.capitalized)
+                Toggle("Visitable", isOn: .constant(vm.isVisitable))
+                Picker("Process Status", selection: $vm.currentStatus) {
+                    ForEach(Status.allCases) { status in
+                        Text(status.rawValue.capitalized).tag(status)
+                    }
                 }
-                ZStack(alignment: .trailing){
-                    AccommodationDetailsRow(key: "appointment", value: accommodation.scheduled_appointment?.formatted(date: .long, time: .omitted) ?? Date.now.formatted())
-                    Button(action: {}, label: {
-                        Image(systemName: "link")
-                    })
+            }
+            
+            Section("Costs") {
+                LabeledContent("Rent Cost", value: vm.rentCost)
+                LabeledContent("Extra Costs", value: vm.extraCosts)
+                LabeledContent("Deposit", value: vm.deposit)
+                LabeledContent("Agency Fees", value: vm.agencyFees)
+            }
+            
+            if let contactType = vm.contactType,
+               let contactName = vm.contactName,
+               let phoneNumber = vm.phoneNumber,
+               let url = vm.phoneNumberUrl {
+                Section("Contact") {
+                    LabeledContent("Type", value: contactType)
+                    LabeledContent("Name", value: contactName)
+                    LabeledContent("Phone") {
+                        Link(phoneNumber, destination: url)
+                    }
                 }
-            }.padding(EdgeInsets(top: 10, leading: 25, bottom: 10, trailing: 10))
+            }
+            
+            if let description = vm.accommodation.description_text, !description.isEmpty {
+                Section("Description") {
+                    Text(description)
+                }
+            }
+            
+            if let url = vm.accommodation.url {
+                Section {
+                    LabeledContent("Advertisement URL") {
+                        Link(url.formatted(), destination: url)
+                    }
+                }
+            }
+            
+            Section {
+                Button {
+                    vm.accommodation.isFavourite.toggle()
+                    guard let _ = try? viewContext.save() else { return }
+                    vm.isFavourite.toggle()
+                } label: {
+                    if vm.isFavourite {
+                        Label("Unfavourite", systemImage: "heart.fill")
+                    } else {
+                        Label("Add to Favourites", systemImage: "heart")
+                    }
+                }
+            }
+            
+            Section {
+                Button(role: .destructive) {
+                    Accomodation
+                        .deleteAccommodation(viewContext: viewContext, accommodationObject: vm.accommodation)
+                    dismiss()
+                } label: {
+                    Label("Delete", systemImage: "trash")
+                        .foregroundColor(.red)
+                }
+            }
         }
-        .navigationTitle(accommodation.title ?? accommodation.wrappedTitle)
+        .navigationTitle(vm.address)
         .navigationBarTitleDisplayMode(.inline)
         .toolbar{
             ToolbarItem(placement: .primaryAction){
                 Button {
             //                    ShareLink(item: "hello")
-                    
+
                 } label: {
                     Image(systemName: "square.and.arrow.up")
                 }
             }
             
-            ToolbarItem(placement: .primaryAction){
+            ToolbarItem(placement: .primaryAction) {
                 Button {
-                    Accomodation.deleteAccommodation(viewContext: viewContext, accommodationObject: accommodation)
+                    Accomodation
+                        .deleteAccommodation(viewContext: viewContext, accommodationObject: vm.accommodation)
                     dismiss()
                 } label: {
-                    Image(systemName: "trash")
+                    Label("Delete", systemImage: "trash")
                 }
             }
         }
@@ -109,6 +139,6 @@ struct AccommodationDetailsView: View {
 struct AccommodationDetailsView_Previews: PreviewProvider {
     
     static var previews: some View {
-        AccommodationDetailsView(accommodation: .init())
+        AccommodationDetailsView(accommodation: Accomodation.fuorigrotta)
     }
 }
