@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2D09F89B294393240090B594 /* Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D09F89A294393240090B594 /* Status.swift */; };
 		2D09F89F294398E60090B594 /* Accomodation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D09F89E294398E60090B594 /* Accomodation.swift */; };
 		2D09F8A22944B2C80090B594 /* AddPoIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D09F8A12944B2C80090B594 /* AddPoIView.swift */; };
 		2D09F8A42944B5350090B594 /* PointOfInterest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D09F8A32944B5350090B594 /* PointOfInterest.swift */; };
@@ -35,6 +34,8 @@
 		A9B30F842944C5E8009F5B9A /* MyAccommodationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B30F832944C5E8009F5B9A /* MyAccommodationsView.swift */; };
 		A9B30F862944C6B0009F5B9A /* AddAccommodationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B30F852944C6B0009F5B9A /* AddAccommodationView.swift */; };
 		A9B30F8A29464FF1009F5B9A /* PointOfInterestViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B30F8929464FF1009F5B9A /* PointOfInterestViewModel.swift */; };
+		BC38D31129474DB200AD4ED6 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC38D31029474DB200AD4ED6 /* Enums.swift */; };
+		BC38D31329474E0000AD4ED6 /* AccommodationDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC38D31229474E0000AD4ED6 /* AccommodationDetailViewModel.swift */; };
 		BCDE64DD29428879008056AF /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCDE64DC29428879008056AF /* Extensions.swift */; };
 		BCE95ED82941F4200034D879 /* AccommodationData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BCE95ED62941F4200034D879 /* AccommodationData.xcdatamodeld */; };
 		BCE95EDA2941F8C50034D879 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCE95ED92941F8C50034D879 /* Persistence.swift */; };
@@ -44,7 +45,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		2D09F89A294393240090B594 /* Status.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Status.swift; sourceTree = "<group>"; };
 		2D09F89E294398E60090B594 /* Accomodation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Accomodation.swift; sourceTree = "<group>"; };
 		2D09F8A12944B2C80090B594 /* AddPoIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPoIView.swift; sourceTree = "<group>"; };
 		2D09F8A32944B5350090B594 /* PointOfInterest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointOfInterest.swift; sourceTree = "<group>"; };
@@ -74,6 +74,8 @@
 		A9B30F832944C5E8009F5B9A /* MyAccommodationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAccommodationsView.swift; sourceTree = "<group>"; };
 		A9B30F852944C6B0009F5B9A /* AddAccommodationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAccommodationView.swift; sourceTree = "<group>"; };
 		A9B30F8929464FF1009F5B9A /* PointOfInterestViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointOfInterestViewModel.swift; sourceTree = "<group>"; };
+		BC38D31029474DB200AD4ED6 /* Enums.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
+		BC38D31229474E0000AD4ED6 /* AccommodationDetailViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccommodationDetailViewModel.swift; sourceTree = "<group>"; };
 		BCDE64DC29428879008056AF /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		BCE95ED72941F4200034D879 /* Accommodation.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Accommodation.xcdatamodel; sourceTree = "<group>"; };
 		BCE95ED92941F8C50034D879 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
@@ -147,6 +149,7 @@
 		2DB6CB7B29415E390048CF00 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				BC38D31229474E0000AD4ED6 /* AccommodationDetailViewModel.swift */,
 				A9B30F8929464FF1009F5B9A /* PointOfInterestViewModel.swift */,
 				2DB6CB822941F7CC0048CF00 /* MapViewModel.swift */,
 				2DF1FCCC2946277000815F32 /* AddAccommodationViewModel.swift */,
@@ -188,8 +191,8 @@
 		A90B3D532940DCF400A8E180 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				BC38D31029474DB200AD4ED6 /* Enums.swift */,
 				2DB6CB842941F9000048CF00 /* AlertContent.swift */,
-				2D09F89A294393240090B594 /* Status.swift */,
 				2D09F89E294398E60090B594 /* Accomodation.swift */,
 				2D09F8A32944B5350090B594 /* PointOfInterest.swift */,
 			);
@@ -302,7 +305,9 @@
 				2D09F8A22944B2C80090B594 /* AddPoIView.swift in Sources */,
 				2D09F89B294393240090B594 /* Status.swift in Sources */,
 				2DF1FCC92946219600815F32 /* AccommodationDetailsView.swift in Sources */,
+				BC38D31129474DB200AD4ED6 /* Enums.swift in Sources */,
 				2D6AAC4B2940B5BA00A7AC00 /* AccommodationAppApp.swift in Sources */,
+				BC38D31329474E0000AD4ED6 /* AccommodationDetailViewModel.swift in Sources */,
 				2DB6CB832941F7CC0048CF00 /* MapViewModel.swift in Sources */,
 				A90B3D5D2942417500A8E180 /* MyCalendarView.swift in Sources */,
 				A90B3D5B2942415900A8E180 /* MyCalendarListView.swift in Sources */,
@@ -433,7 +438,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"AccommodationApp/Preview Content\"";
-				DEVELOPMENT_TEAM = 2983DH4K56;
+				DEVELOPMENT_TEAM = A653B885WN;
 				ENABLE_HARDENED_RUNTIME = YES;
 				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = YES;
 				ENABLE_PREVIEWS = YES;
@@ -473,7 +478,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"AccommodationApp/Preview Content\"";
-				DEVELOPMENT_TEAM = 2983DH4K56;
+				DEVELOPMENT_TEAM = A653B885WN;
 				ENABLE_HARDENED_RUNTIME = YES;
 				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = YES;
 				ENABLE_PREVIEWS = YES;
