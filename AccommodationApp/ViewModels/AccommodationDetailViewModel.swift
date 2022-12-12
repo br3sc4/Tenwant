@@ -60,7 +60,12 @@ final class AccommodationDetailViewModel: ObservableObject {
         accommodation.contact_type?.capitalized
     }
     
+//    var appointment: Date? {
+//        accommodation.scheduled_appointment
+//    }
+    
     @Published var isFavourite: Bool
+    @Published var appointment: Date?
     
     let accommodation: Accomodation
     
@@ -68,5 +73,8 @@ final class AccommodationDetailViewModel: ObservableObject {
         self.isFavourite = accommodation.isFavourite
         self.currentStatus = Status(rawValue: accommodation.status ?? "") ?? .toContact
         self.accommodation = accommodation
+        self.appointment =  accommodation.scheduled_appointment
     }
+    
+    
 }
