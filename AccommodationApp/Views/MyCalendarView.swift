@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct MyCalendarView: View {
-    @State var showList = true
+//    @State var showList = true
     
     @Environment(\.managedObjectContext) private var viewContext
     @FetchRequest(
@@ -19,35 +19,28 @@ struct MyCalendarView: View {
     var body: some View {
         NavigationView{
             ZStack(alignment: .bottomTrailing){
-                if showList{
+//                if showList{
                     MyCalendarListView(accommodations: accommodations)
-                }
+//                }
 //                else{
 //                    MyCalendarWeeklyView()
 //                }
 
             }
             .navigationTitle("Calendar")
-            .toolbar{
-                ToolbarItem(placement: .cancellationAction){
-                    Button(action: {
-                        showList.toggle()
-                    }, label:
-                            {
-                        Image(systemName: (showList ? "calendar" : "list.bullet"))
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 30, height: 30)
-                    })
-                }
-//                ToolbarItem(placement: .primaryAction){
+//            .toolbar{
+//                ToolbarItem(placement: .cancellationAction){
 //                    Button(action: {
+//                        showList.toggle()
 //                    }, label:
 //                            {
-//                        Text("Today")
+//                        Image(systemName: (showList ? "calendar" : "list.bullet"))
+//                            .resizable()
+//                            .scaledToFit()
+//                            .frame(width: 30, height: 30)
 //                    })
 //                }
-            }
+//            }
         }
     }
 }

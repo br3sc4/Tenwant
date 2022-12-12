@@ -36,32 +36,50 @@ struct MyCalendarListView: View {
                     
                     VStack(alignment: .leading){
                         //giving a fixed id to today so that scrollviewreader can access to the anchor point
-                        if date.formatted(date: .long, time:.omitted) == Date.now.formatted(date: .long, time:.omitted)
-                        {
+                        if date.formatted(date: .long, time:.omitted) == Date.now.formatted(date: .long, time:.omitted){
                             Text(date.formatted(date: .long, time:.omitted))
                                 .foregroundColor(.primary)
                                 .font(.system(size: 14))
                                 .bold()
+                                .font(.headline)
                                 .id(2)
-                        }
-                        
-                        else {
+                        }else {
                             Text(date.formatted(date: .long, time:.omitted))
                                 .foregroundColor(.primary)
                                 .font(.system(size: 14))
                                 .bold()
+                                .font(.headline)
                         }
                         
-                        ForEach(accommodationByDate[date] ?? [], id: \.id){ accommodation in
+                        if let array = accommodationByDate[date]{
+                        ForEach(array, id: \.id){ accommodation in
+                            
                             NavigationLink {
                                 AccommodationDetailsView(accommodation: accommodation)
                             } label: {
+                                ZStack(alignment: .trailing){
                                 MyCalendarRowView(accommodation: accommodation)
+                                    Image(systemName: "chevron.right")
+                                        .padding(.trailing, 20)
+                            }.padding([.bottom, .top], 2)
                             }
+//                            if array.count > 1 && array.last != accommodation {
+//
+//
+//                                    Divider()
+//                                    .padding([.leading, .trailing], 0)
+//
+//                            }
+                            
                         }
-                    }
+//                            Divider()
+//                                .padding([.leading, .trailing], 0)
+                        }
+                    }.padding(EdgeInsets(top: 10, leading: 20, bottom: 10, trailing: 20))
+//                    padding([.leading, .trailing], 20)
                     
-                }.padding(.bottom, 9)
+                }
+//                .padding([.bottom, .top], 25)
             }
             
             .toolbar{
