@@ -121,21 +121,18 @@ struct AddAccommodationView: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar{
                 ToolbarItem(placement: .cancellationAction) {
-               
                     Button("Cancel", role: .destructive){
                         isPresentingConfirm = true
-                      }
-                     .confirmationDialog("Are you sure you want to discard this accomodation?",
-                                         isPresented: $isPresentingConfirm, titleVisibility: .visible) {
+                    }
+                    .confirmationDialog("Are you sure you want to discard this accomodation?",
+                                        isPresented: $isPresentingConfirm,
+                                        titleVisibility: .visible) {
                          Button("Discard Changes", role: .destructive) {
                              dismiss()
                          }
                          Button("Cancel", role: .cancel) {}
                       }
                 }
-             
-        
-                
                 
                 ToolbarItem(placement: .confirmationAction) {
                     Button(action: {
@@ -164,11 +161,17 @@ struct AddAccommodationView: View {
     
     private func saveAccommodation() {
         Task {
-            if !vm.useCustomCoordinates {
-                await vm.getCoordinates()
+            let task = Task {
+                if !vm.useCustomCoordinates {
+                    await vm.getCoordinates()
+                }
             }
             
-            if !vm.showAlert && vm.validateForm() {
+            let result = await task.result
+            
+            guard let _ = try? result.get() else { return }
+            
+            if vm.validateForm() {
                 guard let latitude = try? CLLocationDegrees(vm.latitude, format: .number),
                       let longitude = try? CLLocationDegrees(vm.longitude, format: .number) else { return }
                 
@@ -192,10 +195,10 @@ struct AddAccommodationView: View {
                     images: vm.images)
                 
                 dismiss()
-                } else {
-                    vm.presentAlert(title: "Invalid data",
-                                    message: "Check that all the required fields are filled correctly")
-                }
+            } else {
+                vm.presentAlert(title: "Invalid data",
+                                message: "Check that all the required fields are filled correctly")
+            }
         }
     }
     

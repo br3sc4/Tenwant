@@ -45,108 +45,101 @@ struct AccommodationDetailsView: View {
                 .listRowInsets(EdgeInsets())
             }
             
-            
-            Section("") {
-                ZStack{
-                    HStack{
-                        Button(action: {
-                            vm.accommodation.isFavourite.toggle()
-                            guard let _ = try? viewContext.save() else { return }
-                            vm.isFavourite.toggle()
-                        }, label: {
-                            VStack(spacing: 3){
-                                
-                                Image(systemName: vm.isFavourite ? "heart.fill" : "heart")
-                                    .foregroundColor(.accentColor)
-                                
-                                Text(vm.isFavourite ? "unfavourite" : "favorite")
-                                    .font(.system(size: 11))
-                                    .font(.subheadline)
-                            }
-                            .frame(width: 50, height: 50)
-                        }).buttonStyle(BorderedButtonStyle())
-                        
-                        Spacer()
-                        
-                        if let _ = vm.phoneNumber,
-                           let url = vm.phoneNumberUrl{
-                            Button(action: {
-                                UIApplication.shared.open(url)
-                            }, label: {
-                                VStack(spacing: 3){
-                                    Image(systemName: "phone")
-                                        .foregroundColor(.accentColor)
-                                    
-                                    Text("call")
-                                        .font(.system(size: 11))
-                                        .font(.subheadline)
-                                }.frame(width: 55, height: 50)
-                                
-                            }).buttonStyle(BorderedButtonStyle())
+            Section {
+                HStack{
+                    Button(action: {
+                        vm.accommodation.isFavourite.toggle()
+                        guard let _ = try? viewContext.save() else { return }
+                        vm.isFavourite.toggle()
+                    }, label: {
+                        VStack(spacing: 3){
                             
-                            Spacer()
-                        } else {
-                            Button(action: {
-                                
-                            }, label: {
-                                VStack(spacing: 3){
-                                    Image(systemName: "phone")
-                                        .foregroundColor(.secondary)
-                                    
-                                    Text("call")
-                                        .font(.system(size: 11))
-                                        .font(.subheadline)
-                                }.frame(width: 55, height: 50)
-                                
-                            }).buttonStyle(BorderedButtonStyle())
-                                .disabled(true)
+                            Image(systemName: vm.isFavourite ? "heart.fill" : "heart")
+                                .foregroundColor(.accentColor)
                             
-                            Spacer()
+                            Text(vm.isFavourite ? "unfavourite".capitalized : "favorite".capitalized)
+                                .font(.system(size: 11))
+                                .font(.subheadline)
                         }
-                        
-                        
-                        
-                        
-                        Button(action: {
-                            isOnAddAppointment.toggle()
-                        }, label: {
-                            VStack(spacing: 3){
-                                Image(systemName: "calendar")
+                        .frame(width: 50, height: 50)
+                    }).buttonStyle(BorderedButtonStyle())
+                    
+                    Spacer()
+                    
+                    if let _ = vm.phoneNumber,
+                       let url = vm.phoneNumberUrl {
+                        Button {
+                            UIApplication.shared.open(url)
+                        } label: {
+                            VStack(spacing: 3) {
+                                Image(systemName: "phone")
                                     .foregroundColor(.accentColor)
                                 
-                                Text("add")
+                                Text("call".capitalized)
                                     .font(.system(size: 11))
                                     .font(.subheadline)
                             }.frame(width: 55, height: 50)
-                            
-                        }).buttonStyle(BorderedButtonStyle())
-                            .sheet(isPresented: $isOnAddAppointment) {
-                                AddAppointmentSheetView(accommodation: vm.accommodation)
-                                    .presentationDetents([.medium])
-                            }
-                        
-                        
+                        }
+                        .buttonStyle(BorderedButtonStyle())
                         Spacer()
-                        
-                        Button(role: .destructive , action: {
-                            Accomodation
-                                .deleteAccommodation(viewContext: viewContext, accommodationObject: vm.accommodation)
-                            dismiss()
-                        }, label: {
+                    } else {
+                        Button {
+                            
+                        } label: {
                             VStack(spacing: 3){
-                                Image(systemName: "trash")
-                                    .foregroundColor(.red)
-                                Text("delete")
-                                    .foregroundColor(.red)
+                                Image(systemName: "phone")
+                                    .foregroundColor(.secondary)
+                                
+                                Text("call".capitalized)
                                     .font(.system(size: 11))
                                     .font(.subheadline)
-                            }.frame(width: 55, height: 50)
-                        }).buttonStyle(BorderedButtonStyle())
-                        
+                            }
+                            .frame(width: 55, height: 50)
+                        }
+                        .buttonStyle(BorderedButtonStyle())
+                        .disabled(true)
+                        Spacer()
                     }
-                }.listRowBackground(Color(UIColor.systemBackground))
-                //                .listRowBackground(Color(UIColor.systemBackground))
+                    
+                    Button {
+                        isOnAddAppointment.toggle()
+                    } label: {
+                        VStack(spacing: 3){
+                            Image(systemName: "calendar")
+                                .foregroundColor(.accentColor)
+                            
+                            Text("add".capitalized)
+                                .font(.system(size: 11))
+                                .font(.subheadline)
+                        }
+                        .frame(width: 55, height: 50)
+                    }
+                    .buttonStyle(BorderedButtonStyle())
+                    .sheet(isPresented: $isOnAddAppointment) {
+                        AddAppointmentSheetView(accommodation: vm.accommodation)
+                            .presentationDetents([.medium])
+                    }
+                    
+                    Spacer()
+                    
+                    Button(role: .destructive) {
+                        Accomodation
+                            .deleteAccommodation(viewContext: viewContext, accommodationObject: vm.accommodation)
+                        dismiss()
+                    } label: {
+                        VStack(spacing: 3) {
+                            Image(systemName: "trash")
+                                .foregroundColor(.red)
+                            Text("delete".capitalized)
+                                .foregroundColor(.red)
+                                .font(.system(size: 11))
+                                .font(.subheadline)
+                        }
+                        .frame(width: 55, height: 50)
+                    }.buttonStyle(BorderedButtonStyle())
+                }
             }
+            .listRowBackground(Color.clear)
             
             Section("General") {
                 LabeledContent("Type", value: vm.accommodationType.rawValue.capitalized)
@@ -179,11 +172,12 @@ struct AccommodationDetailsView: View {
                         LabeledContent("Name", value: contactName)
                     }
                     if let url = vm.phoneNumberUrl {
-                        Button(action: {
+                        Button {
                             UIApplication.shared.open(url)
-                        }, label: {
+                        } label: {
                             LabeledContent("Phone", value: phoneNumber)
-                        }).buttonStyle(PlainButtonStyle())
+                        }
+                        .buttonStyle(PlainButtonStyle())
                     }
                 }
             }
@@ -206,14 +200,14 @@ struct AccommodationDetailsView: View {
         .navigationTitle(vm.address)
         .navigationBarTitleDisplayMode(.inline)
         .toolbar{
-            ToolbarItem(placement: .primaryAction){
-                Button {
-                    //                    ShareLink(item: "hello")
-                    
-                } label: {
-                    Image(systemName: "square.and.arrow.up")
-                }
-            }
+//            ToolbarItem(placement: .primaryAction){
+//                Button {
+//                    //                    ShareLink(item: "hello")
+//
+//                } label: {
+//                    Image(systemName: "square.and.arrow.up")
+//                }
+//            }
             
             ToolbarItem(placement: .primaryAction) {
                 Button {
