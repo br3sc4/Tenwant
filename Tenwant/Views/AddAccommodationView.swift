@@ -120,7 +120,11 @@ struct AddAccommodationView: View {
             .toolbar{
                 ToolbarItem(placement: .cancellationAction) {
                     Button("Cancel", role: .destructive){
-                        showConfirmationDialog = true
+                        if vm.formHasFilled {
+                            showConfirmationDialog = true
+                        } else {
+                            dismiss()
+                        }
                     }
                     .confirmationDialog("Are you sure you want to discard this accomodation?",
                                         isPresented: $showConfirmationDialog,

@@ -17,6 +17,10 @@ final class PointOfInterestViewModel: ObservableObject {
     @Published private(set) var alertContent: AlertContent = AlertContent()
     @Published var showAlert: Bool = false
     
+    var formHasFilled: Bool {
+        !(name.isEmpty && address.isEmpty && latitude.isEmpty && longitude.isEmpty)
+    }
+    
     private func addressCoordinates() async throws -> CLLocationCoordinate2D? {
         let geocoder = CLGeocoder()
         let placemarks = try await geocoder.geocodeAddressString(address)
