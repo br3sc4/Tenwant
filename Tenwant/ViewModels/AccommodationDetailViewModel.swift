@@ -60,10 +60,6 @@ final class AccommodationDetailViewModel: ObservableObject {
         accommodation.contact_type?.capitalized
     }
     
-//    var appointment: Date? {
-//        accommodation.scheduled_appointment
-//    }
-    
     @Published var isFavourite: Bool
     @Published var appointment: Date?
     
@@ -75,6 +71,4 @@ final class AccommodationDetailViewModel: ObservableObject {
         self.accommodation = accommodation
         self.appointment =  accommodation.scheduled_appointment
     }
-    
-    
 }

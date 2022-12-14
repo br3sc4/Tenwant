@@ -13,7 +13,6 @@
 		2D09F8A42944B5350090B594 /* PointOfInterest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D09F8A32944B5350090B594 /* PointOfInterest.swift */; };
 		2D09F8A62944BAB00090B594 /* PoIAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D09F8A52944BAB00090B594 /* PoIAnnotation.swift */; };
 		2D6AAC4B2940B5BA00A7AC00 /* TenwantApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D6AAC4A2940B5BA00A7AC00 /* TenwantApp.swift */; };
-		2D6AAC4D2940B5BA00A7AC00 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D6AAC4C2940B5BA00A7AC00 /* ContentView.swift */; };
 		2D6AAC4F2940B5BB00A7AC00 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2D6AAC4E2940B5BB00A7AC00 /* Assets.xcassets */; };
 		2D6AAC532940B5BB00A7AC00 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2D6AAC522940B5BB00A7AC00 /* Preview Assets.xcassets */; };
 		2D8368612949ECC400088115 /* MyAccommodationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8368602949ECC400088115 /* MyAccommodationsView.swift */; };
@@ -39,7 +38,6 @@
 		BCDE64DD29428879008056AF /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCDE64DC29428879008056AF /* Extensions.swift */; };
 		BCE95ED82941F4200034D879 /* AccommodationData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BCE95ED62941F4200034D879 /* AccommodationData.xcdatamodeld */; };
 		BCE95EDA2941F8C50034D879 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCE95ED92941F8C50034D879 /* Persistence.swift */; };
-		BCE95EDD2941FB390034D879 /* CoreDataTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCE95EDC2941FB390034D879 /* CoreDataTestView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,7 +49,6 @@
 		2D4BE73F294734FA00EAB80D /* AccommodationDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccommodationDetailViewModel.swift; sourceTree = "<group>"; };
 		2D6AAC472940B5BA00A7AC00 /* Tenwant.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tenwant.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D6AAC4A2940B5BA00A7AC00 /* TenwantApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TenwantApp.swift; sourceTree = "<group>"; };
-		2D6AAC4C2940B5BA00A7AC00 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		2D6AAC4E2940B5BB00A7AC00 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2D6AAC502940B5BB00A7AC00 /* Tenwant.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Tenwant.entitlements; sourceTree = "<group>"; };
 		2D6AAC522940B5BB00A7AC00 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -78,7 +75,6 @@
 		BCDE64DC29428879008056AF /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		BCE95ED72941F4200034D879 /* Accommodation.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Accommodation.xcdatamodel; sourceTree = "<group>"; };
 		BCE95ED92941F8C50034D879 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
-		BCE95EDC2941FB390034D879 /* CoreDataTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataTestView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,7 +121,6 @@
 				A90B3D4E2940D0A900A8E180 /* Components */,
 				A90B3D532940DCF400A8E180 /* Models */,
 				A90B3D4D2940D07F00A8E180 /* Views */,
-				2D6AAC4C2940B5BA00A7AC00 /* ContentView.swift */,
 				2D6AAC4A2940B5BA00A7AC00 /* TenwantApp.swift */,
 				2D6AAC4E2940B5BB00A7AC00 /* Assets.xcassets */,
 				2D6AAC502940B5BB00A7AC00 /* Tenwant.entitlements */,
@@ -198,7 +193,6 @@
 		BCE95EDB2941F8E30034D879 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
-				BCE95EDC2941FB390034D879 /* CoreDataTestView.swift */,
 				BCE95ED92941F8C50034D879 /* Persistence.swift */,
 				BCE95ED62941F4200034D879 /* AccommodationData.xcdatamodeld */,
 				BCDE64DC29428879008056AF /* Extensions.swift */,
@@ -289,9 +283,7 @@
 				A9B30F7E2944C173009F5B9A /* AccommodationCardView.swift in Sources */,
 				BCDE64DD29428879008056AF /* Extensions.swift in Sources */,
 				2D09F89F294398E60090B594 /* Accomodation.swift in Sources */,
-				BCE95EDD2941FB390034D879 /* CoreDataTestView.swift in Sources */,
 				BCE95EDA2941F8C50034D879 /* Persistence.swift in Sources */,
-				2D6AAC4D2940B5BA00A7AC00 /* ContentView.swift in Sources */,
 				2DB6CB852941F9000048CF00 /* AlertContent.swift in Sources */,
 				2DF1FCCD2946277000815F32 /* AddAccommodationViewModel.swift in Sources */,
 				2DB6CB7D29415EDD0048CF00 /* MapView.swift in Sources */,

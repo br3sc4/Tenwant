@@ -14,7 +14,7 @@ struct AccommodationDetailsRow: View {
     
     
     var body: some View {
-        VStack(alignment: .leading){
+        VStack(alignment: .leading) {
             Text(key)
                 .font(.system(size: 13))
                 .foregroundColor(.secondary)
@@ -31,7 +31,8 @@ struct AccommodationDetailsRow: View {
                 .foregroundColor(.gray)
                 .opacity(0.15)
                 
-        }.padding(EdgeInsets(top: 5, leading: 0, bottom: 0, trailing: 0))
+        }
+        .padding(EdgeInsets(top: 5, leading: 0, bottom: 0, trailing: 0))
     }
 }
 

@@ -143,7 +143,6 @@ extension Appointment {
     }
 }
 
-
 extension Photo {
     //Sets ID automatically, when new Appointment is created
     public override func awakeFromInsert() {
@@ -167,5 +166,3 @@ extension Photo {
     }
     
 }
-
-
