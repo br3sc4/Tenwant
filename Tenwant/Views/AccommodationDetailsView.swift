@@ -75,8 +75,7 @@ struct AccommodationDetailsView: View {
                         isOnAddAppointment.toggle()
                     }
                     .sheet(isPresented: $isOnAddAppointment) {
-                        AddAppointmentSheetView(accommodation: vm.accommodation)
-                            .presentationDetents([.medium])
+                        AddAppointmentView()
                     }
                     
                     Spacer()
