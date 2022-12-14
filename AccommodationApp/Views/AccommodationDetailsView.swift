@@ -10,6 +10,7 @@ import SwiftUI
 
 struct AccommodationDetailsView: View {
     @StateObject private var vm: AccommodationDetailViewModel
+    @State var isOnAddAppointment = false
     @Environment(\.managedObjectContext) private var viewContext
     @Environment(\.dismiss) private var dismiss
     
@@ -42,96 +43,48 @@ struct AccommodationDetailsView: View {
             
             Section {
                 HStack{
-                    Button(action: {
+                    
+                    ActionButtonView(role: "isFavourite", symbolName: vm.isFavourite ? "heart.fill" : "heart",
+                                     textLabel: vm.isFavourite ? "unfavourite".capitalized : "favorite".capitalized) {
                         vm.accommodation.isFavourite.toggle()
                         guard let _ = try? viewContext.save() else { return }
                         vm.isFavourite.toggle()
-                    }, label: {
-                        VStack(spacing: 3){
-                            
-                            Image(systemName: vm.isFavourite ? "heart.fill" : "heart")
-                                .foregroundColor(.accentColor)
-                            
-                            Text(vm.isFavourite ? "unfavourite".capitalized : "favorite".capitalized)
-                                .font(.system(size: 11))
-                                .font(.subheadline)
-                        }
-                        .frame(width: 50, height: 50)
-                    }).buttonStyle(BorderedButtonStyle())
-                    
+                    }
                     Spacer()
                     
                     if let _ = vm.phoneNumber,
                        let url = vm.phoneNumberUrl {
-                        Button {
-                            UIApplication.shared.open(url)
-                        } label: {
-                            VStack(spacing: 3) {
-                                Image(systemName: "phone")
-                                    .foregroundColor(.accentColor)
-                                
-                                Text("call".capitalized)
-                                    .font(.system(size: 11))
-                                    .font(.subheadline)
-                            }.frame(width: 55, height: 50)
-                        }
-                        .buttonStyle(BorderedButtonStyle())
+                            ActionButtonView(role: "default", symbolName: "phone",
+                                             textLabel: "call") {
+                                UIApplication.shared.open(url)
+                            }
                         Spacer()
                     } else {
-                        Button {
-                            
-                        } label: {
-                            VStack(spacing: 3){
-                                Image(systemName: "phone")
-                                    .foregroundColor(.secondary)
-                                
-                                Text("call".capitalized)
-                                    .font(.system(size: 11))
-                                    .font(.subheadline)
-                            }
-                            .frame(width: 55, height: 50)
+                        ActionButtonView(role: "default", symbolName: "phone",
+                                         textLabel: "call") {
                         }
-                        .buttonStyle(BorderedButtonStyle())
                         .disabled(true)
                         Spacer()
                     }
                     
-                    Button {
+                    ActionButtonView(role: "default",symbolName: "calendar",
+                                     textLabel: "add") {
                         isOnAddAppointment.toggle()
-                    } label: {
-                        VStack(spacing: 3){
-                            Image(systemName: "calendar")
-                                .foregroundColor(.accentColor)
-                            
-                            Text("add".capitalized)
-                                .font(.system(size: 11))
-                                .font(.subheadline)
-                        }
-                        .frame(width: 55, height: 50)
                     }
-                    .buttonStyle(BorderedButtonStyle())
                     .sheet(isPresented: $isOnAddAppointment) {
                         AddAppointmentSheetView(accommodation: vm.accommodation)
                             .presentationDetents([.medium])
                     }
                     
                     Spacer()
+                   
                     
-                    Button(role: .destructive) {
+                    ActionButtonView(role: "delete", symbolName: "trash",
+                                     textLabel: "delete") {
                         Accomodation
                             .deleteAccommodation(viewContext: viewContext, accommodationObject: vm.accommodation)
                         dismiss()
-                    } label: {
-                        VStack(spacing: 3) {
-                            Image(systemName: "trash")
-                                .foregroundColor(.red)
-                            Text("delete".capitalized)
-                                .foregroundColor(.red)
-                                .font(.system(size: 11))
-                                .font(.subheadline)
-                        }
-                        .frame(width: 55, height: 50)
-                    }.buttonStyle(BorderedButtonStyle())
+                    }
                 }
             }
             .listRowBackground(Color.clear)
@@ -284,3 +237,5 @@ struct AddAppointmentSheetView: View {
         
     }
 }
+
+
