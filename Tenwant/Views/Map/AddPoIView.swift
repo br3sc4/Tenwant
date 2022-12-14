@@ -69,7 +69,11 @@ struct AddPoIView: View {
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
                     Button("Cancel", role: .destructive) {
-                        showConfirmationDialog.toggle()
+                        if vm.formHasFilled {
+                            showConfirmationDialog.toggle()
+                        } else {
+                            dismiss()
+                        }
                     }
                     .confirmationDialog("Are you sure you want to discard this Point of Interest?",
                                         isPresented: $showConfirmationDialog,

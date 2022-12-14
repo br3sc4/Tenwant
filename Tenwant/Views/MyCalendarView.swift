@@ -17,7 +17,7 @@ struct MyCalendarView: View {
     private var accommodations: FetchedResults<Accomodation>
 
     var body: some View {
-        NavigationView{
+        NavigationStack {
             ZStack(alignment: .bottomTrailing){
 //                if showList{
                     MyCalendarListView(accommodations: accommodations)

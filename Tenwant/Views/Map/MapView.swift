@@ -19,13 +19,26 @@ struct MapView: View {
     @FetchRequest(sortDescriptors: [])
     private var pointsOfInterest: FetchedResults<PointOfInterest>
     
+    @Environment(\.horizontalSizeClass) private var sizeClass: UserInterfaceSizeClass?
+    
     var body: some View {
         NavigationStack {
-            MapViewRepresentable(region: $vm.region,
-                                 accommodations: Array(accommodations),
-                                 pointsOfInterest: Array(pointsOfInterest),
-                                 selectedAccommodation: $vm.selectedAccommodation,
-                                 locationManager: vm.locationManager)
+            Group {
+                if sizeClass == .compact {
+                    MapViewRepresentable(region: $vm.region,
+                                         accommodations: Array(accommodations),
+                                         pointsOfInterest: Array(pointsOfInterest),
+                                         selectedAccommodation: $vm.selectedAccommodation,
+                                         locationManager: vm.locationManager)
+                } else {
+                    MapViewRepresentable(region: $vm.region,
+                                         accommodations: Array(accommodations),
+                                         pointsOfInterest: Array(pointsOfInterest),
+                                         selectedAccommodation: $vm.selectedAccommodation,
+                                         locationManager: vm.locationManager)
+                    .edgesIgnoringSafeArea([.bottom])
+                }
+            }
             .toolbar {
                 ToolbarItem(placement: .primaryAction) {
                     Button {

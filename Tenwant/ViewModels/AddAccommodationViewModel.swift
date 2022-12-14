@@ -33,6 +33,12 @@ final class AddAccommodationViewModel: ObservableObject {
     @Published private(set) var alertContent: AlertContent = AlertContent()
     @Published var showAlert: Bool = false
     
+    var formHasFilled: Bool {
+        !(address.isEmpty && rent.isEmpty && latitude.isEmpty && longitude.isEmpty && images.isEmpty && description.isEmpty &&
+          extraCost.isEmpty && deposit.isEmpty && platformAgencyFees.isEmpty && urlAdvert.isEmpty && ownerFlatName.isEmpty &&
+          ownerFlatPhone.isEmpty && flatExtraDetails.isEmpty)
+    }
+    
     private func addressCoordinates() async throws -> CLLocationCoordinate2D? {
         let geocoder = CLGeocoder()
         let placemarks = try await geocoder.geocodeAddressString(address)

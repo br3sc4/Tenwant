@@ -12,7 +12,7 @@ struct MyAccommodationsView: View {
     @State private var showingAddAccommodation = false
     @State private var searchText = ""
     @State private var isOnlyFavouritesShown = false
-    @ScaledMetric var size = CGFloat(1)
+    @ScaledMetric private var size = CGFloat(1)
     
     @Environment(\.managedObjectContext) private var viewContext
     
@@ -23,7 +23,6 @@ struct MyAccommodationsView: View {
     
     @FetchRequest(fetchRequest: Accomodation.filterFavouritesRequest())
     private var filteredAccommodation : FetchedResults<Accomodation>
-    
     
     /* If interested in why and how this is working ;-) : https://developer.apple.com/videos/play/wwdc2021/10017/ */
     var searchQuery: Binding<String> {
@@ -36,8 +35,8 @@ struct MyAccommodationsView: View {
     }
     
     var body: some View {
-        NavigationStack{
-            VStack{
+        NavigationStack {
+            VStack {
                 Picker("", selection: $isOnlyFavouritesShown) {
                     Text("All").tag(false)
                     Text("Favourites").tag(true)
