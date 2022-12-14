@@ -16,7 +16,6 @@ struct MyAccommodationsView: View {
     
     @Environment(\.managedObjectContext) private var viewContext
     
-    
     @FetchRequest(
         sortDescriptors: [NSSortDescriptor(keyPath: \Accomodation.id, ascending: true)],
         animation: .default)

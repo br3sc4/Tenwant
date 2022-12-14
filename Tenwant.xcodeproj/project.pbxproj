@@ -16,6 +16,7 @@
 		2D6AAC4D2940B5BA00A7AC00 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D6AAC4C2940B5BA00A7AC00 /* ContentView.swift */; };
 		2D6AAC4F2940B5BB00A7AC00 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2D6AAC4E2940B5BB00A7AC00 /* Assets.xcassets */; };
 		2D6AAC532940B5BB00A7AC00 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2D6AAC522940B5BB00A7AC00 /* Preview Assets.xcassets */; };
+		2D8368612949ECC400088115 /* MyAccommodationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8368602949ECC400088115 /* MyAccommodationsView.swift */; };
 		2D8A08BD29471A2800AE2DE3 /* AccommodationAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB6CB8029415F5F0048CF00 /* AccommodationAnnotation.swift */; };
 		2DB6CB7D29415EDD0048CF00 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB6CB7C29415EDD0048CF00 /* MapView.swift */; };
 		2DB6CB7F29415EF30048CF00 /* MapViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB6CB7E29415EF30048CF00 /* MapViewRepresentable.swift */; };
@@ -32,7 +33,6 @@
 		A998190C2949BC8300464125 /* ActionButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A998190B2949BC8300464125 /* ActionButtonView.swift */; };
 		A9B30F7E2944C173009F5B9A /* AccommodationCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B30F7D2944C173009F5B9A /* AccommodationCardView.swift */; };
 		A9B30F802944C515009F5B9A /* AccommodationDetailsRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B30F7F2944C515009F5B9A /* AccommodationDetailsRow.swift */; };
-		A9B30F842944C5E8009F5B9A /* MyAccommodationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B30F832944C5E8009F5B9A /* MyAccommodationsView.swift */; };
 		A9B30F862944C6B0009F5B9A /* AddAccommodationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B30F852944C6B0009F5B9A /* AddAccommodationView.swift */; };
 		A9B30F8A29464FF1009F5B9A /* PointOfInterestViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B30F8929464FF1009F5B9A /* PointOfInterestViewModel.swift */; };
 		BC38D31329474E0000AD4ED6 /* AccommodationDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC38D31229474E0000AD4ED6 /* AccommodationDetailViewModel.swift */; };
@@ -53,8 +53,9 @@
 		2D6AAC4A2940B5BA00A7AC00 /* TenwantApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TenwantApp.swift; sourceTree = "<group>"; };
 		2D6AAC4C2940B5BA00A7AC00 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		2D6AAC4E2940B5BB00A7AC00 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		2D6AAC502940B5BB00A7AC00 /* AccommodationApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AccommodationApp.entitlements; sourceTree = "<group>"; };
+		2D6AAC502940B5BB00A7AC00 /* Tenwant.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Tenwant.entitlements; sourceTree = "<group>"; };
 		2D6AAC522940B5BB00A7AC00 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		2D8368602949ECC400088115 /* MyAccommodationsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyAccommodationsView.swift; sourceTree = "<group>"; };
 		2DB6CB7C29415EDD0048CF00 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		2DB6CB7E29415EF30048CF00 /* MapViewRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewRepresentable.swift; sourceTree = "<group>"; };
 		2DB6CB8029415F5F0048CF00 /* AccommodationAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccommodationAnnotation.swift; sourceTree = "<group>"; };
@@ -71,7 +72,6 @@
 		A998190B2949BC8300464125 /* ActionButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionButtonView.swift; sourceTree = "<group>"; };
 		A9B30F7D2944C173009F5B9A /* AccommodationCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccommodationCardView.swift; sourceTree = "<group>"; };
 		A9B30F7F2944C515009F5B9A /* AccommodationDetailsRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccommodationDetailsRow.swift; sourceTree = "<group>"; };
-		A9B30F832944C5E8009F5B9A /* MyAccommodationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAccommodationsView.swift; sourceTree = "<group>"; };
 		A9B30F852944C6B0009F5B9A /* AddAccommodationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAccommodationView.swift; sourceTree = "<group>"; };
 		A9B30F8929464FF1009F5B9A /* PointOfInterestViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointOfInterestViewModel.swift; sourceTree = "<group>"; };
 		BC38D31229474E0000AD4ED6 /* AccommodationDetailViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccommodationDetailViewModel.swift; sourceTree = "<group>"; };
@@ -128,7 +128,7 @@
 				2D6AAC4C2940B5BA00A7AC00 /* ContentView.swift */,
 				2D6AAC4A2940B5BA00A7AC00 /* TenwantApp.swift */,
 				2D6AAC4E2940B5BB00A7AC00 /* Assets.xcassets */,
-				2D6AAC502940B5BB00A7AC00 /* AccommodationApp.entitlements */,
+				2D6AAC502940B5BB00A7AC00 /* Tenwant.entitlements */,
 				BCE95EDB2941F8E30034D879 /* CoreData */,
 				2D6AAC512940B5BB00A7AC00 /* Preview Content */,
 			);
@@ -160,7 +160,7 @@
 			children = (
 				2D09F8A02944B2AA0090B594 /* Map */,
 				A90B3D4B2940C03500A8E180 /* MainView.swift */,
-				A9B30F832944C5E8009F5B9A /* MyAccommodationsView.swift */,
+				2D8368602949ECC400088115 /* MyAccommodationsView.swift */,
 				A9B30F852944C6B0009F5B9A /* AddAccommodationView.swift */,
 				2DF1FCC82946219600815F32 /* AccommodationDetailsView.swift */,
 				A90B3D5C2942417500A8E180 /* MyCalendarView.swift */,
@@ -283,6 +283,7 @@
 				A90B3D5929423AA800A8E180 /* MyCalendarRowView.swift in Sources */,
 				A90B3D522940D3E200A8E180 /* GalleryView.swift in Sources */,
 				A9B30F8A29464FF1009F5B9A /* PointOfInterestViewModel.swift in Sources */,
+				2D8368612949ECC400088115 /* MyAccommodationsView.swift in Sources */,
 				A90B3D4C2940C03500A8E180 /* MainView.swift in Sources */,
 				BCE95ED82941F4200034D879 /* AccommodationData.xcdatamodeld in Sources */,
 				A9B30F7E2944C173009F5B9A /* AccommodationCardView.swift in Sources */,
@@ -306,7 +307,6 @@
 				A90B3D5D2942417500A8E180 /* MyCalendarView.swift in Sources */,
 				A90B3D5B2942415900A8E180 /* MyCalendarListView.swift in Sources */,
 				A90B3D5F2942484E00A8E180 /* MyCalendarWeeklyView.swift in Sources */,
-				A9B30F842944C5E8009F5B9A /* MyAccommodationsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -427,10 +427,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = AccommodationApp/AccommodationApp.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Tenwant/Tenwant.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"AccommodationApp/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"Tenwant/Preview Content\"";
 				DEVELOPMENT_TEAM = 2983DH4K56;
 				ENABLE_HARDENED_RUNTIME = YES;
 				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = YES;
@@ -468,10 +468,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = AccommodationApp/AccommodationApp.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Tenwant/Tenwant.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"AccommodationApp/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"Tenwant/Preview Content\"";
 				DEVELOPMENT_TEAM = 2983DH4K56;
 				ENABLE_HARDENED_RUNTIME = YES;
 				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = YES;
