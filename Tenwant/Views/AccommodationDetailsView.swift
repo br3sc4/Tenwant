@@ -75,8 +75,7 @@ struct AccommodationDetailsView: View {
                         isOnAddAppointment.toggle()
                     }
                     .sheet(isPresented: $isOnAddAppointment) {
-                        AddAppointmentSheetView(accommodation: vm.accommodation)
-                            .presentationDetents([.medium])
+                        AddAppointmentView()
                     }
                     
                     Spacer()
@@ -148,23 +147,6 @@ struct AccommodationDetailsView: View {
                     }
                 }
             }
-<<<<<<< HEAD
-            
-            Section {
-                Button {
-                    vm.accommodation.isFavourite.toggle()
-                    guard let _ = try? viewContext.save() else { return }
-                    vm.isFavourite.toggle()
-                } label: {
-                    if vm.isFavourite {
-                        Label("Unfavourite", systemImage: "heart.fill")
-                    } else {
-                        Label("Add to Favourites", systemImage: "heart")
-                    }
-                }
-            }
-=======
->>>>>>> d39835d (add ui buttons under the tabview, func to book the appointment, fix the call button)
         }
         .navigationTitle(vm.address)
         .navigationBarTitleDisplayMode(.inline)
