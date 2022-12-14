@@ -46,10 +46,14 @@ final class PointOfInterestViewModel: ObservableObject {
         } catch {
             print("❌ - \(error)")
             Task { @MainActor in
-                alertContent = AlertContent(title: error.localizedDescription)
-                showAlert.toggle()
+                presentAlert(title: error.localizedDescription)
             }
         }
+    }
+    
+    func presentAlert(title: String, message: String = "") {
+        alertContent = AlertContent(title: title, message: message)
+        showAlert.toggle()
     }
     
     private enum GeocodingError: LocalizedError {
