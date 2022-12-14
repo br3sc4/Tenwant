@@ -12,6 +12,7 @@ import CoreData
 struct AddPoIView: View {
     @StateObject private var vm: PointOfInterestViewModel = PointOfInterestViewModel()
     
+    @State private var showConfirmationDialog: Bool = false
     @FocusState private var focusedField: FocuseFields?
     @Environment(\.dismiss) private var dismiss: DismissAction
     @Environment(\.managedObjectContext) private var moc: NSManagedObjectContext
@@ -27,14 +28,20 @@ struct AddPoIView: View {
                             focusedField = .address
                         }
                     
-                    TextField("Address", text: $vm.address)
+                    TextField("Address (Required)", text: $vm.address)
                         .focused($focusedField, equals: .address)
                         .textContentType(.fullStreetAddress)
                         .submitLabel(.done)
                         .onSubmit {
-                            focusedField = nil
-                            Task {
-                                await vm.getCoordinates()
+                            if vm.address.isEmpty {
+                                vm.presentAlert(title: "Form Error",
+                                                message: "The address field must contain a valid street address")
+                                focusedField = .address
+                            } else {
+                                focusedField = nil
+                                Task {
+                                    await vm.getCoordinates()
+                                }
                             }
                         }
                 }
@@ -55,13 +62,23 @@ struct AddPoIView: View {
                         }
                 }
             }
+            .scrollDismissesKeyboard(.interactively)
+            .interactiveDismissDisabled()
             .navigationTitle("New Point of Interest")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
-                    Button("Cancel", role: .cancel) {
-                        dismiss()
+                    Button("Cancel", role: .destructive) {
+                        showConfirmationDialog.toggle()
                     }
+                    .confirmationDialog("Are you sure you want to discard this Point of Interest?",
+                                        isPresented: $showConfirmationDialog,
+                                        titleVisibility: .visible) {
+                         Button("Discard Changes", role: .destructive) {
+                             dismiss()
+                         }
+                         Button("Keep Editing", role: .cancel) {}
+                      }
                 }
                 
                 ToolbarItem(placement: .primaryAction) {
@@ -72,12 +89,21 @@ struct AddPoIView: View {
                 Button("Cancel", role: .cancel) {
                     vm.showAlert.toggle()
                 }
+            } message: {
+                Text(vm.alertContent.message)
             }
         }
     }
     
     private func savePoI() {
         Task {
+            if vm.address.isEmpty {
+                vm.presentAlert(title: "Form Error",
+                                message: "The address field must contain a valid street address")
+                focusedField = .address
+                return
+            }
+            
             if vm.latitude.isEmpty || vm.longitude.isEmpty {
                 await vm.getCoordinates()
             }

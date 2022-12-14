@@ -15,7 +15,7 @@ struct AddAccommodationView: View {
     @FocusState private var focusedField: FocusedField?
     @Environment(\.managedObjectContext) private var viewContext: NSManagedObjectContext
     @Environment(\.dismiss) var dismiss: DismissAction
-    @State private var isPresentingConfirm: Bool = false
+    @State private var showConfirmationDialog: Bool = false
     
     var body: some View {
         NavigationStack {
@@ -113,21 +113,22 @@ struct AddAccommodationView: View {
                         .multilineTextAlignment(.leading)
                 }
             }
+            .scrollDismissesKeyboard(.interactively)
             .interactiveDismissDisabled()
             .navigationTitle("Add a new Accomodation")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar{
                 ToolbarItem(placement: .cancellationAction) {
                     Button("Cancel", role: .destructive){
-                        isPresentingConfirm = true
+                        showConfirmationDialog = true
                     }
                     .confirmationDialog("Are you sure you want to discard this accomodation?",
-                                        isPresented: $isPresentingConfirm,
+                                        isPresented: $showConfirmationDialog,
                                         titleVisibility: .visible) {
                          Button("Discard Changes", role: .destructive) {
                              dismiss()
                          }
-                         Button("Cancel", role: .cancel) {}
+                         Button("Keep Editing", role: .cancel) {}
                       }
                 }
                 
