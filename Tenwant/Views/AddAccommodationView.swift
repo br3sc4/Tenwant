@@ -156,7 +156,7 @@ struct AddAccommodationView: View {
                          Button("Discard Changes", role: .destructive) {
                              dismiss()
                          }
-                         Button("Cancel", role: .cancel) {}
+                         Button("Keep Editing", role: .cancel) {}
                       }
                 }
                 
