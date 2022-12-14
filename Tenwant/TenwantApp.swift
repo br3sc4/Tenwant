@@ -1,5 +1,5 @@
 //
-//  AccommodationAppApp.swift
+//  TenwantApp.swift
 //  AccommodationApp
 //
 //  Created by Lorenzo Brescanzin on 07/12/22.
@@ -8,7 +8,7 @@
 import SwiftUI
 
 @main
-struct AccommodationAppApp: App {
+struct TenwantApp: App {
     
     let persistenceController = PersistenceController.shared
     
