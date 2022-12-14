@@ -13,7 +13,7 @@ struct MainView: View {
         TabView {
             MyAccommodationsView()
                 .tabItem {
-                    Label("MyAccommodations", systemImage: "square.grid.2x2")
+                    Label("My Accommodations", systemImage: "square.grid.2x2")
                 }
             
             MyCalendarView()
