@@ -9,20 +9,23 @@ import SwiftUI
 
 struct GalleryView: View {
     let accommodations: FetchedResults<Accomodation>
-//    let gridItems = Array(repeating: GridItem(.flexible(), spacing: 4, alignment: .leading), count: 2)
-    private let gridItems = [ GridItem(.flexible(), spacing: 2),
-                              GridItem(.flexible(), spacing: 2),
+    private let gridItems = [
+        GridItem(.flexible(), spacing: 2),
+        GridItem(.flexible(), spacing: 2)
     ]
+    
     var body: some View {
-        ScrollView(showsIndicators: false){
-            LazyVGrid(columns: gridItems, spacing: 15){
+        ScrollView(showsIndicators: false) {
+            LazyVGrid(columns: gridItems, spacing: 15) {
                 ForEach(accommodations) { accommodation in
-                   
-                    NavigationLink(destination: AccommodationDetailsView(accommodation: accommodation), label:
-                                        {
-                        AccommodationCardView(accommodation: accommodation, isFavourite: accommodation.isFavourite)
-                                .padding([.leading, .trailing], 4)
-                    })
+                    NavigationLink {
+                        AccommodationDetailsView(accommodation: accommodation)
+                        
+                    } label: {
+                        AccommodationCardView(accommodation: accommodation,
+                                              isFavourite: accommodation.isFavourite)
+                            .padding([.leading, .trailing], 4)
+                    }
                 }
             }
         }

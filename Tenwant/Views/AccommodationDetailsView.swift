@@ -28,7 +28,6 @@ struct AccommodationDetailsView: View {
                                 Image(uiImage: uiImage)
                                     .resizable()
                                     .scaledToFill()
-//                                    .aspectRatio(4/3, contentMode: .fill)
                                     .clipShape(Rectangle())
                                     .tag(image.hashValue)
                             }
@@ -44,7 +43,8 @@ struct AccommodationDetailsView: View {
             Section {
                 HStack{
                     
-                    ActionButtonView(role: "isFavourite", symbolName: vm.isFavourite ? "heart.fill" : "heart",
+                    ActionButtonView(role: "isFavourite",
+                                     symbolName: vm.isFavourite ? "heart.fill" : "heart",
                                      textLabel: vm.isFavourite ? "unfavourite".capitalized : "favorite".capitalized) {
                         vm.accommodation.isFavourite.toggle()
                         guard let _ = try? viewContext.save() else { return }
@@ -54,20 +54,23 @@ struct AccommodationDetailsView: View {
                     
                     if let _ = vm.phoneNumber,
                        let url = vm.phoneNumberUrl {
-                            ActionButtonView(role: "default", symbolName: "phone",
+                            ActionButtonView(role: "default",
+                                             symbolName: "phone",
                                              textLabel: "call") {
                                 UIApplication.shared.open(url)
                             }
                         Spacer()
                     } else {
-                        ActionButtonView(role: "default", symbolName: "phone",
+                        ActionButtonView(role: "default",
+                                         symbolName: "phone",
                                          textLabel: "call") {
                         }
                         .disabled(true)
                         Spacer()
                     }
                     
-                    ActionButtonView(role: "default",symbolName: "calendar",
+                    ActionButtonView(role: "default",
+                                     symbolName: "calendar",
                                      textLabel: "add") {
                         isOnAddAppointment.toggle()
                     }
@@ -79,7 +82,8 @@ struct AccommodationDetailsView: View {
                     Spacer()
                    
                     
-                    ActionButtonView(role: "delete", symbolName: "trash",
+                    ActionButtonView(role: "delete",
+                                     symbolName: "trash",
                                      textLabel: "delete") {
                         Accomodation
                             .deleteAccommodation(viewContext: viewContext, accommodationObject: vm.accommodation)
@@ -165,15 +169,6 @@ struct AccommodationDetailsView: View {
         .navigationTitle(vm.address)
         .navigationBarTitleDisplayMode(.inline)
         .toolbar{
-//            ToolbarItem(placement: .primaryAction){
-//                Button {
-//                    //                    ShareLink(item: "hello")
-//
-//                } label: {
-//                    Image(systemName: "square.and.arrow.up")
-//                }
-//            }
-            
             ToolbarItem(placement: .primaryAction) {
                 Button {
                     Accomodation

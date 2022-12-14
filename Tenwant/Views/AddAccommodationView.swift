@@ -15,11 +15,8 @@ struct AddAccommodationView: View {
     @FocusState private var focusedField: FocusedField?
     @Environment(\.managedObjectContext) private var viewContext: NSManagedObjectContext
     @Environment(\.dismiss) var dismiss: DismissAction
-    
-    //test
     @State private var isPresentingConfirm: Bool = false
     @FocusState private var keyboardIsFocused: Bool
-
     
     var body: some View {
         NavigationStack {
@@ -164,12 +161,7 @@ struct AddAccommodationView: View {
                 }
                 
                 ToolbarItem(placement: .confirmationAction) {
-                    Button(action: {
-                        saveAccommodation()
-                    }, label:
-                            {
-                        Text("Save")
-                    })
+                    Button("Save", action: saveAccommodation)
                 }
               // test
                 ToolbarItemGroup(placement: .keyboard) {
@@ -243,7 +235,9 @@ struct AddAccommodationView: View {
     }
     
     private enum FocusedField {
-        case address, latitude, longitude, rentCost, extraCosts, depositCost, agencyFees, contactName, contactPhone, advertisementUrl, description
+        case address, latitude, longitude, rentCost, extraCosts,
+             depositCost, agencyFees, contactName, contactPhone,
+             advertisementUrl, description
     }
 }
 

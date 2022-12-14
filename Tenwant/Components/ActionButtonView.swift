@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct ActionButtonView: View {
-    
     @Environment(\.colorScheme) private var colorScheme
     
     var role: String
@@ -17,22 +16,22 @@ struct ActionButtonView: View {
     var action: () -> Void
     
     var body: some View {
-        
         if colorScheme == .light {
-        Button(action: action) {
-            VStack(spacing: 3) {
-                Image(systemName: symbolName)
-                    .foregroundColor(role == "delete" ? .red : .accentColor)
-                
-                Text(textLabel.capitalized)
-                    .foregroundColor(role == "delete" ? .red : .accentColor)
-                    .font(.system(size: 11))
-                    .font(.subheadline)
-            }.frame(width: role == "isFavourite" ? 65 : 55)
-            .frame(width: 55, height: 50)
-        }.tint(Color(UIColor.systemBackground))
+            Button(action: action) {
+                VStack(spacing: 3) {
+                    Image(systemName: symbolName)
+                        .foregroundColor(role == "delete" ? .red : .accentColor)
+                    
+                    Text(textLabel.capitalized)
+                        .foregroundColor(role == "delete" ? .red : .accentColor)
+                        .font(.system(size: 11))
+                        .font(.subheadline)
+                }
+                .frame(width: role == "isFavourite" ? 65 : 55, height: 50)
+            }
             .buttonStyle(.borderedProminent)
-        }else{
+            .tint(Color(UIColor.systemBackground))
+        } else {
             Button(action: action) {
                 VStack(spacing: 3) {
                     Image(systemName: symbolName)
@@ -43,8 +42,10 @@ struct ActionButtonView: View {
                         .font(.system(size: 11))
                         .font(.subheadline)
                         .frame(width: role == "isFavourite" ? 65 : 55)
-                }.frame(width: 55, height: 50)
-            }.buttonStyle(BorderedButtonStyle())
+                }
+                .frame(width: 55, height: 50)
+            }
+            .buttonStyle(BorderedButtonStyle())
         }
     }
 }
