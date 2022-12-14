@@ -28,6 +28,10 @@ struct AccommodationDetailsView: View {
                                 Image(uiImage: uiImage)
                                     .resizable()
                                     .scaledToFill()
+<<<<<<< HEAD
+=======
+//                                    .aspectRatio(4/3, contentMode: .fill)
+>>>>>>> 4f3ddae (Project renaming)
                                     .clipShape(Rectangle())
                                     .tag(image.hashValue)
                             }
@@ -43,8 +47,12 @@ struct AccommodationDetailsView: View {
             Section {
                 HStack{
                     
+<<<<<<< HEAD
                     ActionButtonView(role: "isFavourite",
                                      symbolName: vm.isFavourite ? "heart.fill" : "heart",
+=======
+                    ActionButtonView(role: "isFavourite", symbolName: vm.isFavourite ? "heart.fill" : "heart",
+>>>>>>> 4f3ddae (Project renaming)
                                      textLabel: vm.isFavourite ? "unfavourite".capitalized : "favorite".capitalized) {
                         vm.accommodation.isFavourite.toggle()
                         guard let _ = try? viewContext.save() else { return }
@@ -54,23 +62,35 @@ struct AccommodationDetailsView: View {
                     
                     if let _ = vm.phoneNumber,
                        let url = vm.phoneNumberUrl {
+<<<<<<< HEAD
                             ActionButtonView(role: "default",
                                              symbolName: "phone",
+=======
+                            ActionButtonView(role: "default", symbolName: "phone",
+>>>>>>> 4f3ddae (Project renaming)
                                              textLabel: "call") {
                                 UIApplication.shared.open(url)
                             }
                         Spacer()
                     } else {
+<<<<<<< HEAD
                         ActionButtonView(role: "default",
                                          symbolName: "phone",
+=======
+                        ActionButtonView(role: "default", symbolName: "phone",
+>>>>>>> 4f3ddae (Project renaming)
                                          textLabel: "call") {
                         }
                         .disabled(true)
                         Spacer()
                     }
                     
+<<<<<<< HEAD
                     ActionButtonView(role: "default",
                                      symbolName: "calendar",
+=======
+                    ActionButtonView(role: "default",symbolName: "calendar",
+>>>>>>> 4f3ddae (Project renaming)
                                      textLabel: "add") {
                         isOnAddAppointment.toggle()
                     }
@@ -82,8 +102,12 @@ struct AccommodationDetailsView: View {
                     Spacer()
                    
                     
+<<<<<<< HEAD
                     ActionButtonView(role: "delete",
                                      symbolName: "trash",
+=======
+                    ActionButtonView(role: "delete", symbolName: "trash",
+>>>>>>> 4f3ddae (Project renaming)
                                      textLabel: "delete") {
                         Accomodation
                             .deleteAccommodation(viewContext: viewContext, accommodationObject: vm.accommodation)
@@ -148,10 +172,42 @@ struct AccommodationDetailsView: View {
                     }
                 }
             }
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+            
+            Section {
+                Button {
+                    vm.accommodation.isFavourite.toggle()
+                    guard let _ = try? viewContext.save() else { return }
+                    vm.isFavourite.toggle()
+                } label: {
+                    if vm.isFavourite {
+                        Label("Unfavourite", systemImage: "heart.fill")
+                    } else {
+                        Label("Add to Favourites", systemImage: "heart")
+                    }
+                }
+            }
+=======
+>>>>>>> d39835d (add ui buttons under the tabview, func to book the appointment, fix the call button)
+>>>>>>> 4f3ddae (Project renaming)
         }
         .navigationTitle(vm.address)
         .navigationBarTitleDisplayMode(.inline)
         .toolbar{
+<<<<<<< HEAD
+=======
+//            ToolbarItem(placement: .primaryAction){
+//                Button {
+//                    //                    ShareLink(item: "hello")
+//
+//                } label: {
+//                    Image(systemName: "square.and.arrow.up")
+//                }
+//            }
+            
+>>>>>>> 4f3ddae (Project renaming)
             ToolbarItem(placement: .primaryAction) {
                 Button {
                     Accomodation

@@ -13,15 +13,24 @@
 		2D09F8A42944B5350090B594 /* PointOfInterest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D09F8A32944B5350090B594 /* PointOfInterest.swift */; };
 		2D09F8A62944BAB00090B594 /* PoIAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D09F8A52944BAB00090B594 /* PoIAnnotation.swift */; };
 		2D6AAC4B2940B5BA00A7AC00 /* TenwantApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D6AAC4A2940B5BA00A7AC00 /* TenwantApp.swift */; };
+<<<<<<< HEAD
 		2D6AAC4F2940B5BB00A7AC00 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2D6AAC4E2940B5BB00A7AC00 /* Assets.xcassets */; };
 		2D6AAC532940B5BB00A7AC00 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2D6AAC522940B5BB00A7AC00 /* Preview Assets.xcassets */; };
 		2D8368612949ECC400088115 /* MyAccommodationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8368602949ECC400088115 /* MyAccommodationsView.swift */; };
+=======
+		2D6AAC4D2940B5BA00A7AC00 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D6AAC4C2940B5BA00A7AC00 /* ContentView.swift */; };
+		2D6AAC4F2940B5BB00A7AC00 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2D6AAC4E2940B5BB00A7AC00 /* Assets.xcassets */; };
+		2D6AAC532940B5BB00A7AC00 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2D6AAC522940B5BB00A7AC00 /* Preview Assets.xcassets */; };
+>>>>>>> 4f3ddae (Project renaming)
 		2D8A08BD29471A2800AE2DE3 /* AccommodationAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB6CB8029415F5F0048CF00 /* AccommodationAnnotation.swift */; };
 		2DB6CB7D29415EDD0048CF00 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB6CB7C29415EDD0048CF00 /* MapView.swift */; };
 		2DB6CB7F29415EF30048CF00 /* MapViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB6CB7E29415EF30048CF00 /* MapViewRepresentable.swift */; };
 		2DB6CB832941F7CC0048CF00 /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB6CB822941F7CC0048CF00 /* MapViewModel.swift */; };
 		2DB6CB852941F9000048CF00 /* AlertContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB6CB842941F9000048CF00 /* AlertContent.swift */; };
+<<<<<<< HEAD
 		2DE7B3182949FFC700A298BE /* AccommodationSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE7B3172949FFC700A298BE /* AccommodationSheetView.swift */; };
+=======
+>>>>>>> 4f3ddae (Project renaming)
 		2DF1FCC92946219600815F32 /* AccommodationDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DF1FCC82946219600815F32 /* AccommodationDetailsView.swift */; };
 		2DF1FCCD2946277000815F32 /* AddAccommodationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DF1FCCC2946277000815F32 /* AddAccommodationViewModel.swift */; };
 		A90B3D4C2940C03500A8E180 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90B3D4B2940C03500A8E180 /* MainView.swift */; };
@@ -33,12 +42,20 @@
 		A998190C2949BC8300464125 /* ActionButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A998190B2949BC8300464125 /* ActionButtonView.swift */; };
 		A9B30F7E2944C173009F5B9A /* AccommodationCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B30F7D2944C173009F5B9A /* AccommodationCardView.swift */; };
 		A9B30F802944C515009F5B9A /* AccommodationDetailsRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B30F7F2944C515009F5B9A /* AccommodationDetailsRow.swift */; };
+<<<<<<< HEAD
+=======
+		A9B30F842944C5E8009F5B9A /* MyAccommodationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B30F832944C5E8009F5B9A /* MyAccommodationsView.swift */; };
+>>>>>>> 4f3ddae (Project renaming)
 		A9B30F862944C6B0009F5B9A /* AddAccommodationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B30F852944C6B0009F5B9A /* AddAccommodationView.swift */; };
 		A9B30F8A29464FF1009F5B9A /* PointOfInterestViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B30F8929464FF1009F5B9A /* PointOfInterestViewModel.swift */; };
 		BC38D31329474E0000AD4ED6 /* AccommodationDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC38D31229474E0000AD4ED6 /* AccommodationDetailViewModel.swift */; };
 		BCDE64DD29428879008056AF /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCDE64DC29428879008056AF /* Extensions.swift */; };
 		BCE95ED82941F4200034D879 /* AccommodationData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BCE95ED62941F4200034D879 /* AccommodationData.xcdatamodeld */; };
 		BCE95EDA2941F8C50034D879 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCE95ED92941F8C50034D879 /* Persistence.swift */; };
+<<<<<<< HEAD
+=======
+		BCE95EDD2941FB390034D879 /* CoreDataTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCE95EDC2941FB390034D879 /* CoreDataTestView.swift */; };
+>>>>>>> 4f3ddae (Project renaming)
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,16 +67,26 @@
 		2D4BE73F294734FA00EAB80D /* AccommodationDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccommodationDetailViewModel.swift; sourceTree = "<group>"; };
 		2D6AAC472940B5BA00A7AC00 /* Tenwant.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tenwant.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D6AAC4A2940B5BA00A7AC00 /* TenwantApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TenwantApp.swift; sourceTree = "<group>"; };
+<<<<<<< HEAD
 		2D6AAC4E2940B5BB00A7AC00 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2D6AAC502940B5BB00A7AC00 /* Tenwant.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Tenwant.entitlements; sourceTree = "<group>"; };
 		2D6AAC522940B5BB00A7AC00 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		2D8368602949ECC400088115 /* MyAccommodationsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyAccommodationsView.swift; sourceTree = "<group>"; };
+=======
+		2D6AAC4C2940B5BA00A7AC00 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		2D6AAC4E2940B5BB00A7AC00 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		2D6AAC502940B5BB00A7AC00 /* AccommodationApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AccommodationApp.entitlements; sourceTree = "<group>"; };
+		2D6AAC522940B5BB00A7AC00 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+>>>>>>> 4f3ddae (Project renaming)
 		2DB6CB7C29415EDD0048CF00 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		2DB6CB7E29415EF30048CF00 /* MapViewRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewRepresentable.swift; sourceTree = "<group>"; };
 		2DB6CB8029415F5F0048CF00 /* AccommodationAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccommodationAnnotation.swift; sourceTree = "<group>"; };
 		2DB6CB822941F7CC0048CF00 /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
 		2DB6CB842941F9000048CF00 /* AlertContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertContent.swift; sourceTree = "<group>"; };
+<<<<<<< HEAD
 		2DE7B3172949FFC700A298BE /* AccommodationSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccommodationSheetView.swift; sourceTree = "<group>"; };
+=======
+>>>>>>> 4f3ddae (Project renaming)
 		2DF1FCC82946219600815F32 /* AccommodationDetailsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccommodationDetailsView.swift; sourceTree = "<group>"; };
 		2DF1FCCC2946277000815F32 /* AddAccommodationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAccommodationViewModel.swift; sourceTree = "<group>"; };
 		A90B3D4B2940C03500A8E180 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -71,12 +98,20 @@
 		A998190B2949BC8300464125 /* ActionButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionButtonView.swift; sourceTree = "<group>"; };
 		A9B30F7D2944C173009F5B9A /* AccommodationCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccommodationCardView.swift; sourceTree = "<group>"; };
 		A9B30F7F2944C515009F5B9A /* AccommodationDetailsRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccommodationDetailsRow.swift; sourceTree = "<group>"; };
+<<<<<<< HEAD
+=======
+		A9B30F832944C5E8009F5B9A /* MyAccommodationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAccommodationsView.swift; sourceTree = "<group>"; };
+>>>>>>> 4f3ddae (Project renaming)
 		A9B30F852944C6B0009F5B9A /* AddAccommodationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAccommodationView.swift; sourceTree = "<group>"; };
 		A9B30F8929464FF1009F5B9A /* PointOfInterestViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointOfInterestViewModel.swift; sourceTree = "<group>"; };
 		BC38D31229474E0000AD4ED6 /* AccommodationDetailViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccommodationDetailViewModel.swift; sourceTree = "<group>"; };
 		BCDE64DC29428879008056AF /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		BCE95ED72941F4200034D879 /* Accommodation.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Accommodation.xcdatamodel; sourceTree = "<group>"; };
 		BCE95ED92941F8C50034D879 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
+<<<<<<< HEAD
+=======
+		BCE95EDC2941FB390034D879 /* CoreDataTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataTestView.swift; sourceTree = "<group>"; };
+>>>>>>> 4f3ddae (Project renaming)
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,7 +131,10 @@
 				2DB6CB7C29415EDD0048CF00 /* MapView.swift */,
 				2DB6CB7E29415EF30048CF00 /* MapViewRepresentable.swift */,
 				2D09F8A12944B2C80090B594 /* AddPoIView.swift */,
+<<<<<<< HEAD
 				2DE7B3172949FFC700A298BE /* AccommodationSheetView.swift */,
+=======
+>>>>>>> 4f3ddae (Project renaming)
 			);
 			path = Map;
 			sourceTree = "<group>";
@@ -124,9 +162,16 @@
 				A90B3D4E2940D0A900A8E180 /* Components */,
 				A90B3D532940DCF400A8E180 /* Models */,
 				A90B3D4D2940D07F00A8E180 /* Views */,
+<<<<<<< HEAD
 				2D6AAC4A2940B5BA00A7AC00 /* TenwantApp.swift */,
 				2D6AAC4E2940B5BB00A7AC00 /* Assets.xcassets */,
 				2D6AAC502940B5BB00A7AC00 /* Tenwant.entitlements */,
+=======
+				2D6AAC4C2940B5BA00A7AC00 /* ContentView.swift */,
+				2D6AAC4A2940B5BA00A7AC00 /* TenwantApp.swift */,
+				2D6AAC4E2940B5BB00A7AC00 /* Assets.xcassets */,
+				2D6AAC502940B5BB00A7AC00 /* AccommodationApp.entitlements */,
+>>>>>>> 4f3ddae (Project renaming)
 				BCE95EDB2941F8E30034D879 /* CoreData */,
 				2D6AAC512940B5BB00A7AC00 /* Preview Content */,
 			);
@@ -158,11 +203,17 @@
 			children = (
 				2D09F8A02944B2AA0090B594 /* Map */,
 				A90B3D4B2940C03500A8E180 /* MainView.swift */,
+<<<<<<< HEAD
 				2D8368602949ECC400088115 /* MyAccommodationsView.swift */,
 				A9B30F852944C6B0009F5B9A /* AddAccommodationView.swift */,
 				2DF1FCC82946219600815F32 /* AccommodationDetailsView.swift */,
 				D14E573E2947E37900BABCCF /* AppointmentRepresentable.swift */,
 				D14E57402947E39500BABCCF /* ApppointmentView.swift */,
+=======
+				A9B30F832944C5E8009F5B9A /* MyAccommodationsView.swift */,
+				A9B30F852944C6B0009F5B9A /* AddAccommodationView.swift */,
+				2DF1FCC82946219600815F32 /* AccommodationDetailsView.swift */,
+>>>>>>> 4f3ddae (Project renaming)
 				A90B3D5C2942417500A8E180 /* MyCalendarView.swift */,
 			);
 			path = Views;
@@ -198,6 +249,10 @@
 		BCE95EDB2941F8E30034D879 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
+<<<<<<< HEAD
+=======
+				BCE95EDC2941FB390034D879 /* CoreDataTestView.swift */,
+>>>>>>> 4f3ddae (Project renaming)
 				BCE95ED92941F8C50034D879 /* Persistence.swift */,
 				BCE95ED62941F4200034D879 /* AccommodationData.xcdatamodeld */,
 				BCDE64DC29428879008056AF /* Extensions.swift */,
@@ -277,20 +332,33 @@
 			files = (
 				2D8A08BD29471A2800AE2DE3 /* AccommodationAnnotation.swift in Sources */,
 				A9B30F802944C515009F5B9A /* AccommodationDetailsRow.swift in Sources */,
+<<<<<<< HEAD
 				2DE7B3182949FFC700A298BE /* AccommodationSheetView.swift in Sources */,
+=======
+>>>>>>> 4f3ddae (Project renaming)
 				A9B30F862944C6B0009F5B9A /* AddAccommodationView.swift in Sources */,
 				2DB6CB7F29415EF30048CF00 /* MapViewRepresentable.swift in Sources */,
 				A90B3D5929423AA800A8E180 /* MyCalendarRowView.swift in Sources */,
 				A90B3D522940D3E200A8E180 /* GalleryView.swift in Sources */,
 				A9B30F8A29464FF1009F5B9A /* PointOfInterestViewModel.swift in Sources */,
+<<<<<<< HEAD
 				2D8368612949ECC400088115 /* MyAccommodationsView.swift in Sources */,
+=======
+>>>>>>> 4f3ddae (Project renaming)
 				A90B3D4C2940C03500A8E180 /* MainView.swift in Sources */,
 				BCE95ED82941F4200034D879 /* AccommodationData.xcdatamodeld in Sources */,
 				A9B30F7E2944C173009F5B9A /* AccommodationCardView.swift in Sources */,
 				BCDE64DD29428879008056AF /* Extensions.swift in Sources */,
+<<<<<<< HEAD
 				D14E57412947E39500BABCCF /* ApppointmentView.swift in Sources */,
 				2D09F89F294398E60090B594 /* Accomodation.swift in Sources */,
 				BCE95EDA2941F8C50034D879 /* Persistence.swift in Sources */,
+=======
+				2D09F89F294398E60090B594 /* Accomodation.swift in Sources */,
+				BCE95EDD2941FB390034D879 /* CoreDataTestView.swift in Sources */,
+				BCE95EDA2941F8C50034D879 /* Persistence.swift in Sources */,
+				2D6AAC4D2940B5BA00A7AC00 /* ContentView.swift in Sources */,
+>>>>>>> 4f3ddae (Project renaming)
 				2DB6CB852941F9000048CF00 /* AlertContent.swift in Sources */,
 				2DF1FCCD2946277000815F32 /* AddAccommodationViewModel.swift in Sources */,
 				2DB6CB7D29415EDD0048CF00 /* MapView.swift in Sources */,
@@ -306,6 +374,10 @@
 				A90B3D5D2942417500A8E180 /* MyCalendarView.swift in Sources */,
 				A90B3D5B2942415900A8E180 /* MyCalendarListView.swift in Sources */,
 				A90B3D5F2942484E00A8E180 /* MyCalendarWeeklyView.swift in Sources */,
+<<<<<<< HEAD
+=======
+				A9B30F842944C5E8009F5B9A /* MyAccommodationsView.swift in Sources */,
+>>>>>>> 4f3ddae (Project renaming)
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -426,17 +498,28 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+<<<<<<< HEAD
 				CODE_SIGN_ENTITLEMENTS = Tenwant/Tenwant.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Tenwant/Preview Content\"";
 				DEVELOPMENT_TEAM = A8DRB9NKCV;
+=======
+				CODE_SIGN_ENTITLEMENTS = AccommodationApp/AccommodationApp.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"AccommodationApp/Preview Content\"";
+				DEVELOPMENT_TEAM = 2983DH4K56;
+>>>>>>> 4f3ddae (Project renaming)
 				ENABLE_HARDENED_RUNTIME = YES;
 				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = Tenwant;
+<<<<<<< HEAD
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
+=======
+>>>>>>> 4f3ddae (Project renaming)
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We would like to access the current location";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
@@ -453,7 +536,11 @@
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MARKETING_VERSION = 1.0;
+<<<<<<< HEAD
 				PRODUCT_BUNDLE_IDENTIFIER = com.brescanzin.lorenzo.Tenwant;
+=======
+				PRODUCT_BUNDLE_IDENTIFIER = com.giugliano.antonella.AccommodationApp;
+>>>>>>> 4f3ddae (Project renaming)
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
@@ -468,17 +555,28 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+<<<<<<< HEAD
 				CODE_SIGN_ENTITLEMENTS = Tenwant/Tenwant.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Tenwant/Preview Content\"";
 				DEVELOPMENT_TEAM = A8DRB9NKCV;
+=======
+				CODE_SIGN_ENTITLEMENTS = AccommodationApp/AccommodationApp.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"AccommodationApp/Preview Content\"";
+				DEVELOPMENT_TEAM = 2983DH4K56;
+>>>>>>> 4f3ddae (Project renaming)
 				ENABLE_HARDENED_RUNTIME = YES;
 				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = Tenwant;
+<<<<<<< HEAD
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
+=======
+>>>>>>> 4f3ddae (Project renaming)
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We would like to access the current location";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
@@ -495,7 +593,11 @@
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MARKETING_VERSION = 1.0;
+<<<<<<< HEAD
 				PRODUCT_BUNDLE_IDENTIFIER = com.brescanzin.lorenzo.Tenwant;
+=======
+				PRODUCT_BUNDLE_IDENTIFIER = com.giugliano.antonella.AccommodationApp;
+>>>>>>> 4f3ddae (Project renaming)
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
