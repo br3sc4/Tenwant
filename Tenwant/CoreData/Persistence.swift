@@ -35,7 +35,11 @@ struct PersistenceController {
         return result
     }()
 
-    let container: NSPersistentContainer
+    private let container: NSPersistentContainer
+    
+    var viewContext: NSManagedObjectContext {
+        container.viewContext
+    }
 
     init(inMemory: Bool = false) {
         container = NSPersistentContainer(name: "AccommodationData")

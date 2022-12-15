@@ -8,7 +8,7 @@
 import EventKit
 
 final class AppointmentViewModel: ObservableObject {
-    @Published var calendarAccessGaranted: Bool = false
+    @Published var calendarAccessGaranted: Bool = true
     
     let store: EKEventStore = EKEventStore()
     

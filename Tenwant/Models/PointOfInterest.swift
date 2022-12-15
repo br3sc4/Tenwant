@@ -34,7 +34,7 @@ extension PointOfInterest {
 
 extension PointOfInterest {
     static let cumanaFuorigrotta = PointOfInterest
-        .makePointOfInterest(viewContext: PersistenceController.preview.container.viewContext,
+        .makePointOfInterest(viewContext: PersistenceController.preview.viewContext,
                              name: "Cumana Fuorigrotta",
                              address: "Via Pippo",
                              latitude: 40.827930,

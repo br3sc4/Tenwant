@@ -1,5 +1,5 @@
 //
-//  AddAppointmentView.swift
+//  AddAppointmentSheetView.swift
 //  Tenwant
 //
 //  Created by Lorenzo Brescanzin on 15/12/22.
@@ -8,15 +8,11 @@
 import SwiftUI
 import CoreData
 
-struct AddAppointmentView: View {
+struct AddAppointmentSheetView: View {
     @State private var date: Date = Date.now
-    @ObservedObject private var vm: AccommodationDetailViewModel
+    @EnvironmentObject private var vm: AccommodationDetailViewModel
     @Environment(\.dismiss) private var dismiss: DismissAction
     @Environment(\.managedObjectContext) private var moc: NSManagedObjectContext
-    
-    init(vm: AccommodationDetailViewModel) {
-        self.vm = vm
-    }
     
     var body: some View {
         NavigationStack {
@@ -45,9 +41,11 @@ struct AddAppointmentView: View {
     }
 }
 
-struct AddAppointmentView_Previews: PreviewProvider {
+struct AddAppointmentSheetView_Previews: PreviewProvider {
     @StateObject static private var vm = AccommodationDetailViewModel(accommodation: .init())
+    
     static var previews: some View {
-        AddAppointmentView(vm: vm)
+        AddAppointmentSheetView()
+            .environmentObject(vm)
     }
 }
