@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import CoreData
 
 final class AccommodationDetailViewModel: ObservableObject {
     var images: [Data] {
@@ -70,5 +71,9 @@ final class AccommodationDetailViewModel: ObservableObject {
         self.currentStatus = Status(rawValue: accommodation.status ?? "") ?? .toContact
         self.accommodation = accommodation
         self.appointment =  accommodation.scheduled_appointment
+    }
+    
+    func bookAppointment(for date: Date, viewContext: NSManagedObjectContext) {
+        Accomodation.bookAppointment(viewContext: viewContext, accommodationObject: accommodation, newAppointment: date)
     }
 }
