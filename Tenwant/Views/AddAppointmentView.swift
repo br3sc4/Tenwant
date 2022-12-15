@@ -1,76 +1,53 @@
 //
-//  AppointmentRepresentable.swift
-//  AccommodationApp
+//  AddAppointmentView.swift
+//  Tenwant
 //
-//  Created by Massidé Dosso on 12/12/22.
+//  Created by Lorenzo Brescanzin on 15/12/22.
 //
 
 import SwiftUI
-import EventKitUI
+import CoreData
 
-struct AddAppointmentView: UIViewControllerRepresentable {
-    typealias UIViewControllerType = EKEventEditViewController
-
-    func makeUIViewController(context: UIViewControllerRepresentableContext<AddAppointmentView>) -> EKEventEditViewController {
-        let controller = EKEventEditViewController()
-        controller.eventStore = EKEventStore()
-        controller.event = EKEvent(eventStore: controller.eventStore)
-        controller.editViewDelegate = context.coordinator
-        
-        Task {
-            await requestCalendarAccess(for: controller.eventStore)
-        }
-        
-        return controller
-    }
-
-    func updateUIViewController(_ uiViewController: AddAppointmentView.UIViewControllerType, context: UIViewControllerRepresentableContext<AddAppointmentView>) {
-    }
-
-    func makeCoordinator() -> Coordinator {
-        return Coordinator()
-    }
-
-    class Coordinator : NSObject, EKEventEditViewDelegate {
-        func eventEditViewController(_ controller: EKEventEditViewController, didCompleteWith action: EKEventEditViewAction) {
-            switch action {
-            case .canceled:
-                controller.cancelEditing()
-                controller.dismiss(animated: true)
-            case .saved:
-                do {
-                    try controller.eventStore
-                        .save(controller.event!,
-                              span: .thisEvent,
-                              commit: true)
-                    controller.dismiss(animated: true)
-                } catch {
-                    print("❌ - \(error)")
-                }
-            case .deleted:
-                print("⚠️ - Deleted")
-            @unknown default:
-                break
-            }
-        }
+struct AddAppointmentView: View {
+    @State private var date: Date = Date.now
+    @ObservedObject private var vm: AccommodationDetailViewModel
+    @Environment(\.dismiss) private var dismiss: DismissAction
+    @Environment(\.managedObjectContext) private var moc: NSManagedObjectContext
+    
+    init(vm: AccommodationDetailViewModel) {
+        self.vm = vm
     }
     
-    private func requestCalendarAccess(for store: EKEventStore) async {
-        switch EKEventStore.authorizationStatus(for: .event) {
-        case .authorized:
-            break
-        case .denied:
-            break
-        case .notDetermined:
-            do {
-                try await store.requestAccess(to: .event)
-            } catch {
-                print("❌ - \(error)")
+    var body: some View {
+        NavigationStack {
+            Form {
+                DatePicker("Date",
+                           selection: $date,
+                           displayedComponents: [.date, .hourAndMinute])
             }
-        case .restricted:
-            break
-        @unknown default:
-            break
+            .navigationTitle("Add Appointment")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .primaryAction) {
+                    Button("Done") {
+                        vm.bookAppointment(for: date, viewContext: moc)
+                        dismiss()
+                    }
+                }
+                
+                ToolbarItem(placement: .cancellationAction) {
+                    Button("Cancel", role: .cancel) {
+                        dismiss()
+                    }
+                }
+            }
         }
+    }
+}
+
+struct AddAppointmentView_Previews: PreviewProvider {
+    @StateObject static private var vm = AccommodationDetailViewModel(accommodation: .init())
+    static var previews: some View {
+        AddAppointmentView(vm: vm)
     }
 }

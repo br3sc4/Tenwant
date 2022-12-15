@@ -6,24 +6,26 @@
 //
 
 import SwiftUI
+import EventKit
 
 
 struct AccommodationDetailsView: View {
-    @StateObject private var vm: AccommodationDetailViewModel
+    @StateObject private var accommodationVM: AccommodationDetailViewModel
+//    @StateObject private var appointmentVM: AppointmentViewModel = AppointmentViewModel()
     @State var isOnAddAppointment = false
     @Environment(\.managedObjectContext) private var viewContext
     @Environment(\.dismiss) private var dismiss
     
     init(accommodation: Accomodation) {
-        self._vm = StateObject(wrappedValue: AccommodationDetailViewModel(accommodation: accommodation))
+        self._accommodationVM = StateObject(wrappedValue: AccommodationDetailViewModel(accommodation: accommodation))
     }
     
     var body: some View {
         List {
-            if !vm.images.isEmpty {
+            if !accommodationVM.images.isEmpty {
                 Section {
                     TabView {
-                        ForEach(vm.images, id: \.self) { image in
+                        ForEach(accommodationVM.images, id: \.self) { image in
                             if let uiImage = UIImage(data: image) {
                                 Image(uiImage: uiImage)
                                     .resizable()
@@ -41,88 +43,41 @@ struct AccommodationDetailsView: View {
             }
             
             Section {
-                HStack{
-                    
-                    ActionButtonView(role: "isFavourite",
-                                     symbolName: vm.isFavourite ? "heart.fill" : "heart",
-                                     textLabel: vm.isFavourite ? "unfavourite".capitalized : "favorite".capitalized) {
-                        vm.accommodation.isFavourite.toggle()
-                        guard let _ = try? viewContext.save() else { return }
-                        vm.isFavourite.toggle()
-                    }
-                    Spacer()
-                    
-                    if let _ = vm.phoneNumber,
-                       let url = vm.phoneNumberUrl {
-                            ActionButtonView(role: "default",
-                                             symbolName: "phone",
-                                             textLabel: "call") {
-                                UIApplication.shared.open(url)
-                            }
-                        Spacer()
-                    } else {
-                        ActionButtonView(role: "default",
-                                         symbolName: "phone",
-                                         textLabel: "call") {
-                        }
-                        .disabled(true)
-                        Spacer()
-                    }
-                    
-                    ActionButtonView(role: "default",
-                                     symbolName: "calendar",
-                                     textLabel: "add") {
-                        isOnAddAppointment.toggle()
-                    }
-                    .sheet(isPresented: $isOnAddAppointment) {
-                        AddAppointmentView()
-                    }
-                    
-                    Spacer()
-                   
-                    
-                    ActionButtonView(role: "delete",
-                                     symbolName: "trash",
-                                     textLabel: "delete") {
-                        Accomodation
-                            .deleteAccommodation(viewContext: viewContext, accommodationObject: vm.accommodation)
-                        dismiss()
-                    }
-                }
+                quickActions
             }
             .listRowBackground(Color.clear)
             
             Section("General") {
-                LabeledContent("Type", value: vm.accommodationType.rawValue.capitalized)
-                Toggle("Visitable", isOn: .constant(vm.isVisitable))
+                LabeledContent("Type", value: accommodationVM.accommodationType.rawValue.capitalized)
+                Toggle("Visitable", isOn: .constant(accommodationVM.isVisitable))
                     .disabled(true)
-                Picker("Process Status", selection: $vm.currentStatus) {
+                Picker("Process Status", selection: $accommodationVM.currentStatus) {
                     ForEach(Status.allCases) { status in
                         Text(status.rawValue.capitalized).tag(status)
                     }
                 }
-                .onChange(of: vm.currentStatus) { status in
-                    vm.accommodation.status = status.rawValue
+                .onChange(of: accommodationVM.currentStatus) { status in
+                    accommodationVM.accommodation.status = status.rawValue
                     try? viewContext.save()
                 }
             }
             
             Section("Costs") {
-                LabeledContent("Rent Cost", value: vm.rentCost)
-                LabeledContent("Extra Costs", value: vm.extraCosts)
-                LabeledContent("Deposit", value: vm.deposit)
-                LabeledContent("Agency Fees", value: vm.agencyFees)
+                LabeledContent("Rent Cost", value: accommodationVM.rentCost)
+                LabeledContent("Extra Costs", value: accommodationVM.extraCosts)
+                LabeledContent("Deposit", value: accommodationVM.deposit)
+                LabeledContent("Agency Fees", value: accommodationVM.agencyFees)
             }
             
-            if let phoneNumber = vm.phoneNumber {
+            if let phoneNumber = accommodationVM.phoneNumber {
                 Section("Contact") {
-                    if let contactType = vm.contactType {
+                    if let contactType = accommodationVM.contactType {
                         LabeledContent("Type", value: contactType)
                     }
-                    if let contactName = vm.contactName {
+                    if let contactName = accommodationVM.contactName {
                         LabeledContent("Name", value: contactName)
                     }
-                    if let url = vm.phoneNumberUrl {
+                    if let url = accommodationVM.phoneNumberUrl {
                         Button {
                             UIApplication.shared.open(url)
                         } label: {
@@ -134,13 +89,13 @@ struct AccommodationDetailsView: View {
             }
             
 
-            if let description = vm.accommodation.description_text, !description.isEmpty {
+            if let description = accommodationVM.accommodation.description_text, !description.isEmpty {
                 Section("Description") {
                     Text(description)
                 }
             }
             
-            if let url = vm.accommodation.url {
+            if let url = accommodationVM.accommodation.url {
                 Section {
                     LabeledContent("Advertisement URL") {
                         Link(url.formatted(), destination: url)
@@ -148,13 +103,13 @@ struct AccommodationDetailsView: View {
                 }
             }
         }
-        .navigationTitle(vm.address)
+        .navigationTitle(accommodationVM.address)
         .navigationBarTitleDisplayMode(.inline)
         .toolbar{
             ToolbarItem(placement: .primaryAction) {
                 Button {
                     Accomodation
-                        .deleteAccommodation(viewContext: viewContext, accommodationObject: vm.accommodation)
+                        .deleteAccommodation(viewContext: viewContext, accommodationObject: accommodationVM.accommodation)
                     dismiss()
                 } label: {
                     Label("Delete", systemImage: "trash")
@@ -162,6 +117,60 @@ struct AccommodationDetailsView: View {
             }
         }
         
+    }
+    
+    private var quickActions: some View {
+        HStack {
+            ActionButtonView(role: "isFavourite",
+                             symbolName: accommodationVM.isFavourite ? "heart.fill" : "heart",
+                             textLabel: accommodationVM.isFavourite ? "unfavourite".capitalized : "favorite".capitalized) {
+                accommodationVM.accommodation.isFavourite.toggle()
+                guard let _ = try? viewContext.save() else { return }
+                accommodationVM.isFavourite.toggle()
+            }
+            Spacer()
+            
+            if let _ = accommodationVM.phoneNumber,
+               let url = accommodationVM.phoneNumberUrl {
+                    ActionButtonView(role: "default",
+                                     symbolName: "phone",
+                                     textLabel: "call") {
+                        UIApplication.shared.open(url)
+                    }
+                Spacer()
+            } else {
+                ActionButtonView(role: "default",
+                                 symbolName: "phone",
+                                 textLabel: "call") {
+                }
+                .disabled(true)
+                Spacer()
+            }
+            
+            ActionButtonView(role: "default",
+                             symbolName: "calendar",
+                             textLabel: "add") {
+                isOnAddAppointment.toggle()
+            }
+            .sheet(isPresented: $isOnAddAppointment) {
+                if EKEventStore.authorizationStatus(for: .event) == .authorized || EKEventStore.authorizationStatus(for: .event) == .notDetermined {
+                    AddAppointmentRepresentable()
+                } else {
+                    AddAppointmentView(vm: accommodationVM)
+                }
+            }
+            
+            Spacer()
+           
+            
+            ActionButtonView(role: "delete",
+                             symbolName: "trash",
+                             textLabel: "delete") {
+                Accomodation
+                    .deleteAccommodation(viewContext: viewContext, accommodationObject: accommodationVM.accommodation)
+                dismiss()
+            }
+        }
     }
     
 }
@@ -172,47 +181,3 @@ struct AccommodationDetailsView_Previews: PreviewProvider {
         AccommodationDetailsView(accommodation: Accomodation.fuorigrotta)
     }
 }
-
-
-struct AddAppointmentSheetView: View {
-    @State var appointment = Date()
-    @State private var isPresentingConfirm: Bool = false
-    
-    
-    @Environment(\.dismiss) var dismiss: DismissAction
-    @Environment(\.managedObjectContext) private var viewContext
-    
-    @StateObject private var vm: AccommodationDetailViewModel
-    init(accommodation: Accomodation) {
-        self._vm = StateObject(wrappedValue: AccommodationDetailViewModel(accommodation: accommodation))
-    }
-    
-    var body: some View {
-        
-        DatePicker(
-            "Pick a date",
-            selection: $appointment,
-            
-            displayedComponents: [.date, .hourAndMinute])
-        .padding()
-        .datePickerStyle(.automatic)
-        Spacer()
-        HStack{
-            Button(action: {
-                dismiss()
-            }, label: {
-                Text("Cancel")
-            })
-            
-            Button(action: {
-                Accomodation.bookAppointment(viewContext: viewContext, accommodationObject: vm.accommodation, newAppointment: appointment)
-                dismiss()
-            }, label: {
-                Text("Save")
-            })
-        }
-        
-    }
-}
-
-
