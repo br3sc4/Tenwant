@@ -10,16 +10,19 @@ import EventKitUI
 
 struct AddAppointmentRepresentable: UIViewControllerRepresentable {
     typealias UIViewControllerType = EKEventEditViewController
+    
+    private var appointmentVM: AppointmentViewModel
+    @EnvironmentObject private var accommodationVM: AccommodationDetailViewModel
+    
+    init(appointmentVM: AppointmentViewModel) {
+        self.appointmentVM = appointmentVM
+    }
 
     func makeUIViewController(context: UIViewControllerRepresentableContext<AddAppointmentRepresentable>) -> EKEventEditViewController {
         let controller = EKEventEditViewController()
-        controller.eventStore = EKEventStore()
-        controller.event = EKEvent(eventStore: controller.eventStore)
+        controller.eventStore = appointmentVM.store
+        controller.event = EKEvent(eventStore: appointmentVM.store)
         controller.editViewDelegate = context.coordinator
-        
-        Task {
-            await requestCalendarAccess(for: controller.eventStore)
-        }
         
         return controller
     }
@@ -28,10 +31,16 @@ struct AddAppointmentRepresentable: UIViewControllerRepresentable {
     }
 
     func makeCoordinator() -> Coordinator {
-        return Coordinator()
+        return Coordinator(accommodationVM: accommodationVM)
     }
 
     class Coordinator : NSObject, EKEventEditViewDelegate {
+        private var accommodationVM: AccommodationDetailViewModel
+        
+        init(accommodationVM: AccommodationDetailViewModel) {
+            self.accommodationVM = accommodationVM
+        }
+        
         func eventEditViewController(_ controller: EKEventEditViewController, didCompleteWith action: EKEventEditViewAction) {
             switch action {
             case .canceled:
@@ -42,6 +51,7 @@ struct AddAppointmentRepresentable: UIViewControllerRepresentable {
                         .save(controller.event!,
                               span: .thisEvent,
                               commit: true)
+                    accommodationVM.bookAppointment(for: controller.event!.startDate, viewContext: PersistenceController.shared.viewContext)
                     controller.dismiss(animated: true)
                 } catch {
                     print("❌ - \(error)")
@@ -51,25 +61,6 @@ struct AddAppointmentRepresentable: UIViewControllerRepresentable {
             @unknown default:
                 break
             }
-        }
-    }
-    
-    private func requestCalendarAccess(for store: EKEventStore) async {
-        switch EKEventStore.authorizationStatus(for: .event) {
-        case .authorized:
-            break
-        case .denied:
-            break
-        case .notDetermined:
-            do {
-                try await store.requestAccess(to: .event)
-            } catch {
-                print("❌ - \(error)")
-            }
-        case .restricted:
-            break
-        @unknown default:
-            break
         }
     }
 }

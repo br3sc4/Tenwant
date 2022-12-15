@@ -6,26 +6,23 @@
 //
 
 import SwiftUI
-import EventKit
-
 
 struct AccommodationDetailsView: View {
-    @StateObject private var accommodationVM: AccommodationDetailViewModel
-//    @StateObject private var appointmentVM: AppointmentViewModel = AppointmentViewModel()
+    @StateObject private var vm: AccommodationDetailViewModel
     @State var isOnAddAppointment = false
     @Environment(\.managedObjectContext) private var viewContext
     @Environment(\.dismiss) private var dismiss
     
     init(accommodation: Accomodation) {
-        self._accommodationVM = StateObject(wrappedValue: AccommodationDetailViewModel(accommodation: accommodation))
+        self._vm = StateObject(wrappedValue: AccommodationDetailViewModel(accommodation: accommodation))
     }
     
     var body: some View {
         List {
-            if !accommodationVM.images.isEmpty {
+            if !vm.images.isEmpty {
                 Section {
                     TabView {
-                        ForEach(accommodationVM.images, id: \.self) { image in
+                        ForEach(vm.images, id: \.self) { image in
                             if let uiImage = UIImage(data: image) {
                                 Image(uiImage: uiImage)
                                     .resizable()
@@ -48,36 +45,36 @@ struct AccommodationDetailsView: View {
             .listRowBackground(Color.clear)
             
             Section("General") {
-                LabeledContent("Type", value: accommodationVM.accommodationType.rawValue.capitalized)
-                Toggle("Visitable", isOn: .constant(accommodationVM.isVisitable))
+                LabeledContent("Type", value: vm.accommodationType.rawValue.capitalized)
+                Toggle("Visitable", isOn: .constant(vm.isVisitable))
                     .disabled(true)
-                Picker("Process Status", selection: $accommodationVM.currentStatus) {
+                Picker("Process Status", selection: $vm.currentStatus) {
                     ForEach(Status.allCases) { status in
                         Text(status.rawValue.capitalized).tag(status)
                     }
                 }
-                .onChange(of: accommodationVM.currentStatus) { status in
-                    accommodationVM.accommodation.status = status.rawValue
+                .onChange(of: vm.currentStatus) { status in
+                    vm.accommodation.status = status.rawValue
                     try? viewContext.save()
                 }
             }
             
             Section("Costs") {
-                LabeledContent("Rent Cost", value: accommodationVM.rentCost)
-                LabeledContent("Extra Costs", value: accommodationVM.extraCosts)
-                LabeledContent("Deposit", value: accommodationVM.deposit)
-                LabeledContent("Agency Fees", value: accommodationVM.agencyFees)
+                LabeledContent("Rent Cost", value: vm.rentCost)
+                LabeledContent("Extra Costs", value: vm.extraCosts)
+                LabeledContent("Deposit", value: vm.deposit)
+                LabeledContent("Agency Fees", value: vm.agencyFees)
             }
             
-            if let phoneNumber = accommodationVM.phoneNumber {
+            if let phoneNumber = vm.phoneNumber {
                 Section("Contact") {
-                    if let contactType = accommodationVM.contactType {
+                    if let contactType = vm.contactType {
                         LabeledContent("Type", value: contactType)
                     }
-                    if let contactName = accommodationVM.contactName {
+                    if let contactName = vm.contactName {
                         LabeledContent("Name", value: contactName)
                     }
-                    if let url = accommodationVM.phoneNumberUrl {
+                    if let url = vm.phoneNumberUrl {
                         Button {
                             UIApplication.shared.open(url)
                         } label: {
@@ -89,13 +86,13 @@ struct AccommodationDetailsView: View {
             }
             
 
-            if let description = accommodationVM.accommodation.description_text, !description.isEmpty {
+            if let description = vm.accommodation.description_text, !description.isEmpty {
                 Section("Description") {
                     Text(description)
                 }
             }
             
-            if let url = accommodationVM.accommodation.url {
+            if let url = vm.accommodation.url {
                 Section {
                     LabeledContent("Advertisement URL") {
                         Link(url.formatted(), destination: url)
@@ -103,13 +100,13 @@ struct AccommodationDetailsView: View {
                 }
             }
         }
-        .navigationTitle(accommodationVM.address)
+        .navigationTitle(vm.address)
         .navigationBarTitleDisplayMode(.inline)
         .toolbar{
             ToolbarItem(placement: .primaryAction) {
                 Button {
                     Accomodation
-                        .deleteAccommodation(viewContext: viewContext, accommodationObject: accommodationVM.accommodation)
+                        .deleteAccommodation(viewContext: viewContext, accommodationObject: vm.accommodation)
                     dismiss()
                 } label: {
                     Label("Delete", systemImage: "trash")
@@ -122,16 +119,16 @@ struct AccommodationDetailsView: View {
     private var quickActions: some View {
         HStack {
             ActionButtonView(role: "isFavourite",
-                             symbolName: accommodationVM.isFavourite ? "heart.fill" : "heart",
-                             textLabel: accommodationVM.isFavourite ? "unfavourite".capitalized : "favorite".capitalized) {
-                accommodationVM.accommodation.isFavourite.toggle()
+                             symbolName: vm.isFavourite ? "heart.fill" : "heart",
+                             textLabel: vm.isFavourite ? "unfavourite".capitalized : "favorite".capitalized) {
+                vm.accommodation.isFavourite.toggle()
                 guard let _ = try? viewContext.save() else { return }
-                accommodationVM.isFavourite.toggle()
+                vm.isFavourite.toggle()
             }
             Spacer()
             
-            if let _ = accommodationVM.phoneNumber,
-               let url = accommodationVM.phoneNumberUrl {
+            if let _ = vm.phoneNumber,
+               let url = vm.phoneNumberUrl {
                     ActionButtonView(role: "default",
                                      symbolName: "phone",
                                      textLabel: "call") {
@@ -153,11 +150,8 @@ struct AccommodationDetailsView: View {
                 isOnAddAppointment.toggle()
             }
             .sheet(isPresented: $isOnAddAppointment) {
-                if EKEventStore.authorizationStatus(for: .event) == .authorized || EKEventStore.authorizationStatus(for: .event) == .notDetermined {
-                    AddAppointmentRepresentable()
-                } else {
-                    AddAppointmentView(vm: accommodationVM)
-                }
+                AddAppointmentView()
+                    .environmentObject(vm)
             }
             
             Spacer()
@@ -167,7 +161,7 @@ struct AccommodationDetailsView: View {
                              symbolName: "trash",
                              textLabel: "delete") {
                 Accomodation
-                    .deleteAccommodation(viewContext: viewContext, accommodationObject: accommodationVM.accommodation)
+                    .deleteAccommodation(viewContext: viewContext, accommodationObject: vm.accommodation)
                 dismiss()
             }
         }

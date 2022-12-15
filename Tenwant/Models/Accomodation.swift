@@ -19,7 +19,7 @@ extension Accomodation {
 
 extension Accomodation {
     static let fuorigrotta: Accomodation = Accomodation
-        .createNewAccommodation(viewContext: PersistenceController.preview.container.viewContext,
+        .createNewAccommodation(viewContext: PersistenceController.preview.viewContext,
                                 title: "Via Pietro Metastasio 47",
                                 description_text: "",
                                 rent_cost: "350",

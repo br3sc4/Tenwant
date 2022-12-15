@@ -13,8 +13,9 @@
 		2D09F8A42944B5350090B594 /* PointOfInterest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D09F8A32944B5350090B594 /* PointOfInterest.swift */; };
 		2D09F8A62944BAB00090B594 /* PoIAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D09F8A52944BAB00090B594 /* PoIAnnotation.swift */; };
 		2D0A3C7C294B0B30009412E8 /* AddAppointmentRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D0A3C7B294B0B30009412E8 /* AddAppointmentRepresentable.swift */; };
-		2D0A3C7F294B0EA5009412E8 /* AddAppointmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D0A3C7E294B0EA5009412E8 /* AddAppointmentView.swift */; };
 		2D0A3C81294B1339009412E8 /* AppointmentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D0A3C80294B1339009412E8 /* AppointmentViewModel.swift */; };
+		2D0A3C84294B1FBB009412E8 /* AddAppointmentSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D0A3C83294B1FBB009412E8 /* AddAppointmentSheetView.swift */; };
+		2D0A3C86294B207E009412E8 /* AddAppointmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D0A3C85294B207E009412E8 /* AddAppointmentView.swift */; };
 		2D6AAC4B2940B5BA00A7AC00 /* TenwantApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D6AAC4A2940B5BA00A7AC00 /* TenwantApp.swift */; };
 		2D6AAC4F2940B5BB00A7AC00 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2D6AAC4E2940B5BB00A7AC00 /* Assets.xcassets */; };
 		2D6AAC532940B5BB00A7AC00 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2D6AAC522940B5BB00A7AC00 /* Preview Assets.xcassets */; };
@@ -52,8 +53,9 @@
 		2D09F8A52944BAB00090B594 /* PoIAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoIAnnotation.swift; sourceTree = "<group>"; };
 		2D0A3C7B294B0B30009412E8 /* AddAppointmentRepresentable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddAppointmentRepresentable.swift; sourceTree = "<group>"; };
 		2D0A3C7D294B0BD7009412E8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		2D0A3C7E294B0EA5009412E8 /* AddAppointmentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAppointmentView.swift; sourceTree = "<group>"; };
 		2D0A3C80294B1339009412E8 /* AppointmentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentViewModel.swift; sourceTree = "<group>"; };
+		2D0A3C83294B1FBB009412E8 /* AddAppointmentSheetView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddAppointmentSheetView.swift; sourceTree = "<group>"; };
+		2D0A3C85294B207E009412E8 /* AddAppointmentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAppointmentView.swift; sourceTree = "<group>"; };
 		2D4BE73F294734FA00EAB80D /* AccommodationDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccommodationDetailViewModel.swift; sourceTree = "<group>"; };
 		2D6AAC472940B5BA00A7AC00 /* Tenwant.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tenwant.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D6AAC4A2940B5BA00A7AC00 /* TenwantApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TenwantApp.swift; sourceTree = "<group>"; };
@@ -106,6 +108,16 @@
 				2DE7B3172949FFC700A298BE /* AccommodationSheetView.swift */,
 			);
 			path = Map;
+			sourceTree = "<group>";
+		};
+		2D0A3C82294B1F44009412E8 /* AddAppointment */ = {
+			isa = PBXGroup;
+			children = (
+				2D0A3C83294B1FBB009412E8 /* AddAppointmentSheetView.swift */,
+				2D0A3C7B294B0B30009412E8 /* AddAppointmentRepresentable.swift */,
+				2D0A3C85294B207E009412E8 /* AddAppointmentView.swift */,
+			);
+			path = AddAppointment;
 			sourceTree = "<group>";
 		};
 		2D6AAC3E2940B5B900A7AC00 = {
@@ -165,16 +177,15 @@
 		A90B3D4D2940D07F00A8E180 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				2D0A3C82294B1F44009412E8 /* AddAppointment */,
 				2D09F8A02944B2AA0090B594 /* Map */,
 				A90B3D4B2940C03500A8E180 /* MainView.swift */,
-				2D0A3C7B294B0B30009412E8 /* AddAppointmentRepresentable.swift */,
 				2D8368602949ECC400088115 /* MyAccommodationsView.swift */,
 				A9B30F852944C6B0009F5B9A /* AddAccommodationView.swift */,
 				2DF1FCC82946219600815F32 /* AccommodationDetailsView.swift */,
 				D14E573E2947E37900BABCCF /* AppointmentRepresentable.swift */,
 				D14E57402947E39500BABCCF /* ApppointmentView.swift */,
 				A90B3D5C2942417500A8E180 /* MyCalendarView.swift */,
-				2D0A3C7E294B0EA5009412E8 /* AddAppointmentView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -292,7 +303,6 @@
 				2D0A3C7C294B0B30009412E8 /* AddAppointmentRepresentable.swift in Sources */,
 				A9B30F862944C6B0009F5B9A /* AddAccommodationView.swift in Sources */,
 				2DB6CB7F29415EF30048CF00 /* MapViewRepresentable.swift in Sources */,
-				2D0A3C7F294B0EA5009412E8 /* AddAppointmentView.swift in Sources */,
 				A90B3D5929423AA800A8E180 /* MyCalendarRowView.swift in Sources */,
 				A90B3D522940D3E200A8E180 /* GalleryView.swift in Sources */,
 				A9B30F8A29464FF1009F5B9A /* PointOfInterestViewModel.swift in Sources */,
@@ -305,7 +315,8 @@
 				D14E57412947E39500BABCCF /* ApppointmentView.swift in Sources */,
 				2D09F89F294398E60090B594 /* Accomodation.swift in Sources */,
 				BCE95EDA2941F8C50034D879 /* Persistence.swift in Sources */,
-				2D6AAC4D2940B5BA00A7AC00 /* ContentView.swift in Sources */,
+				2D0A3C84294B1FBB009412E8 /* AddAppointmentSheetView.swift in Sources */,
+				2D0A3C86294B207E009412E8 /* AddAppointmentView.swift in Sources */,
 				2DB6CB852941F9000048CF00 /* AlertContent.swift in Sources */,
 				2DF1FCCD2946277000815F32 /* AddAccommodationViewModel.swift in Sources */,
 				2DB6CB7D29415EDD0048CF00 /* MapView.swift in Sources */,

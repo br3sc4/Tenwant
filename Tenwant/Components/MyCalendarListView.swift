@@ -89,7 +89,7 @@ struct MyCalendarListView_Previews: PreviewProvider {
     
     static var previews: some View {
         MyCalendarListView(accommodations: accommodations)
-            .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+            .environment(\.managedObjectContext, PersistenceController.preview.viewContext)
     }
 }
 

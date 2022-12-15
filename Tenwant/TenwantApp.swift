@@ -15,7 +15,7 @@ struct TenwantApp: App {
     var body: some Scene {
         WindowGroup {
             MainView()
-                .environment(\.managedObjectContext, persistenceController.container.viewContext)
+                .environment(\.managedObjectContext, persistenceController.viewContext)
         }
     }
 }
