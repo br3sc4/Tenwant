@@ -183,8 +183,6 @@
 				2D8368602949ECC400088115 /* MyAccommodationsView.swift */,
 				A9B30F852944C6B0009F5B9A /* AddAccommodationView.swift */,
 				2DF1FCC82946219600815F32 /* AccommodationDetailsView.swift */,
-				D14E573E2947E37900BABCCF /* AppointmentRepresentable.swift */,
-				D14E57402947E39500BABCCF /* ApppointmentView.swift */,
 				A90B3D5C2942417500A8E180 /* MyCalendarView.swift */,
 			);
 			path = Views;
@@ -312,7 +310,6 @@
 				2D0A3C81294B1339009412E8 /* AppointmentViewModel.swift in Sources */,
 				A9B30F7E2944C173009F5B9A /* AccommodationCardView.swift in Sources */,
 				BCDE64DD29428879008056AF /* Extensions.swift in Sources */,
-				D14E57412947E39500BABCCF /* ApppointmentView.swift in Sources */,
 				2D09F89F294398E60090B594 /* Accomodation.swift in Sources */,
 				BCE95EDA2941F8C50034D879 /* Persistence.swift in Sources */,
 				2D0A3C84294B1FBB009412E8 /* AddAppointmentSheetView.swift in Sources */,
@@ -461,7 +458,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"Tenwant/Preview Content\"";
-				DEVELOPMENT_TEAM = A8DRB9NKCV;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
 				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = YES;
 				ENABLE_PREVIEWS = YES;
@@ -487,7 +484,6 @@
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.brescanzin.lorenzo.Tenwant;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
@@ -509,7 +505,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"Tenwant/Preview Content\"";
-				DEVELOPMENT_TEAM = A8DRB9NKCV;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
 				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = YES;
 				ENABLE_PREVIEWS = YES;
@@ -535,7 +531,6 @@
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.brescanzin.lorenzo.Tenwant;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
