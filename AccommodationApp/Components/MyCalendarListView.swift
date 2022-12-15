@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct MyCalendarListView: View {
+    let calendarView = CalendarViewController()
     
     let accommodations: FetchedResults<Accomodation>
     var accommodationByDate: [Date: [Accomodation]] {
@@ -83,7 +84,6 @@ struct MyCalendarListView: View {
                 }
 //                .padding([.bottom, .top], 25)
             }
-            
             .toolbar{
                 ToolbarItem(placement: .primaryAction){
                     Button(action: {

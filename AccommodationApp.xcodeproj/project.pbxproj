@@ -29,6 +29,8 @@
 		A90B3D5B2942415900A8E180 /* MyCalendarListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90B3D5A2942415900A8E180 /* MyCalendarListView.swift */; };
 		A90B3D5D2942417500A8E180 /* MyCalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90B3D5C2942417500A8E180 /* MyCalendarView.swift */; };
 		A90B3D5F2942484E00A8E180 /* MyCalendarWeeklyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90B3D5E2942484E00A8E180 /* MyCalendarWeeklyView.swift */; };
+		A9923794294A5F4000977B01 /* Calendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9923793294A5F4000977B01 /* Calendar.swift */; };
+		A9923796294B1E2300977B01 /* CalendarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9923795294B1E2300977B01 /* CalendarViewModel.swift */; };
 		A998190C2949BC8300464125 /* ActionButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A998190B2949BC8300464125 /* ActionButtonView.swift */; };
 		A9B30F7E2944C173009F5B9A /* AccommodationCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B30F7D2944C173009F5B9A /* AccommodationCardView.swift */; };
 		A9B30F802944C515009F5B9A /* AccommodationDetailsRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B30F7F2944C515009F5B9A /* AccommodationDetailsRow.swift */; };
@@ -68,6 +70,8 @@
 		A90B3D5A2942415900A8E180 /* MyCalendarListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCalendarListView.swift; sourceTree = "<group>"; };
 		A90B3D5C2942417500A8E180 /* MyCalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCalendarView.swift; sourceTree = "<group>"; };
 		A90B3D5E2942484E00A8E180 /* MyCalendarWeeklyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCalendarWeeklyView.swift; sourceTree = "<group>"; };
+		A9923793294A5F4000977B01 /* Calendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Calendar.swift; sourceTree = "<group>"; };
+		A9923795294B1E2300977B01 /* CalendarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewModel.swift; sourceTree = "<group>"; };
 		A998190B2949BC8300464125 /* ActionButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionButtonView.swift; sourceTree = "<group>"; };
 		A9B30F7D2944C173009F5B9A /* AccommodationCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccommodationCardView.swift; sourceTree = "<group>"; };
 		A9B30F7F2944C515009F5B9A /* AccommodationDetailsRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccommodationDetailsRow.swift; sourceTree = "<group>"; };
@@ -151,6 +155,7 @@
 				2DB6CB822941F7CC0048CF00 /* MapViewModel.swift */,
 				2DF1FCCC2946277000815F32 /* AddAccommodationViewModel.swift */,
 				2D4BE73F294734FA00EAB80D /* AccommodationDetailViewModel.swift */,
+				A9923795294B1E2300977B01 /* CalendarViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -189,6 +194,7 @@
 			children = (
 				2DB6CB842941F9000048CF00 /* AlertContent.swift */,
 				2D09F89A294393240090B594 /* Enums.swift */,
+				A9923793294A5F4000977B01 /* Calendar.swift */,
 				2D09F89E294398E60090B594 /* Accomodation.swift */,
 				2D09F8A32944B5350090B594 /* PointOfInterest.swift */,
 			);
@@ -279,11 +285,13 @@
 				2D8A08BD29471A2800AE2DE3 /* AccommodationAnnotation.swift in Sources */,
 				A9B30F802944C515009F5B9A /* AccommodationDetailsRow.swift in Sources */,
 				A9B30F862944C6B0009F5B9A /* AddAccommodationView.swift in Sources */,
+				A9923794294A5F4000977B01 /* Calendar.swift in Sources */,
 				2DB6CB7F29415EF30048CF00 /* MapViewRepresentable.swift in Sources */,
 				A90B3D5929423AA800A8E180 /* MyCalendarRowView.swift in Sources */,
 				A90B3D522940D3E200A8E180 /* GalleryView.swift in Sources */,
 				A9B30F8A29464FF1009F5B9A /* PointOfInterestViewModel.swift in Sources */,
 				A90B3D4C2940C03500A8E180 /* MainView.swift in Sources */,
+				A9923796294B1E2300977B01 /* CalendarViewModel.swift in Sources */,
 				BCE95ED82941F4200034D879 /* AccommodationData.xcdatamodeld in Sources */,
 				A9B30F7E2944C173009F5B9A /* AccommodationCardView.swift in Sources */,
 				BCDE64DD29428879008056AF /* Extensions.swift in Sources */,
@@ -452,7 +460,7 @@
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.giugliano.antonella.AccommodationApp;
+				PRODUCT_BUNDLE_IDENTIFIER = giugliano.antonella.AccommodationApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
@@ -492,7 +500,7 @@
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.giugliano.antonella.AccommodationApp;
+				PRODUCT_BUNDLE_IDENTIFIER = giugliano.antonella.AccommodationApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
