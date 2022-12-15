@@ -21,9 +21,13 @@ final class AppointmentViewModel: ObservableObject {
     private func requestCalendarAccess() async {
         switch EKEventStore.authorizationStatus(for: .event) {
         case .authorized:
-            calendarAccessGaranted = true
+            Task { @MainActor in
+                calendarAccessGaranted = true
+            }
         case .denied:
-            calendarAccessGaranted = false
+            Task { @MainActor in
+                calendarAccessGaranted = false
+            }
         case .notDetermined:
             do {
                 try await store.requestAccess(to: .event)

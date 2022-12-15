@@ -17,6 +17,7 @@ struct AddAppointmentView: View {
             AddAppointmentRepresentable(appointmentVM: appointmentVM)
         } else {
             AddAppointmentSheetView()
+                .presentationDetents([.fraction(1/4)])
         }
     }
 }
