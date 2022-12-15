@@ -49,7 +49,6 @@ struct MapView: View {
                 AccommodationSheetView(accommodation: accommodation,
                                        userLocation: vm.userLocation)
                     .presentationDetents([.medium, .large])
-                    .interactiveDismissDisabled(true)
             }
         }
     }
